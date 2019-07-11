@@ -1,0 +1,2 @@
+# tsapp
+typescript wo yaruzo
