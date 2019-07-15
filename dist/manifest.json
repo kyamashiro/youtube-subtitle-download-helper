@@ -5,13 +5,12 @@
   "permissions": [
     "activeTab",
     "declarativeContent",
-    "storage",
     "contextMenus",
     "management"
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["*://youtube.com/*"],
       "js": ["./js/content.js"]
     }
   ],
