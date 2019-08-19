@@ -5,8 +5,12 @@ module.exports = {
   // 下記はオブジェクトとして指定した例
   entry: {
     content: "./src/content.ts",
-    background: "./src/background.ts"
+    background: "./src/background.ts",
+    popup: "./src/popup.ts",
+    // client: "./src/youtube/client.ts",
+    // clientInterface: "./src/youtube/clientInterface.ts",
   },
+  target: 'node',
   output: {
     // モジュールバンドルを行った結果を出力する場所やファイル名の指定
     // "__dirname"はこのファイルが存在するディレクトリを表すnode.jsで定義済みの定数
@@ -25,13 +29,11 @@ module.exports = {
   },
   // モジュールに適用するルールの設定（ここではローダーの設定を行う事が多い）
   module: {
-    rules: [
-      {
-        // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する
-        test: /\.ts$/,
-        loader: "ts-loader",
-        exclude: /node_modules/
-      }
-    ]
+    rules: [{
+      // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する
+      test: /\.ts$/,
+      loader: "ts-loader",
+      exclude: /node_modules/
+    }]
   }
 };

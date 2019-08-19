@@ -1,16 +1,16 @@
 {
-  "name": "youtube 字幕拡張機能",
+  "name": "Youtube Subtitle Download",
   "version": "1.0",
-  "description": "字幕別窓",
+  "description": "Youtube Subtitle Download",
   "permissions": [
     "activeTab",
     "declarativeContent",
-    "contextMenus",
+    "downloads",
     "management"
   ],
   "content_scripts": [
     {
-      "matches": ["*://youtube.com/*"],
+      "matches": [ "http://*.youtube.com/*", "https://*.youtube.com/*"],
       "js": ["./js/content.js"]
     }
   ],
@@ -19,7 +19,8 @@
     "persistent": false
   },
   "browser_action": {
-    "default_title": "説明",
+    "default_title": "Youtube Subtitle Download",
+    "default_popup": "./html/popup.html",
     "default_icon": {
       "16": "images/icon.png",
       "24": "images/icon.png",
