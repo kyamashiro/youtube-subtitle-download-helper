@@ -7,8 +7,7 @@ export default class VideoInfo {
   }
 
   public getCaptionsData() {
-    return this.videoInfoParse().captions.playerCaptionsTracklistRenderer
-      .captionTracks;
+    return this.videoInfoParse().captions.playerCaptionsTracklistRenderer.captionTracks;
   }
 
   public getVideoTitle() {
@@ -17,10 +16,7 @@ export default class VideoInfo {
 
   private parseQuery(queryString: string) {
     let query: { [key: string]: any } = {};
-    var pairs = (queryString[0] === '?'
-      ? queryString.substr(1)
-      : queryString
-    ).split('&');
+    var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
     for (var i = 0; i < pairs.length; i++) {
       var pair = pairs[i].split('=');
       query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');

@@ -26,10 +26,7 @@ export default class Subtitle {
       if (err) throw err;
       data = csv;
     };
-    converter.json2csv(
-      this.convertXMLtoCsv(this.subtitleData),
-      json2csvCallback
-    );
+    converter.json2csv(this.convertXMLtoCsv(this.subtitleData), json2csvCallback);
 
     chrome.downloads.download({
       url: URL.createObjectURL(new Blob([data], { type: 'text/csv' })),
@@ -45,10 +42,7 @@ export default class Subtitle {
       if (err) throw err;
       data = csv;
     };
-    converter.json2csv(
-      this.convertXMLtoText(this.subtitleData),
-      json2csvCallback
-    );
+    converter.json2csv(this.convertXMLtoText(this.subtitleData), json2csvCallback);
 
     chrome.downloads.download({
       url: URL.createObjectURL(new Blob([data], { type: 'text/plain' })),
@@ -124,9 +118,7 @@ export default class Subtitle {
   }
 
   mergeTime(dateStartStr: any, dateEndStr: any) {
-    return new Date(dateStartStr * 1000 + dateEndStr * 1000)
-      .toISOString()
-      .slice(11, -1);
+    return new Date(dateStartStr * 1000 + dateEndStr * 1000).toISOString().slice(11, -1);
   }
 
   convertTime(duration: any) {
