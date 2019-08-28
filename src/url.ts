@@ -9,11 +9,4 @@ export default class Url {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
-
-  public getSubtitleUrl(format: string): string {
-    if (format === 'vtt') {
-      return this.url + '&fmt=vtt';
-    }
-    return this.url;
-  }
 }

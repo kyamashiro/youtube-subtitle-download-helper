@@ -38,55 +38,36 @@ function addSelectBoxFormat() {
 }
 
 function addSelectBox() {
-  document
-    .getElementById('content')!
-    .insertAdjacentHTML(
-      'afterbegin',
-      "<select class='uk-select' id='language'></select>"
-    );
+  document.getElementById('content')!.insertAdjacentHTML('afterbegin', "<select class='uk-select' id='language'></select>");
 }
 
 function addSelectBoxOption(value: any) {
-  document
-    .getElementById('language')!
-    .insertAdjacentHTML(
-      'beforeend',
-      `<option value=${value.baseUrl}>${value.name.simpleText}</option>`
-    );
+  document.getElementById('language')!.insertAdjacentHTML('beforeend', `<option value=${value.baseUrl}>${value.name.simpleText}</option>`);
 }
 
 function addDownloadButton() {
   document
     .getElementById('content')!
-    .insertAdjacentHTML(
-      'afterend',
-      "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>"
-    );
+    .insertAdjacentHTML('afterend', "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>");
   document.getElementById('download-button')!.onclick = () => download();
 }
 
 function debug(response: any) {
-  const debug: HTMLElement = document.getElementById('debug')!;
+  const debug: HTMLElement = <HTMLElement>document.getElementById('debug');
   debug.insertAdjacentHTML('beforebegin', response);
 }
 
 function displayMessage(message: string) {
-  const content: HTMLElement = document.getElementById('content')!;
-  content.insertAdjacentHTML(
-    'beforebegin',
-    `<p class='uk-text-danger'>${message}</p>`
-  );
+  const content: HTMLElement = <HTMLElement>document.getElementById('content');
+  content.insertAdjacentHTML('beforebegin', `<p class='uk-text-danger'>${message}</p>`);
 }
 
 function download() {
-  const language_url: string = (<HTMLInputElement>(
-    document.getElementById('language')
-  )).value;
-  const format: string = (<HTMLInputElement>document.getElementById('format'))
-    .value;
+  const language_url: string = (<HTMLInputElement>document.getElementById('language')).value;
+  const format: string = (<HTMLInputElement>document.getElementById('format')).value;
 
-  getRequest(new Url(language_url).getSubtitleUrl(format))
-    .then(response => {
+  getRequest(language_url)
+    .then((response) => {
       if (!response) throw new Error('Response empty.');
       const subtitle = new Subtitle(response);
 
@@ -98,7 +79,7 @@ function download() {
         subtitle.getVtt(videoTitle);
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       debug(error);
     });
