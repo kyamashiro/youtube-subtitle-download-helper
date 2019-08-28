@@ -44,12 +44,48 @@ export default class Subtitle {
   }
 
   public getSrt(filename: string): any {
-    const blob = new Blob([this.subtitleData], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    chrome.downloads.download({
-      url: url,
-      filename: filename + '.srt'
-    });
+    let converter = require('json-2-csv');
+    const options = {
+      delimiter: {
+        wrap: '', // Double Quote (") character
+        field: '', // Comma field delimiter
+        eol: '\n' // Newline delimiter
+      },
+      prependHeader: false
+    };
+    converter
+      .json2csvAsync(this.convertXMLtoSrt(this.subtitleData), options)
+      .then((csv: any) => {
+        chrome.downloads.download({
+          url: URL.createObjectURL(new Blob([csv], { type: 'text/plain' })),
+          filename: this.removeReservedCharacters(filename) + '.srt'
+        });
+      })
+      .catch((err: any) => {
+        if (err) throw err;
+      });
+  }
+
+  convertXMLtoSrt(transcript: any) {
+    const lines: Array<string> = transcript
+      .replace('<?xml version="1.0" encoding="utf-8" ?><transcript>', '')
+      .replace('</transcript>', '')
+      .split('</text>')
+      .filter((line: string) => line && line.trim())
+      .map((line: string, index: number) => {
+        const numericCounter = index + 1 + '\n';
+        const aline = this.extract(line);
+        // replace dot to conma. 00:00:00.000 => 00:00:00,000
+        const timestamp = aline.start.replace(/[.]/, ',') + ' --> ' + aline.duration.replace(/[.]/, ',') + '\n';
+        const text = aline.text.replace(/\n/, ' ') + '\n';
+        return {
+          numericCounter,
+          timestamp,
+          text
+        };
+      });
+
+    return lines;
   }
 
   public getCsv(filename: string): any {

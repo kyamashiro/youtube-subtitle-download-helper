@@ -33,7 +33,7 @@ function addSelectBoxFormat() {
     .getElementById('content')!
     .insertAdjacentHTML(
       'afterbegin',
-      "<select class='uk-select' style='margin-bottom:5px' id='format'><option value='csv'>.csv</option><option value='text'>.txt</option><option value='vtt'>.vtt</option></select>"
+      "<select class='uk-select' style='margin-bottom:5px' id='format'><option value='csv'>.csv</option><option value='text'>.txt</option><option value='vtt'>.vtt</option><option value='srt'>.srt</option></select>"
     );
 }
 
@@ -49,7 +49,8 @@ function addDownloadButton() {
   document
     .getElementById('content')!
     .insertAdjacentHTML('afterend', "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>");
-  document.getElementById('download-button')!.onclick = () => download();
+  // イベントハンドラにdownload()を登録
+  (<HTMLInputElement>document.getElementById('download-button')).onclick = () => download();
 }
 
 function debug(response: any) {
@@ -75,8 +76,10 @@ function download() {
         subtitle.getCsv(videoTitle);
       } else if (format === 'text') {
         subtitle.getText(videoTitle);
-      } else {
+      } else if (format === 'vtt') {
         subtitle.getVtt(videoTitle);
+      } else {
+        subtitle.getSrt(videoTitle);
       }
     })
     .catch((error) => {
