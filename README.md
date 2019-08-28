@@ -1,10 +1,10 @@
-Youtube Subtitle Downloader
+Youtube Subtitle Download Helper
 ====
 
 Overview
 
 ## Description
-Youtube Subtitle Download Chrome Extension
+Chrome extension to download youtube subtitles
 
 ## Demo
 
