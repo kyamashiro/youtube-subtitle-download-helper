@@ -1,4 +1,4 @@
-export default class VideoInfo {
+export default class VideoInfoParser {
   constructor(private videoInfoResponse: any) {}
 
   private videoInfoParse(): any {
@@ -10,8 +10,14 @@ export default class VideoInfo {
     return this.videoInfoParse().captions.playerCaptionsTracklistRenderer.captionTracks;
   }
 
+  /**
+   * Get video title and replace extra word.
+   * example:"How+to+learn+any+language+in+six+months+|+Chris+Lonsdale+|+TEDxLingnanUniversity"
+   */
   public getVideoTitle() {
-    return this.videoInfoParse().videoDetails.title.replace(/[\+|]/g, ' ');
+    return this.videoInfoParse()
+      .videoDetails.title.replace(/\+\|/g, '')
+      .replace(/[\+]/g, ' ');
   }
 
   private parseQuery(queryString: string) {

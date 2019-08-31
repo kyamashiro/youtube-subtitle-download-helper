@@ -1,39 +1,24 @@
-import VideoInfo from './videoinfo';
 import Url from './url';
+import VideoInfoParser from './videoinfoparser';
+import YoutubeClient from './client/youtubeclient';
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   const videoId = new Url(document.URL).getParam('v');
-  getRequest(`https://youtube.com/get_video_info?video_id=${videoId}`)
-    .then(response => {
-      const videoInfo = new VideoInfo(response);
+  const client = new YoutubeClient();
+  client
+    .getVideoInfo(videoId)
+    .then((response) => {
+      const videoInfoParser = new VideoInfoParser(response);
       sendResponse({
-        captions: videoInfo.getCaptionsData(),
+        captions: videoInfoParser.getCaptionsData(),
         videoId: videoId,
-        title: videoInfo.getVideoTitle(),
+        title: videoInfoParser.getVideoTitle(),
         error: null
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       sendResponse({ error: error });
     });
   return true;
 });
-
-function getRequest(url: string): Promise<any> {
-  return new Promise<any>(function(resolve, reject) {
-    const request = new XMLHttpRequest();
-    request.onload = function() {
-      if (this.status === 200) {
-        resolve(this.response);
-      } else {
-        reject(new Error(this.statusText));
-      }
-    };
-    request.onerror = function() {
-      reject(new Error('XMLHttpRequest Error: ' + this.statusText));
-    };
-    request.open('GET', url);
-    request.send();
-  });
-}
