@@ -7,8 +7,6 @@ module.exports = {
     content: "./src/content.ts",
     background: "./src/background.ts",
     popup: "./src/popup.ts",
-    // client: "./src/youtube/client.ts",
-    // clientInterface: "./src/youtube/clientInterface.ts",
   },
   target: 'node',
   output: {

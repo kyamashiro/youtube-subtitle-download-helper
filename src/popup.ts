@@ -1,5 +1,5 @@
-import Url from './url';
 import Subtitle from './subtitle';
+import ClientYoutube from './client/clientYoutube';
 
 const sendData: { [key: string]: string } = {
   reason: 'check'
@@ -49,7 +49,7 @@ function addDownloadButton() {
   document
     .getElementById('content')!
     .insertAdjacentHTML('afterend', "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>");
-  // イベントハンドラにdownload()を登録
+  // register eventHandler function download()
   (<HTMLInputElement>document.getElementById('download-button')).onclick = () => download();
 }
 
@@ -66,12 +66,12 @@ function displayMessage(message: string) {
 function download() {
   const language_url: string = (<HTMLInputElement>document.getElementById('language')).value;
   const format: string = (<HTMLInputElement>document.getElementById('format')).value;
-
-  getRequest(language_url)
-    .then((response) => {
-      if (!response) throw new Error('Response empty.');
-      const subtitle = new Subtitle(response);
-
+  const client = new ClientYoutube();
+  client
+    .getSubtitle(language_url)
+    .then((xmlResponse: string) => {
+      if (!xmlResponse) throw new Error('Response empty.');
+      const subtitle = new Subtitle(xmlResponse);
       if (format === 'csv') {
         subtitle.getCsv(videoTitle);
       } else if (format === 'text') {
@@ -86,22 +86,4 @@ function download() {
       console.log(error);
       debug(error);
     });
-}
-
-function getRequest(url: string): Promise<any> {
-  return new Promise<any>(function(resolve, reject) {
-    const request = new XMLHttpRequest();
-    request.onload = function() {
-      if (this.status === 200) {
-        resolve(this.response);
-      } else {
-        reject(new Error(this.statusText));
-      }
-    };
-    request.onerror = function() {
-      reject(new Error('XMLHttpRequest Error: ' + this.statusText));
-    };
-    request.open('GET', url);
-    request.send();
-  });
 }

@@ -1,4 +1,4 @@
-import VideoInfoParser from '../videoinfoparser';
+import VideoInfoParser from '../videoInfoParser';
 
 var buffer: string;
 beforeAll((done) => {
@@ -9,17 +9,17 @@ beforeAll((done) => {
   });
 });
 
-test('動画タイトルを取得し,+|を置換する', () => {
+test('Get video title and replace + |', () => {
   const videoinfo = new VideoInfoParser(buffer);
   expect(videoinfo.getVideoTitle()).toBe('How to learn any language in six months Chris Lonsdale TEDxLingnanUniversity');
 });
 
-test('Captionsを正常にJSONに変換する', () => {
+test('Convert Captions to JSON.', () => {
   const videoinfo = new VideoInfoParser(buffer);
   expect(videoinfo.getCaptionsData().length).toBe(22);
 });
 
-test('captions data include test', () => {
+test('Captions data include video info response.', () => {
   const videoinfo = new VideoInfoParser(buffer);
   expect(videoinfo.getCaptionsData()[21]).toMatchObject({
     baseUrl:
