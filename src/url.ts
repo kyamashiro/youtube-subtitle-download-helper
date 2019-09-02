@@ -1,12 +1,19 @@
 export default class Url {
   constructor(private url: string) {}
 
-  public getParam(name: string): string {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+  /**
+   * Retrieve a value from a specific query string.
+   *
+   * @param {string} query
+   * @returns {string}
+   * @memberof Url
+   */
+  public getParam(query: string): string {
+    query = query.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
       results = regex.exec(this.url);
     if (!results) {
-      throw new ErrorEvent('Url query parameter does not contain videoid.');
+      throw new Error('Url query parameter does not contain videoid.');
     }
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));

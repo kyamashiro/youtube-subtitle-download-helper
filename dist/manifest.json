@@ -1,16 +1,11 @@
 {
-  "name": "Youtube Subtitle Download",
+  "name": "Youtube Subtitle Download Helper",
   "version": "1.0",
-  "description": "Youtube Subtitle Download",
-  "permissions": [
-    "activeTab",
-    "declarativeContent",
-    "downloads",
-    "management"
-  ],
+  "description": "Youtube Subtitle Download Helper",
+  "permissions": ["activeTab", "declarativeContent", "downloads"],
   "content_scripts": [
     {
-      "matches": [ "http://*.youtube.com/*", "https://*.youtube.com/*"],
+      "matches": ["http://*.youtube.com/*", "https://*.youtube.com/*"],
       "js": ["./js/content.js"]
     }
   ],
@@ -19,20 +14,20 @@
     "persistent": false
   },
   "browser_action": {
-    "default_title": "Youtube Subtitle Download",
+    "default_title": "Youtube Subtitle Download Helper",
     "default_popup": "./html/popup.html",
     "default_icon": {
-      "16": "images/icon.png",
-      "24": "images/icon.png",
-      "32": "images/icon.png",
-      "48": "images/icon.png"
+      "16": "images/icon-16.png",
+      "24": "images/icon-24.png",
+      "32": "images/icon-32.png",
+      "48": "images/icon-48.png"
     }
   },
   "icons": {
-    "16": "images/icon.png",
-    "24": "images/icon.png",
-    "32": "images/icon.png",
-    "48": "images/icon.png"
+    "16": "images/icon-16.png",
+    "24": "images/icon-24.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png"
   },
   "manifest_version": 2
 }

@@ -1,25 +1,46 @@
 export default class VideoInfoParser {
   constructor(private videoInfoResponse: any) {}
 
-  private videoInfoParse(): any {
-    const decodedData = this.parseQuery(this.videoInfoResponse);
-    return JSON.parse(decodedData.player_response);
-  }
-
-  public getCaptionsData() {
-    return this.videoInfoParse().captions.playerCaptionsTracklistRenderer.captionTracks;
+  public getCaptionsData(): Array<any> {
+    if (!this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer.captionTracks) {
+      throw new Error('This video has not caption.');
+    }
+    return this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer.captionTracks;
   }
 
   /**
    * Get video title and replace extra word.
-   * example:"How+to+learn+any+language+in+six+months+|+Chris+Lonsdale+|+TEDxLingnanUniversity"
+   *
+   * @returns {string}
+   * @memberof VideoInfoParser
    */
-  public getVideoTitle() {
-    return this.videoInfoParse()
+  public getVideoTitle(): string {
+    return this.decodeVideoInfoResponse()
       .videoDetails.title.replace(/\+\|/g, '')
-      .replace(/[\+]/g, ' ');
+      .replace(/[\+]/g, ' ')
+      .replace(/[\?\^\.<>":]/g, '');
   }
 
+  /**
+   * Decode response JSON format.
+   *
+   * @private
+   * @returns {*}
+   * @memberof VideoInfoParser
+   */
+  private decodeVideoInfoResponse(): any {
+    const decodedData = this.parseQuery(this.videoInfoResponse);
+    return JSON.parse(decodedData.player_response);
+  }
+
+  /**
+   * Parse videoinfo response.
+   *
+   * @private
+   * @param {string} queryString
+   * @returns
+   * @memberof VideoInfoParser
+   */
   private parseQuery(queryString: string) {
     let query: { [key: string]: any } = {};
     var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
