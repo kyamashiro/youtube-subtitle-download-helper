@@ -28,7 +28,7 @@ export default class Subtitle {
   public getSrt(filename: string): void {
     json2csv
       .json2csvAsync(new Converter(this.xmlResponse).toSrt(), options)
-      .then((csv: any) => {
+      .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(new Blob([csv], { type: 'text/plain' })),
           filename: filename + '.srt'
@@ -42,7 +42,7 @@ export default class Subtitle {
   public getCsv(filename: string): void {
     json2csv
       .json2csvAsync(new Converter(this.xmlResponse).toCsv())
-      .then((csv: any) => {
+      .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(new Blob([csv], { type: 'text/csv' })),
           filename: filename + '.csv'
@@ -57,7 +57,7 @@ export default class Subtitle {
     const json2csv = require('json-2-csv');
     json2csv
       .json2csvAsync(new Converter(this.xmlResponse).toCsv())
-      .then((csv: any) => {
+      .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(new Blob([csv], { type: 'text/plane' })),
           filename: filename + '.txt'
