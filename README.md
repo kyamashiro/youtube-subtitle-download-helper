@@ -1,8 +1,6 @@
 Youtube Subtitle Download Helper
 ====
 
-Overview
-
 ## Description
 Chrome extension to get subtitles on Youtube.  
 You can download subtitle in multiple file formats.  
