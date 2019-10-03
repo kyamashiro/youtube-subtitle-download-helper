@@ -16,7 +16,8 @@ export default class CaptionsParser {
     const htmlText: string = aline
       .replace(/<text.+>/, '')
       .replace(/&amp;/gi, '&')
-      .replace(/<\/?[^>]+(>|$)/g, '');
+      .replace(/<\/?[^>]+(>|$)/g, '')
+      .replace(/\r?\n/g, ' ');
     const striptags = require('striptags');
     const he = require('he');
     const decodedText: string = he.decode(htmlText);
