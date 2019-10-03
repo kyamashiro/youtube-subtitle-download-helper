@@ -6,7 +6,8 @@ const options = {
     field: '',
     eol: '\n'
   },
-  prependHeader: false
+  prependHeader: false,
+  excelBOM: true
 };
 export default class Subtitle {
   constructor(private xmlResponse: string) {}
@@ -41,7 +42,7 @@ export default class Subtitle {
 
   public getCsv(filename: string): void {
     json2csv
-      .json2csvAsync(new Converter(this.xmlResponse).toCsv())
+      .json2csvAsync(new Converter(this.xmlResponse).toCsv(), { excelBOM: true })
       .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(new Blob([csv], { type: 'text/csv' })),
@@ -56,7 +57,7 @@ export default class Subtitle {
   public getText(filename: string): void {
     const json2csv = require('json-2-csv');
     json2csv
-      .json2csvAsync(new Converter(this.xmlResponse).toCsv())
+      .json2csvAsync(new Converter(this.xmlResponse).toText(), options)
       .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(new Blob([csv], { type: 'text/plane' })),

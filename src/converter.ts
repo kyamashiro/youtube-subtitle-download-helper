@@ -2,6 +2,7 @@ import Aline from './interface/aline';
 import VttAline from './interface/vttAline';
 import CsvAline from './interface/csvAline';
 import SrtAline from './interface/srtAline';
+import TextAline from './interface/textAline';
 import CaptionsParser from './captionsParser';
 export default class Converter {
   constructor(private xmlResponse: string) {}
@@ -20,6 +21,23 @@ export default class Converter {
       return {
         startTime: aline.timestamp.getStartTime(),
         durationTime: aline.timestamp.getDurationTime(),
+        text: aline.text
+      };
+    });
+  }
+
+  /**
+   * Convert to save in Text format
+   *
+   * @returns {TextAline[]}
+   * @memberof Converter
+   */
+  public toText(): TextAline[] {
+    const parser = new CaptionsParser();
+    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
+    return trimTranscript.map((line: string) => {
+      const aline: Aline = parser.decodeAline(line);
+      return {
         text: aline.text
       };
     });
