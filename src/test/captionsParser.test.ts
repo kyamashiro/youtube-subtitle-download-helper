@@ -33,7 +33,15 @@ test('Split text into lines.', () => {
 test('Decompose line start time, duration, subtitles.', () => {
   const parser = new CaptionsParser();
   expect(parser.decodeAline(`<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan`)).toStrictEqual({
-    text: 'Translator: TED Translators admin\n Reviewer: Allam Zedan',
+    text: 'Translator: TED Translators admin  Reviewer: Allam Zedan',
     timestamp: new Timestamp(0, 7)
+  });
+});
+
+test('If start time or duration time is null, return 0', () => {
+  const parser = new CaptionsParser();
+  expect(parser.decodeAline(`<text start="0">`)).toStrictEqual({
+    text: '',
+    timestamp: new Timestamp(0, 0)
   });
 });

@@ -21,7 +21,7 @@ describe('Convert to CSV format', () => {
   });
 
   test('text', () => {
-    expect(converter.toCsv()[0]).toHaveProperty('text', 'Translator: TED Translators admin\nReviewer: Allam Zedan');
+    expect(converter.toCsv()[0]).toHaveProperty('text', 'Translator: TED Translators admin Reviewer: Allam Zedan');
   });
 });
 

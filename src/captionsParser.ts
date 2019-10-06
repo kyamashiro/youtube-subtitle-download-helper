@@ -9,7 +9,7 @@ export default class CaptionsParser {
    *
    * @param {string} aline
    * @returns {Aline}
-   * @memberof Converter
+   * @memberof CaptionsParser
    */
   public decodeAline(aline: string): Aline {
     const timestamp: Timestamp = this.pullTime(aline);
@@ -34,7 +34,7 @@ export default class CaptionsParser {
    *
    * @param {string} lines
    * @returns {string[]}
-   * @memberof Converter
+   * @memberof CaptionsParser
    */
   public explode(lines: string): string[] {
     return lines.split('</text>').filter((line: string) => line && line.trim());
@@ -45,7 +45,7 @@ export default class CaptionsParser {
    *
    * @param {string} transcript
    * @returns {string[]}
-   * @memberof Converter
+   * @memberof CaptionsParser
    */
   public removeXmlTag(transcript: string): string {
     return transcript.replace('<?xml version="1.0" encoding="utf-8" ?><transcript>', '').replace('</transcript>', '');
@@ -56,15 +56,29 @@ export default class CaptionsParser {
    * <text start="10.159" dur="2.563">
    * @param {string} aline
    * @returns {Timestamp}
-   * @memberof Converter
+   * @memberof CaptionsParser
    */
   private pullTime(aline: string): Timestamp {
     const startRegex: RegExp = /start="([\d.]+)"/;
     const durRegex: RegExp = /dur="([\d.]+)"/;
+    return new Timestamp(this.getTimeFromText(startRegex, aline), this.getTimeFromText(durRegex, aline));
+  }
 
-    const [, start]: RegExpExecArray = startRegex.exec(aline)!;
-    const [, dur]: RegExpExecArray = durRegex.exec(aline)!;
+  /**
+   * Execute RegExp.
+   *
+   * @private
+   * @param {RegExp} regex
+   * @param {string} aline
+   * @returns {number}
+   * @memberof CaptionsParser
+   */
+  private getTimeFromText(regex: RegExp, aline: string): number {
+    if (regex.test(aline)) {
+      const [, time]: RegExpExecArray = regex.exec(aline)!;
+      return Number(time);
+    }
 
-    return new Timestamp(Number(start), Number(dur));
+    return 0;
   }
 }
