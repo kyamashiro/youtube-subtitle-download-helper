@@ -2,7 +2,7 @@ import Url from './url';
 import VideoInfoParser from './videoInfoParser';
 import ClientYoutube from './client/clientYoutube';
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   try {
     const videoId = new Url(document.URL).getParam('v');
     const client = new ClientYoutube();
