@@ -12,7 +12,7 @@ window.onload = () => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
       if (response.error) {
         console.log(response.error);
-        displayMessage('This video has none caption.');
+        displayMessage('This video has no captions.');
         return;
       }
       if (response.captions) {
@@ -50,6 +50,8 @@ function addDownloadButton() {
   // register eventHandler function download()
   (<HTMLInputElement>document.getElementById('download-button')).onclick = () => download();
 }
+
+//.srt files are being downloaded with a .txt extension but I can't find the place in the code where this needs to be corrected.
 
 function debug(response: any) {
   const debug: HTMLElement = <HTMLElement>document.getElementById('debug');
