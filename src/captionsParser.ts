@@ -1,5 +1,5 @@
-import Timestamp from './timestamp';
-import Aline from './interface/aline';
+import Timestamp from "./timestamp";
+import Aline from "./interface/aline";
 
 export default class CaptionsParser {
   constructor() {}
@@ -14,18 +14,18 @@ export default class CaptionsParser {
   public decodeAline(aline: string): Aline {
     const timestamp: Timestamp = this.pullTime(aline);
     const htmlText: string = aline
-      .replace(/<text.+>/, '')
-      .replace(/&amp;/gi, '&')
-      .replace(/<\/?[^>]+(>|$)/g, '')
-      .replace(/\r?\n/g, ' ');
-    const striptags = require('striptags');
-    const he = require('he');
+      .replace(/<text.+>/, "")
+      .replace(/&amp;/gi, "&")
+      .replace(/<\/?[^>]+(>|$)/g, "")
+      .replace(/\r?\n/g, " ");
+    const striptags = require("striptags");
+    const he = require("he");
     const decodedText: string = he.decode(htmlText);
     const text: string = striptags(decodedText);
 
     return {
       timestamp: timestamp,
-      text: text
+      text: text,
     };
   }
 
@@ -37,7 +37,7 @@ export default class CaptionsParser {
    * @memberof CaptionsParser
    */
   public explode(lines: string): string[] {
-    return lines.split('</text>').filter((line: string) => line && line.trim());
+    return lines.split("</text>").filter((line: string) => line && line.trim());
   }
 
   /**
@@ -48,7 +48,9 @@ export default class CaptionsParser {
    * @memberof CaptionsParser
    */
   public removeXmlTag(transcript: string): string {
-    return transcript.replace('<?xml version="1.0" encoding="utf-8" ?><transcript>', '').replace('</transcript>', '');
+    return transcript
+      .replace('<?xml version="1.0" encoding="utf-8" ?><transcript>', "")
+      .replace("</transcript>", "");
   }
 
   /**
@@ -61,7 +63,10 @@ export default class CaptionsParser {
   private pullTime(aline: string): Timestamp {
     const startRegex: RegExp = /start="([\d.]+)"/;
     const durRegex: RegExp = /dur="([\d.]+)"/;
-    return new Timestamp(this.getTimeFromText(startRegex, aline), this.getTimeFromText(durRegex, aline));
+    return new Timestamp(
+      this.getTimeFromText(startRegex, aline),
+      this.getTimeFromText(durRegex, aline)
+    );
   }
 
   /**

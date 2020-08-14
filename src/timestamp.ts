@@ -17,7 +17,12 @@ export default class Timestamp {
    * @memberof Timestamp
    */
   public formatSrt(): string {
-    return this.getStartTime().replace(/[.]/, ',') + ' --> ' + this.getDurationTime().replace(/[.]/, ',') + '\n';
+    return (
+      this.getStartTime().replace(/[.]/, ",") +
+      " --> " +
+      this.getDurationTime().replace(/[.]/, ",") +
+      "\n"
+    );
   }
 
   /**
@@ -28,7 +33,7 @@ export default class Timestamp {
    * @memberof Timestamp
    */
   public formatVtt(): string {
-    return this.getStartTime() + ' --> ' + this.getDurationTime() + '\n';
+    return this.getStartTime() + " --> " + this.getDurationTime() + "\n";
   }
 
   /**
@@ -41,7 +46,9 @@ export default class Timestamp {
    * @memberof Timestamp
    */
   private mergeTime(startSeconds: number, durationSeconds: number): string {
-    return new Date(startSeconds * 1000 + durationSeconds * 1000).toISOString().slice(11, -1);
+    return new Date(startSeconds * 1000 + durationSeconds * 1000)
+      .toISOString()
+      .slice(11, -1);
   }
 
   /**

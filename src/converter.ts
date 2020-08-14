@@ -1,9 +1,9 @@
-import Aline from './interface/aline';
-import VttAline from './interface/vttAline';
-import CsvAline from './interface/csvAline';
-import SrtAline from './interface/srtAline';
-import TextAline from './interface/textAline';
-import CaptionsParser from './captionsParser';
+import Aline from "./interface/aline";
+import VttAline from "./interface/vttAline";
+import CsvAline from "./interface/csvAline";
+import SrtAline from "./interface/srtAline";
+import TextAline from "./interface/textAline";
+import CaptionsParser from "./captionsParser";
 export default class Converter {
   constructor(private xmlResponse: string) {}
 
@@ -15,13 +15,15 @@ export default class Converter {
    */
   public toCsv(): CsvAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
+    const trimTranscript: string[] = parser.explode(
+      parser.removeXmlTag(this.xmlResponse)
+    );
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
       return {
         startTime: aline.timestamp.getStartTime(),
         durationTime: aline.timestamp.getDurationTime(),
-        text: aline.text
+        text: aline.text,
       };
     });
   }
@@ -34,11 +36,13 @@ export default class Converter {
    */
   public toText(): TextAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
+    const trimTranscript: string[] = parser.explode(
+      parser.removeXmlTag(this.xmlResponse)
+    );
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
       return {
-        text: aline.text
+        text: aline.text,
       };
     });
   }
@@ -51,15 +55,17 @@ export default class Converter {
    */
   public toSrt(): SrtAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
+    const trimTranscript: string[] = parser.explode(
+      parser.removeXmlTag(this.xmlResponse)
+    );
     return trimTranscript.map((line: string, index: number) => {
-      const numericCounter: string = index + 1 + '\n';
+      const numericCounter: string = index + 1 + "\n";
       const aline: Aline = parser.decodeAline(line);
-      const text: string = aline.text.replace(/\n/, ' ') + '\n';
+      const text: string = aline.text.replace(/\n/, " ") + "\n";
       return {
         index: numericCounter,
         timestamp: aline.timestamp.formatSrt(),
-        text: text
+        text: text,
       };
     });
   }
@@ -72,13 +78,15 @@ export default class Converter {
    */
   public toVtt(): VttAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
+    const trimTranscript: string[] = parser.explode(
+      parser.removeXmlTag(this.xmlResponse)
+    );
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
-      const text: string = aline.text.replace(/\n/, ' ') + '\n';
+      const text: string = aline.text.replace(/\n/, " ") + "\n";
       return {
         timestamp: aline.timestamp.formatVtt(),
-        text: text
+        text: text,
       };
     });
   }

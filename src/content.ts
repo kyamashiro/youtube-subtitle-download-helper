@@ -1,10 +1,10 @@
-import Url from './url';
-import VideoInfoParser from './videoInfoParser';
-import ClientYoutube from './client/clientYoutube';
+import Url from "./url";
+import VideoInfoParser from "./videoInfoParser";
+import ClientYoutube from "./client/clientYoutube";
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   try {
-    const videoId = new Url(document.URL).getParam('v');
+    const videoId = new Url(document.URL).getParam("v");
     const client = new ClientYoutube();
     client
       .getVideoInfo(videoId)
@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           captions: videoInfoParser.getCaptionsData(),
           videoId: videoId,
           title: videoInfoParser.getVideoTitle(),
-          error: null
+          error: null,
         });
       })
       .catch((error) => {

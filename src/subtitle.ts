@@ -1,13 +1,13 @@
-import Converter from './converter';
-const json2csv = require('json-2-csv');
+import Converter from "./converter";
+const json2csv = require("json-2-csv");
 const options = {
   delimiter: {
-    wrap: '',
-    field: '',
-    eol: '\n'
+    wrap: "",
+    field: "",
+    eol: "\n",
   },
   prependHeader: false,
-  excelBOM: true
+  excelBOM: true,
 };
 export default class Subtitle {
   constructor(private xmlResponse: string) {}
@@ -17,8 +17,10 @@ export default class Subtitle {
       .json2csvAsync(new Converter(this.xmlResponse).toVtt(), options)
       .then((csv: string) => {
         chrome.downloads.download({
-          url: URL.createObjectURL(new Blob(['WEBVTT\n\n' + csv], { type: 'text/plain' })),
-          filename: filename + '.vtt'
+          url: URL.createObjectURL(
+            new Blob(["WEBVTT\n\n" + csv], { type: "text/plain" })
+          ),
+          filename: filename + ".vtt",
         });
       })
       .catch((err: any) => {
@@ -31,8 +33,8 @@ export default class Subtitle {
       .json2csvAsync(new Converter(this.xmlResponse).toSrt(), options)
       .then((csv: string) => {
         chrome.downloads.download({
-          url: URL.createObjectURL(new Blob([csv], { type: 'text/plain' })),
-          filename: filename + '.srt'
+          url: URL.createObjectURL(new Blob([csv], { type: "text/plain" })),
+          filename: filename + ".srt",
         });
       })
       .catch((err: any) => {
@@ -42,11 +44,13 @@ export default class Subtitle {
 
   public getCsv(filename: string): void {
     json2csv
-      .json2csvAsync(new Converter(this.xmlResponse).toCsv(), { excelBOM: true })
+      .json2csvAsync(new Converter(this.xmlResponse).toCsv(), {
+        excelBOM: true,
+      })
       .then((csv: string) => {
         chrome.downloads.download({
-          url: URL.createObjectURL(new Blob([csv], { type: 'text/csv' })),
-          filename: filename + '.csv'
+          url: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
+          filename: filename + ".csv",
         });
       })
       .catch((err: any) => {
@@ -55,13 +59,13 @@ export default class Subtitle {
   }
 
   public getText(filename: string): void {
-    const json2csv = require('json-2-csv');
+    const json2csv = require("json-2-csv");
     json2csv
       .json2csvAsync(new Converter(this.xmlResponse).toText(), options)
       .then((csv: string) => {
         chrome.downloads.download({
-          url: URL.createObjectURL(new Blob([csv], { type: 'text/plane' })),
-          filename: filename + '.txt'
+          url: URL.createObjectURL(new Blob([csv], { type: "text/plane" })),
+          filename: filename + ".txt",
         });
       })
       .catch((err: any) => {

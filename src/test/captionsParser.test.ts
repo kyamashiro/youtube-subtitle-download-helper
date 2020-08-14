@@ -1,16 +1,20 @@
-import CaptionsParser from '../captionsParser';
-import Timestamp from '../timestamp';
+import CaptionsParser from "../captionsParser";
+import Timestamp from "../timestamp";
 
 var buffer: string;
 beforeAll((done) => {
-  const fs = require('fs-extra');
-  fs.readFile('src/test/sample-response.xml', 'utf-8', (error: any, data: string) => {
-    done();
-    buffer = data;
-  });
+  const fs = require("fs-extra");
+  fs.readFile(
+    "src/test/sample-response.xml",
+    "utf-8",
+    (error: any, data: string) => {
+      done();
+      buffer = data;
+    }
+  );
 });
 
-test('Remove <xml> tag.', () => {
+test("Remove <xml> tag.", () => {
   const parser = new CaptionsParser();
   expect(
     parser.removeXmlTag(
@@ -25,23 +29,27 @@ test('Remove <xml> tag.', () => {
   );
 });
 
-test('Split text into lines.', () => {
+test("Split text into lines.", () => {
   const parser = new CaptionsParser();
   expect(parser.explode(parser.removeXmlTag(buffer)).length).toBe(13);
 });
 
-test('Decompose line start time, duration, subtitles.', () => {
+test("Decompose line start time, duration, subtitles.", () => {
   const parser = new CaptionsParser();
-  expect(parser.decodeAline(`<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan`)).toStrictEqual({
-    text: 'Translator: TED Translators admin  Reviewer: Allam Zedan',
-    timestamp: new Timestamp(0, 7)
+  expect(
+    parser.decodeAline(
+      `<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan`
+    )
+  ).toStrictEqual({
+    text: "Translator: TED Translators admin  Reviewer: Allam Zedan",
+    timestamp: new Timestamp(0, 7),
   });
 });
 
-test('If start time or duration time is null, return 0', () => {
+test("If start time or duration time is null, return 0", () => {
   const parser = new CaptionsParser();
   expect(parser.decodeAline(`<text start="0">`)).toStrictEqual({
-    text: '',
-    timestamp: new Timestamp(0, 0)
+    text: "",
+    timestamp: new Timestamp(0, 0),
   });
 });

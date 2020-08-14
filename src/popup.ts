@@ -1,8 +1,8 @@
-import Subtitle from './subtitle';
-import ClientYoutube from './client/clientYoutube';
+import Subtitle from "./subtitle";
+import ClientYoutube from "./client/clientYoutube";
 
 const sendData: { [key: string]: string } = {
-  reason: 'check'
+  reason: "check",
 };
 
 var videoTitle: string;
@@ -12,7 +12,7 @@ window.onload = () => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
       if (response.error) {
         console.log(response.error);
-        displayMessage('This video has no captions.');
+        displayMessage("This video has no captions.");
         return;
       }
       if (response.captions) {
@@ -28,55 +28,72 @@ window.onload = () => {
 
 function addSelectBoxFormat() {
   document
-    .getElementById('content')!
+    .getElementById("content")!
     .insertAdjacentHTML(
-      'afterbegin',
+      "afterbegin",
       "<select class='uk-select' style='margin-bottom:5px' id='format'><option value='csv'>.csv</option><option value='text'>.txt</option><option value='vtt'>.vtt</option><option value='srt'>.srt</option></select>"
     );
 }
 
 function addSelectBox() {
-  document.getElementById('content')!.insertAdjacentHTML('afterbegin', "<select class='uk-select' id='language'></select>");
+  document
+    .getElementById("content")!
+    .insertAdjacentHTML(
+      "afterbegin",
+      "<select class='uk-select' id='language'></select>"
+    );
 }
 
 function addSelectBoxOption(value: any) {
-  document.getElementById('language')!.insertAdjacentHTML('beforeend', `<option value=${value.baseUrl}>${value.name.simpleText}</option>`);
+  document
+    .getElementById("language")!
+    .insertAdjacentHTML(
+      "beforeend",
+      `<option value=${value.baseUrl}>${value.name.simpleText}</option>`
+    );
 }
 
 function addDownloadButton() {
   document
-    .getElementById('content')!
-    .insertAdjacentHTML('afterend', "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>");
-  // register eventHandler function download()
-  (<HTMLInputElement>document.getElementById('download-button')).onclick = () => download();
+    .getElementById("content")!
+    .insertAdjacentHTML(
+      "afterend",
+      "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>"
+    );
+  (<HTMLInputElement>document.getElementById("download-button")).onclick = () =>
+    download();
 }
 
-//.srt files are being downloaded with a .txt extension but I can't find the place in the code where this needs to be corrected.
-
 function debug(response: any) {
-  const debug: HTMLElement = <HTMLElement>document.getElementById('debug');
-  debug.insertAdjacentHTML('beforebegin', response);
+  const debug: HTMLElement = <HTMLElement>document.getElementById("debug");
+  debug.insertAdjacentHTML("beforebegin", response);
 }
 
 function displayMessage(message: string) {
-  const content: HTMLElement = <HTMLElement>document.getElementById('content');
-  content.insertAdjacentHTML('beforebegin', `<p class='uk-text-danger'>${message}</p>`);
+  const content: HTMLElement = <HTMLElement>document.getElementById("content");
+  content.insertAdjacentHTML(
+    "beforebegin",
+    `<p class='uk-text-danger'>${message}</p>`
+  );
 }
 
 function download() {
-  const language_url: string = (<HTMLInputElement>document.getElementById('language')).value;
-  const format: string = (<HTMLInputElement>document.getElementById('format')).value;
+  const language_url: string = (<HTMLInputElement>(
+    document.getElementById("language")
+  )).value;
+  const format: string = (<HTMLInputElement>document.getElementById("format"))
+    .value;
   const client = new ClientYoutube();
   client
     .getSubtitle(language_url)
     .then((xmlResponse: string) => {
-      if (!xmlResponse) throw new Error('Response empty.');
+      if (!xmlResponse) throw new Error("Response empty.");
       const subtitle = new Subtitle(xmlResponse);
-      if (format === 'csv') {
+      if (format === "csv") {
         subtitle.getCsv(videoTitle);
-      } else if (format === 'text') {
+      } else if (format === "text") {
         subtitle.getText(videoTitle);
-      } else if (format === 'vtt') {
+      } else if (format === "vtt") {
         subtitle.getVtt(videoTitle);
       } else {
         subtitle.getSrt(videoTitle);
