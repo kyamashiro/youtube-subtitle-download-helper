@@ -2,6 +2,8 @@ export default class VideoInfoParser {
   constructor(private videoInfoResponse: any) {}
 
   public getCaptionsData(): Array<any> {
+    console.log(this.decodeVideoInfoResponse());
+
     if (
       !this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer
         .captionTracks

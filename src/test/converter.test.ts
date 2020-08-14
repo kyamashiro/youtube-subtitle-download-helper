@@ -67,3 +67,16 @@ describe("Convert to VTT format", () => {
     );
   });
 });
+
+describe("Convert to LRC format", () => {
+  test("timestamp", () => {
+    expect(converter.toLrc()[0]).toHaveProperty("timestamp", "[00:00.00]");
+  });
+
+  test("text", () => {
+    expect(converter.toLrc()[0]).toHaveProperty(
+      "text",
+      "Translator: TED Translators admin Reviewer: Allam Zedan"
+    );
+  });
+});

@@ -36,3 +36,15 @@ describe("Get .srt format timestamp", () => {
     expect(timestamp.formatSrt()).toBe("00:00:10,159 --> 00:00:25,160\n");
   });
 });
+
+describe("Get .lrc format timestamp", () => {
+  test("Start time 10.159, the total is converted to 00:10.15", () => {
+    const timestamp = new Timestamp(10.159, 15.001);
+    expect(timestamp.formatLrc()).toBe("[00:10.15]");
+  });
+
+  test("Start time 7200.159, the total is converted to 120:00.15", () => {
+    const timestamp = new Timestamp(7200.159, 15.001);
+    expect(timestamp.formatLrc()).toBe("[120:00.15]");
+  });
+});

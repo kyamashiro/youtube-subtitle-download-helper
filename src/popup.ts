@@ -31,7 +31,7 @@ function addSelectBoxFormat() {
     .getElementById("content")!
     .insertAdjacentHTML(
       "afterbegin",
-      "<select class='uk-select' style='margin-bottom:5px' id='format'><option value='csv'>.csv</option><option value='text'>.txt</option><option value='vtt'>.vtt</option><option value='srt'>.srt</option></select>"
+      "<select class='uk-select' style='margin-bottom:5px;font-size:larger;' id='format'><option value='csv'>.csv</option><option value='text'>.txt</option><option value='vtt'>.vtt</option><option value='srt'>.srt</option><option value='lrc'>.lrc</option></select>"
     );
 }
 
@@ -40,7 +40,7 @@ function addSelectBox() {
     .getElementById("content")!
     .insertAdjacentHTML(
       "afterbegin",
-      "<select class='uk-select' id='language'></select>"
+      "<select class='uk-select' id='language' style='font-size:larger;'></select>"
     );
 }
 
@@ -95,8 +95,10 @@ function download() {
         subtitle.getText(videoTitle);
       } else if (format === "vtt") {
         subtitle.getVtt(videoTitle);
-      } else {
+      } else if (format === "srt") {
         subtitle.getSrt(videoTitle);
+      } else {
+        subtitle.getLrc(videoTitle);
       }
     })
     .catch((error) => {

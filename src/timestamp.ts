@@ -37,6 +37,17 @@ export default class Timestamp {
   }
 
   /**
+   * Create LRC timestamp format.
+   * example: [00:00:00.000]
+   *
+   * @returns {string}
+   * @memberof Timestamp
+   */
+  public formatLrc(): string {
+    return `[${this.convertLrcFormatTime(this.start)}]`;
+  }
+
+  /**
    * Add start time and duration time
    *
    * @private
@@ -61,5 +72,28 @@ export default class Timestamp {
    */
   private convertTime(seconds: number): string {
     return new Date(seconds * 1000).toISOString().slice(11, -1);
+  }
+
+  /**
+   * Convert .lrc time format from mm.ss to mm:ss.
+   * example: 10.159 => 00:10.15
+   * https://en.wikipedia.org/wiki/LRC_(file_format)
+   * @private
+   * @param {number} seconds
+   * @returns {string}
+   * @memberof Timestamp
+   */
+  private convertLrcFormatTime(seconds: number): string {
+    const hh =
+      parseInt(new Date(seconds * 1000).toISOString().slice(12, -11)) * 60;
+    const mm = parseInt(new Date(seconds * 1000).toISOString().slice(14, -8));
+
+    if (0 < hh) {
+      return `${hh + mm}${new Date(seconds * 1000)
+        .toISOString()
+        .slice(16, -2)}`;
+    }
+
+    return new Date(seconds * 1000).toISOString().slice(14, -2);
   }
 }

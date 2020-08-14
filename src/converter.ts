@@ -3,6 +3,7 @@ import VttAline from "./interface/vttAline";
 import CsvAline from "./interface/csvAline";
 import SrtAline from "./interface/srtAline";
 import TextAline from "./interface/textAline";
+import LrcAline from "./interface/lrcAline";
 import CaptionsParser from "./captionsParser";
 export default class Converter {
   constructor(private xmlResponse: string) {}
@@ -86,6 +87,27 @@ export default class Converter {
       const text: string = aline.text.replace(/\n/, " ") + "\n";
       return {
         timestamp: aline.timestamp.formatVtt(),
+        text: text,
+      };
+    });
+  }
+
+  /**
+   * Convert to save in LRC format
+   *
+   * @returns {LrcAline[]}
+   * @memberof Converter
+   */
+  public toLrc(): LrcAline[] {
+    const parser = new CaptionsParser();
+    const trimTranscript: string[] = parser.explode(
+      parser.removeXmlTag(this.xmlResponse)
+    );
+    return trimTranscript.map((line: string) => {
+      const aline: Aline = parser.decodeAline(line);
+      const text: string = aline.text.replace(/\n/, " ");
+      return {
+        timestamp: aline.timestamp.formatLrc(),
         text: text,
       };
     });

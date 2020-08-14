@@ -42,6 +42,20 @@ export default class Subtitle {
       });
   }
 
+  public getLrc(filename: string): void {
+    json2csv
+      .json2csvAsync(new Converter(this.xmlResponse).toLrc(), options)
+      .then((csv: string) => {
+        chrome.downloads.download({
+          url: URL.createObjectURL(new Blob([csv], { type: "text/lrc" })),
+          filename: filename + ".lrc",
+        });
+      })
+      .catch((err: any) => {
+        if (err) throw err;
+      });
+  }
+
   public getCsv(filename: string): void {
     json2csv
       .json2csvAsync(new Converter(this.xmlResponse).toCsv(), {
