@@ -12,7 +12,7 @@ window.onload = () => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
       if (response.error) {
         console.log(response.error);
-        displayMessage("This video has no captions.");
+        displayErrorMessage();
         return;
       }
       if (response.captions) {
@@ -69,11 +69,11 @@ function debug(response: any) {
   debug.insertAdjacentHTML("beforebegin", response);
 }
 
-function displayMessage(message: string) {
+function displayErrorMessage() {
   const content: HTMLElement = <HTMLElement>document.getElementById("content");
   content.insertAdjacentHTML(
     "beforebegin",
-    `<p class='uk-text-danger'>${message}</p>`
+    `<p class='uk-text-danger'>This video has no captions.</p><p class='uk-text-danger'>If you can't download the subtitles, try disabling adblock.</p>`
   );
 }
 
