@@ -18,7 +18,7 @@ export default class Subtitle {
       .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(
-            new Blob(["WEBVTT\n\n" + csv], { type: "text/plain" })
+            new Blob(["WEBVTT\n\n" + csv], { type: "text/vtt" })
           ),
           filename: filename + ".vtt",
         });
@@ -33,7 +33,7 @@ export default class Subtitle {
       .json2csvAsync(new Converter(this.xmlResponse).toSrt(), options)
       .then((csv: string) => {
         chrome.downloads.download({
-          url: URL.createObjectURL(new Blob([csv], { type: "text/plain" })),
+          url: URL.createObjectURL(new Blob([csv], { type: "text/srt" })),
           filename: filename + ".srt",
         });
       })
