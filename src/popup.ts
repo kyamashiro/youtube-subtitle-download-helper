@@ -10,9 +10,17 @@ var videoTitle: string;
 window.onload = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
+      if (!response) {
+        displayErrorMessage(
+          `<p class='uk-text-danger'>This page is not on Youtube. Please use it on Youtube video page.</p>`
+        );
+      }
+
       if (response.error) {
         console.log(response.error);
-        displayErrorMessage();
+        displayErrorMessage(
+          `<p class='uk-text-danger'>This video has no captions.</p><p class='uk-text-danger'>If you can't download the subtitles, try disabling adblock.</p>`
+        );
         return;
       }
       if (response.captions) {
@@ -69,12 +77,9 @@ function debug(response: any) {
   debug.insertAdjacentHTML("beforebegin", response);
 }
 
-function displayErrorMessage() {
+function displayErrorMessage(message: string) {
   const content: HTMLElement = <HTMLElement>document.getElementById("content");
-  content.insertAdjacentHTML(
-    "beforebegin",
-    `<p class='uk-text-danger'>This video has no captions.</p><p class='uk-text-danger'>If you can't download the subtitles, try disabling adblock.</p>`
-  );
+  content.insertAdjacentHTML("beforebegin", message);
 }
 
 function download() {
