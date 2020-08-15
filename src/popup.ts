@@ -12,8 +12,9 @@ window.onload = () => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
       if (!response) {
         displayErrorMessage(
-          `<p class='uk-text-danger'>This page is not on Youtube. Please use it on Youtube video page.</p>`
+          `<p class='uk-text-danger'>This page is not on Youtube.</p>`
         );
+        return;
       }
 
       if (response.error) {
