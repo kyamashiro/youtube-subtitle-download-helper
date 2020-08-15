@@ -17,12 +17,7 @@ export default class Timestamp {
    * @memberof Timestamp
    */
   public formatSrt(): string {
-    return (
-      this.getStartTime().replace(/[.]/, ",") +
-      " --> " +
-      this.getDurationTime().replace(/[.]/, ",") +
-      "\n"
-    );
+    return this.getStartTime().replace(/[.]/, ",") + " --> " + this.getDurationTime().replace(/[.]/, ",") + "\n";
   }
 
   /**
@@ -57,9 +52,7 @@ export default class Timestamp {
    * @memberof Timestamp
    */
   private mergeTime(startSeconds: number, durationSeconds: number): string {
-    return new Date(startSeconds * 1000 + durationSeconds * 1000)
-      .toISOString()
-      .slice(11, -1);
+    return new Date(startSeconds * 1000 + durationSeconds * 1000).toISOString().slice(11, -1);
   }
 
   /**
@@ -84,14 +77,11 @@ export default class Timestamp {
    * @memberof Timestamp
    */
   private convertLrcFormatTime(seconds: number): string {
-    const hh =
-      parseInt(new Date(seconds * 1000).toISOString().slice(12, -11)) * 60;
+    const hh = parseInt(new Date(seconds * 1000).toISOString().slice(12, -11)) * 60;
     const mm = parseInt(new Date(seconds * 1000).toISOString().slice(14, -8));
 
-    if (0 < hh) {
-      return `${hh + mm}${new Date(seconds * 1000)
-        .toISOString()
-        .slice(16, -2)}`;
+    if (hh > 0) {
+      return `${hh + mm}${new Date(seconds * 1000).toISOString().slice(16, -2)}`;
     }
 
     return new Date(seconds * 1000).toISOString().slice(14, -2);

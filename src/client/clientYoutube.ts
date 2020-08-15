@@ -1,8 +1,6 @@
 export default class ClientYoutube {
   getVideoInfo(videoId: string): Promise<any> {
-    return this.getRequest(
-      `https://youtube.com/get_video_info?video_id=${videoId}`
-    );
+    return this.getRequest(`https://youtube.com/get_video_info?video_id=${videoId}`);
   }
 
   getSubtitle(languageUrl: string): Promise<any> {

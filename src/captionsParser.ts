@@ -1,9 +1,9 @@
 import Timestamp from "./timestamp";
 import Aline from "./interface/aline";
+import striptags from "striptags";
+import he from "he";
 
 export default class CaptionsParser {
-  constructor() {}
-
   /**
    * Decompose xml text line by line.
    *
@@ -18,8 +18,6 @@ export default class CaptionsParser {
       .replace(/&amp;/gi, "&")
       .replace(/<\/?[^>]+(>|$)/g, "")
       .replace(/\r?\n/g, " ");
-    const striptags = require("striptags");
-    const he = require("he");
     const decodedText: string = he.decode(htmlText);
     const text: string = striptags(decodedText);
 
@@ -48,9 +46,7 @@ export default class CaptionsParser {
    * @memberof CaptionsParser
    */
   public removeXmlTag(transcript: string): string {
-    return transcript
-      .replace('<?xml version="1.0" encoding="utf-8" ?><transcript>', "")
-      .replace("</transcript>", "");
+    return transcript.replace('<?xml version="1.0" encoding="utf-8" ?><transcript>', "").replace("</transcript>", "");
   }
 
   /**
@@ -61,12 +57,9 @@ export default class CaptionsParser {
    * @memberof CaptionsParser
    */
   private pullTime(aline: string): Timestamp {
-    const startRegex: RegExp = /start="([\d.]+)"/;
-    const durRegex: RegExp = /dur="([\d.]+)"/;
-    return new Timestamp(
-      this.getTimeFromText(startRegex, aline),
-      this.getTimeFromText(durRegex, aline)
-    );
+    const startRegex = /start="([\d.]+)"/;
+    const durRegex = /dur="([\d.]+)"/;
+    return new Timestamp(this.getTimeFromText(startRegex, aline), this.getTimeFromText(durRegex, aline));
   }
 
   /**

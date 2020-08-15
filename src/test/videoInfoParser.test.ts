@@ -1,8 +1,8 @@
 import VideoInfoParser from "../videoInfoParser";
+import fs from "fs-extra";
 
-var buffer: string;
+let buffer: string;
 beforeAll((done) => {
-  const fs = require("fs-extra");
   fs.readFile("src/test/videoinfo.txt", "utf-8", (error: any, data: string) => {
     done();
     buffer = data;

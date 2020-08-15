@@ -16,9 +16,7 @@ export default class Converter {
    */
   public toCsv(): CsvAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(this.xmlResponse)
-    );
+    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
       return {
@@ -37,9 +35,7 @@ export default class Converter {
    */
   public toText(): TextAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(this.xmlResponse)
-    );
+    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
       return {
@@ -56,9 +52,7 @@ export default class Converter {
    */
   public toSrt(): SrtAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(this.xmlResponse)
-    );
+    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
     return trimTranscript.map((line: string, index: number) => {
       const numericCounter: string = index + 1 + "\n";
       const aline: Aline = parser.decodeAline(line);
@@ -79,9 +73,7 @@ export default class Converter {
    */
   public toVtt(): VttAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(this.xmlResponse)
-    );
+    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
       const text: string = aline.text.replace(/\n/, " ") + "\n";
@@ -100,9 +92,7 @@ export default class Converter {
    */
   public toLrc(): LrcAline[] {
     const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(this.xmlResponse)
-    );
+    const trimTranscript: string[] = parser.explode(parser.removeXmlTag(this.xmlResponse));
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
       const text: string = aline.text.replace(/\n/, " ");

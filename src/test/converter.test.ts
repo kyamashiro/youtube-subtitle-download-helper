@@ -1,18 +1,14 @@
 import Converter from "../converter";
 
-var buffer: string;
-var converter: Converter;
+let buffer: string;
+let converter: Converter;
 beforeAll((done) => {
   const fs = require("fs-extra");
-  fs.readFile(
-    "src/test/sample-response.xml",
-    "utf-8",
-    (error: any, data: string) => {
-      done();
-      buffer = data;
-      converter = new Converter(buffer);
-    }
-  );
+  fs.readFile("src/test/sample-response.xml", "utf-8", (error: any, data: string) => {
+    done();
+    buffer = data;
+    converter = new Converter(buffer);
+  });
 });
 
 describe("Convert to CSV format", () => {
@@ -25,10 +21,7 @@ describe("Convert to CSV format", () => {
   });
 
   test("text", () => {
-    expect(converter.toCsv()[0]).toHaveProperty(
-      "text",
-      "Translator: TED Translators admin Reviewer: Allam Zedan"
-    );
+    expect(converter.toCsv()[0]).toHaveProperty("text", "Translator: TED Translators admin Reviewer: Allam Zedan");
   });
 });
 
@@ -38,33 +31,21 @@ describe("Convert to SRT format", () => {
   });
 
   test("timestamp", () => {
-    expect(converter.toSrt()[0]).toHaveProperty(
-      "timestamp",
-      "00:00:00,000 --> 00:00:07,000\n"
-    );
+    expect(converter.toSrt()[0]).toHaveProperty("timestamp", "00:00:00,000 --> 00:00:07,000\n");
   });
 
   test("text", () => {
-    expect(converter.toSrt()[0]).toHaveProperty(
-      "text",
-      "Translator: TED Translators admin Reviewer: Allam Zedan\n"
-    );
+    expect(converter.toSrt()[0]).toHaveProperty("text", "Translator: TED Translators admin Reviewer: Allam Zedan\n");
   });
 });
 
 describe("Convert to VTT format", () => {
   test("timestamp", () => {
-    expect(converter.toVtt()[0]).toHaveProperty(
-      "timestamp",
-      "00:00:00.000 --> 00:00:07.000\n"
-    );
+    expect(converter.toVtt()[0]).toHaveProperty("timestamp", "00:00:00.000 --> 00:00:07.000\n");
   });
 
   test("text", () => {
-    expect(converter.toVtt()[0]).toHaveProperty(
-      "text",
-      "Translator: TED Translators admin Reviewer: Allam Zedan\n"
-    );
+    expect(converter.toVtt()[0]).toHaveProperty("text", "Translator: TED Translators admin Reviewer: Allam Zedan\n");
   });
 });
 
@@ -74,9 +55,6 @@ describe("Convert to LRC format", () => {
   });
 
   test("text", () => {
-    expect(converter.toLrc()[0]).toHaveProperty(
-      "text",
-      "Translator: TED Translators admin Reviewer: Allam Zedan"
-    );
+    expect(converter.toLrc()[0]).toHaveProperty("text", "Translator: TED Translators admin Reviewer: Allam Zedan");
   });
 });

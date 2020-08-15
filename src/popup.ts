@@ -5,22 +5,20 @@ const sendData: { [key: string]: string } = {
   reason: "check",
 };
 
-var videoTitle: string;
+let videoTitle: string;
 
 window.onload = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
       if (!response) {
-        displayErrorMessage(
-          `<p class='uk-text-danger'>This page is not on Youtube.</p>`
-        );
+        displayErrorMessage("<p class='uk-text-danger'>This page is not on Youtube.</p>");
         return;
       }
 
       if (response.error) {
         console.log(response.error);
         displayErrorMessage(
-          `<p class='uk-text-danger'>This video has no captions.</p><p class='uk-text-danger'>If you can't download the subtitles, try disabling adblock.</p>`
+          "<p class='uk-text-danger'>This video has no captions.</p><p class='uk-text-danger'>If you can't download the subtitles, try disabling adblock.</p>"
         );
         return;
       }
@@ -47,19 +45,13 @@ function addSelectBoxFormat() {
 function addSelectBox() {
   document
     .getElementById("content")!
-    .insertAdjacentHTML(
-      "afterbegin",
-      "<select class='uk-select' id='language' style='font-size:larger;'></select>"
-    );
+    .insertAdjacentHTML("afterbegin", "<select class='uk-select' id='language' style='font-size:larger;'></select>");
 }
 
 function addSelectBoxOption(value: any) {
   document
     .getElementById("language")!
-    .insertAdjacentHTML(
-      "beforeend",
-      `<option value=${value.baseUrl}>${value.name.simpleText}</option>`
-    );
+    .insertAdjacentHTML("beforeend", `<option value=${value.baseUrl}>${value.name.simpleText}</option>`);
 }
 
 function addDownloadButton() {
@@ -69,8 +61,7 @@ function addDownloadButton() {
       "afterend",
       "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>"
     );
-  (<HTMLInputElement>document.getElementById("download-button")).onclick = () =>
-    download();
+  (<HTMLInputElement>document.getElementById("download-button")).onclick = () => download();
 }
 
 function debug(response: any) {
@@ -84,11 +75,8 @@ function displayErrorMessage(message: string) {
 }
 
 function download() {
-  const language_url: string = (<HTMLInputElement>(
-    document.getElementById("language")
-  )).value;
-  const format: string = (<HTMLInputElement>document.getElementById("format"))
-    .value;
+  const language_url: string = (<HTMLInputElement>document.getElementById("language")).value;
+  const format: string = (<HTMLInputElement>document.getElementById("format")).value;
   const client = new ClientYoutube();
   client
     .getSubtitle(language_url)

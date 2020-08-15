@@ -9,9 +9,9 @@ export default class Url {
    * @memberof Url
    */
   public getParam(query: string): string {
-    query = query.replace(/[\[\]]/g, "\\$&");
-    const regex = new RegExp("[?&]" + query + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(this.url);
+    query = query.replace(/[[]]/g, "\\$&");
+    const regex = new RegExp("[?&]" + query + "(=([^&#]*)|&|#|$)");
+    const results = regex.exec(this.url);
     if (!results) {
       throw new Error("Url query parameter does not contain videoid.");
     }
