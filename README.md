@@ -3,7 +3,7 @@ Youtube Subtitle Download Helper
 
 ## Description
 Using this extension, you can download subtitles from Youtube in multiple file formats.  
-Supported file formats are .srt, .vtt, .csv and .txt.  
+Supported file formats are .srt, .vtt, .lrc, .csv and .txt.  
 This extension doesn't show ads and send user's data anywhere.  
 Youtube subtitle download helper is open source software.  
 https://chrome.google.com/webstore/detail/youtube-subtitle-download/dpmmcccjdcgdjnlnicicdbnlmohhpagf?hl=ja&gl=JP
