@@ -1,5 +1,5 @@
 import { Url } from "./url";
-import { VideoInfoParser } from "./videoInfoParser";
+import { VideoInfoParser } from "./parser/videoInfoParser";
 import { ClientYoutube } from "./client/clientYoutube";
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
