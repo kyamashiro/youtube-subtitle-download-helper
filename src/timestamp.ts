@@ -1,4 +1,4 @@
-export default class Timestamp {
+export class Timestamp {
   constructor(private start: number, private duration: number) {}
 
   public getStartTime(): string {

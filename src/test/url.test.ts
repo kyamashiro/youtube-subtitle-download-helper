@@ -1,4 +1,4 @@
-import Url from "../url";
+import { Url } from "../url";
 
 test("Query string retrieves videoid from URL.", () => {
   expect(new Url("https://www.youtube.com/watch?v=d0yGdNEWdn0").getParam("v")).toBe("d0yGdNEWdn0");

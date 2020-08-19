@@ -1,4 +1,4 @@
-import Converter from "./converter";
+import { Converter } from "./converter";
 import json2csv from "json-2-csv";
 
 const options = {
@@ -11,7 +11,7 @@ const options = {
   excelBOM: true,
 };
 
-export default class Subtitle {
+export class Subtitle {
   constructor(private xmlResponse: string) {}
 
   public getVtt(filename: string): void {

@@ -1,5 +1,5 @@
-import Subtitle from "./subtitle";
-import ClientYoutube from "./client/clientYoutube";
+import { Subtitle } from "./subtitle";
+import { ClientYoutube } from "./client/clientYoutube";
 
 const sendData: { [key: string]: string } = {
   reason: "check",

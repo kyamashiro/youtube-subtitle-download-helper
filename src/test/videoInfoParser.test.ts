@@ -1,4 +1,4 @@
-import VideoInfoParser from "../videoInfoParser";
+import { VideoInfoParser } from "../videoInfoParser";
 import fs from "fs-extra";
 
 let buffer: string;

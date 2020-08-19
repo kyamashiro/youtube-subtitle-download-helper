@@ -1,4 +1,4 @@
-export default class VideoInfoParser {
+export class VideoInfoParser {
   constructor(private videoInfoResponse: any) {}
 
   public getCaptionsData(): Array<any> {

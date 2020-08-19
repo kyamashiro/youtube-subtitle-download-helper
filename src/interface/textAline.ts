@@ -1,3 +1,3 @@
-export default interface TextAline {
+export interface TextAline {
   text: string;
 }

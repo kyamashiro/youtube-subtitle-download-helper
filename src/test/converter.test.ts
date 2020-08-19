@@ -1,9 +1,9 @@
-import Converter from "../converter";
+import { Converter } from "../converter";
+import fs from "fs-extra";
 
 let buffer: string;
 let converter: Converter;
 beforeAll((done) => {
-  const fs = require("fs-extra");
   fs.readFile("src/test/sample-response.xml", "utf-8", (error: any, data: string) => {
     done();
     buffer = data;

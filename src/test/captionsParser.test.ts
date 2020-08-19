@@ -1,9 +1,9 @@
-import CaptionsParser from "../captionsParser";
-import Timestamp from "../timestamp";
+import { CaptionsParser } from "../captionsParser";
+import { Timestamp } from "../timestamp";
+import fs from "fs-extra";
 
 let buffer: string;
 beforeAll((done) => {
-  const fs = require("fs-extra");
   fs.readFile("src/test/sample-response.xml", "utf-8", (error: any, data: string) => {
     done();
     buffer = data;

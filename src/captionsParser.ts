@@ -1,9 +1,9 @@
-import Timestamp from "./timestamp";
-import Aline from "./interface/aline";
+import { Timestamp } from "./timestamp";
+import { Aline } from "./interface/aline";
 import striptags from "striptags";
 import he from "he";
 
-export default class CaptionsParser {
+export class CaptionsParser {
   /**
    * Decompose xml text line by line.
    *

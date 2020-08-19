@@ -1,4 +1,4 @@
-export default interface SrtAline {
+export interface SrtAline {
   index: string;
   timestamp: string;
   text: string;

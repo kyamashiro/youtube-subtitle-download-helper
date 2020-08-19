@@ -1,4 +1,4 @@
-export default interface LrcAline {
+export interface LrcAline {
   timestamp: string;
   text: string;
 }

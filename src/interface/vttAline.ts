@@ -1,4 +1,4 @@
-export default interface VttAline {
+export interface VttAline {
   timestamp: string;
   text: string;
 }

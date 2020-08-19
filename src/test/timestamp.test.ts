@@ -1,4 +1,5 @@
-import Timestamp from "../timestamp";
+import { Timestamp } from "../timestamp";
+
 describe("Get start time.", () => {
   test("Convert 10.159 to 00:00:10.159", () => {
     const timestamp = new Timestamp(10.159, 0);

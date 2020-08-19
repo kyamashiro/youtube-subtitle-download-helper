@@ -1,11 +1,12 @@
-import Aline from "./interface/aline";
-import VttAline from "./interface/vttAline";
-import CsvAline from "./interface/csvAline";
-import SrtAline from "./interface/srtAline";
-import TextAline from "./interface/textAline";
-import LrcAline from "./interface/lrcAline";
-import CaptionsParser from "./captionsParser";
-export default class Converter {
+import { Aline } from "./interface/aline";
+import { VttAline } from "./interface/vttAline";
+import { CsvAline } from "./interface/csvAline";
+import { SrtAline } from "./interface/srtAline";
+import { TextAline } from "./interface/textAline";
+import { LrcAline } from "./interface/lrcAline";
+import { CaptionsParser } from "./captionsParser";
+
+export class Converter {
   constructor(private xmlResponse: string) {}
 
   /**

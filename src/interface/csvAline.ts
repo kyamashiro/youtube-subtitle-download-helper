@@ -1,4 +1,4 @@
-export default interface CsvAline {
+export interface CsvAline {
   startTime: string;
   durationTime: string;
   text: string;
