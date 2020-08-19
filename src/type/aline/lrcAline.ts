@@ -1,4 +1,4 @@
-export interface VttAline {
+export type LrcAline = {
   timestamp: string;
   text: string;
-}
+};

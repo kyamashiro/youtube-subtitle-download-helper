@@ -1,5 +1,5 @@
 import { Timestamp } from "./timestamp";
-import { Aline } from "./interface/aline";
+import { Aline } from "./type/aline/aline";
 import striptags from "striptags";
 import he from "he";
 
