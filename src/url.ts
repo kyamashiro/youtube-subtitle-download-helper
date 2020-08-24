@@ -1,4 +1,4 @@
-export default class Url {
+export class Url {
   constructor(private url: string) {}
 
   /**

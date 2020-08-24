@@ -1,6 +1,6 @@
-import Url from "./url";
-import VideoInfoParser from "./videoInfoParser";
-import ClientYoutube from "./client/clientYoutube";
+import { Url } from "./url";
+import { VideoInfoParser } from "./parser/videoInfoParser";
+import { ClientYoutube } from "./client/clientYoutube";
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const videoId = new Url(document.URL).getParam("v");

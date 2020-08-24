@@ -1,11 +1,15 @@
-export default class VideoInfoParser {
+export class VideoInfoParser {
   constructor(private videoInfoResponse: any) {}
 
   public getCaptionsData(): Array<any> {
-    if (!this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer.captionTracks) {
+    if (
+      !this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer
+        .captionTracks
+    ) {
       throw new Error("This video has not caption.");
     }
-    return this.decodeVideoInfoResponse().captions.playerCaptionsTracklistRenderer.captionTracks;
+    return this.decodeVideoInfoResponse().captions
+      .playerCaptionsTracklistRenderer.captionTracks;
   }
 
   /**
@@ -43,7 +47,10 @@ export default class VideoInfoParser {
    */
   private parseQuery(queryString: string) {
     const query: { [key: string]: any } = {};
-    const pairs = (queryString[0] === "?" ? queryString.substr(1) : queryString).split("&");
+    const pairs = (queryString[0] === "?"
+      ? queryString.substr(1)
+      : queryString
+    ).split("&");
     for (let i = 0; i < pairs.length; i++) {
       const pair = pairs[i].split("=");
       query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");

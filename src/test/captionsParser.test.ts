@@ -1,13 +1,17 @@
-import CaptionsParser from "../captionsParser";
-import Timestamp from "../timestamp";
+import { CaptionsParser } from "../parser/captionsParser";
+import { Timestamp } from "../timestamp";
+import fs from "fs-extra";
 
 let buffer: string;
 beforeAll((done) => {
-  const fs = require("fs-extra");
-  fs.readFile("src/test/sample-response.xml", "utf-8", (error: any, data: string) => {
-    done();
-    buffer = data;
-  });
+  fs.readFile(
+    "src/test/sample-response.xml",
+    "utf-8",
+    (error: any, data: string) => {
+      done();
+      buffer = data;
+    }
+  );
 });
 
 test("Remove <xml> tag.", () => {
@@ -33,7 +37,9 @@ test("Split text into lines.", () => {
 test("Decompose line start time, duration, subtitles.", () => {
   const parser = new CaptionsParser();
   expect(
-    parser.decodeAline('<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan')
+    parser.decodeAline(
+      '<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan'
+    )
   ).toStrictEqual({
     text: "Translator: TED Translators admin  Reviewer: Allam Zedan",
     timestamp: new Timestamp(0, 7),
