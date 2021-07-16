@@ -1,6 +1,5 @@
 module.exports = {
-  plugins: ["@typescript-eslint"],
-  extends: ["eslint:recommended", "plugin:prettier/recommended"],
+  extends: ["eslint:recommended"],
   env: { node: true, es2020: true },
   overrides: [
     {
@@ -8,8 +7,7 @@ module.exports = {
       extends: [
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        // "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "prettier/@typescript-eslint",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
       ],
       parser: "@typescript-eslint/parser",
       parserOptions: {
