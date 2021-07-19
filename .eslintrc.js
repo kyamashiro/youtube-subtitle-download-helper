@@ -3,7 +3,7 @@ module.exports = {
   env: { node: true, es2020: true },
   overrides: [
     {
-      files: ["src/**/*.ts"],
+      files: ["src/**/*.ts", "src/**/*.js"],
       extends: [
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",

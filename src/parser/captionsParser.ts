@@ -9,7 +9,7 @@ export class CaptionsParser {
    *
    * @param {string} aline
    * @returns {Aline}
-   * @memberof CaptionsParser
+   * @member CaptionsParser
    */
   public decodeAline(aline: string): Aline {
     const timestamp: Timestamp = this.pullTime(aline);
@@ -32,7 +32,7 @@ export class CaptionsParser {
    *
    * @param {string} lines
    * @returns {string[]}
-   * @memberof CaptionsParser
+   * @member CaptionsParser
    */
   public explode(lines: string): string[] {
     return lines.split("</text>").filter((line: string) => line && line.trim());
@@ -43,7 +43,7 @@ export class CaptionsParser {
    *
    * @param {string} transcript
    * @returns {string[]}
-   * @memberof CaptionsParser
+   * @member CaptionsParser
    */
   public removeXmlTag(transcript: string): string {
     return transcript
@@ -52,11 +52,11 @@ export class CaptionsParser {
   }
 
   /**
-   * Pull time from text data.
+   * Pull time from text transcriptListData.
    * <text start="10.159" dur="2.563">
    * @param {string} aline
    * @returns {Timestamp}
-   * @memberof CaptionsParser
+   * @member CaptionsParser
    */
   private pullTime(aline: string): Timestamp {
     const startRegex = /start="([\d.]+)"/;
@@ -74,7 +74,7 @@ export class CaptionsParser {
    * @param {RegExp} regex
    * @param {string} aline
    * @returns {number}
-   * @memberof CaptionsParser
+   * @member CaptionsParser
    */
   private getTimeFromText(regex: RegExp, aline: string): number {
     if (regex.test(aline)) {

@@ -3,10 +3,9 @@ export class Url {
 
   /**
    * Retrieve a value from a specific query string.
-   *
    * @param {string} query
    * @returns {string}
-   * @memberof Url
+   * @member Url
    */
   public getParam(query: string): string {
     query = query.replace(/[[]]/g, "\\$&");

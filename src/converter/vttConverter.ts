@@ -1,36 +1,17 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline } from "../type/aline";
+import { Aline, VttAline } from "../type/aline";
 import { Convertable } from "./convertable";
-import json2csv from "json-2-csv";
-import { VttAline } from "../type/aline";
 
 export class VttConverter implements Convertable {
   public convert(xmlResponse: string, fileName: string): void {
-    const file = this.format(xmlResponse);
+    const file = this.format(xmlResponse).reduce((acc, cur) => {
+      return acc + `${cur.timestamp}\n${cur.text}\n\n`;
+    }, "WEBVTT\n\n");
 
-    const options = {
-      delimiter: {
-        wrap: "",
-        field: "",
-        eol: "\n",
-      },
-      prependHeader: false,
-      excelBOM: true,
-    };
-
-    json2csv
-      .json2csvAsync(file, options)
-      .then((csv: string) => {
-        chrome.downloads.download({
-          url: URL.createObjectURL(
-            new Blob(["WEBVTT\n\n" + csv], { type: "text/vtt" })
-          ),
-          filename: fileName + ".vtt",
-        });
-      })
-      .catch((err: any) => {
-        if (err) throw err;
-      });
+    chrome.downloads.download({
+      url: URL.createObjectURL(new Blob([file], { type: "text/vtt" })),
+      filename: fileName + ".vtt",
+    });
   }
 
   public format(xmlResponse: string): VttAline[] {
@@ -40,7 +21,7 @@ export class VttConverter implements Convertable {
     );
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);
-      const text: string = aline.text.replace(/\n/, " ") + "\n";
+      const text: string = aline.text.replace(/\n/, " ");
       return {
         timestamp: aline.timestamp.formatVtt(),
         text: text,

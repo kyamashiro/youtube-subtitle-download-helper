@@ -1,8 +1,7 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline } from "../type/aline";
+import { Aline, TextAline } from "../type/aline";
 import { Convertable } from "./convertable";
 import json2csv from "json-2-csv";
-import { TextAline } from "../type/aline";
 
 const options = {
   delimiter: {
@@ -25,7 +24,7 @@ export class TxtConverter implements Convertable {
           filename: fileName + ".txt",
         });
       })
-      .catch((err: any) => {
+      .catch((err: Error) => {
         if (err) throw err;
       });
   }

@@ -17,7 +17,7 @@ export type LrcAline = {
 };
 
 export type SrtAline = {
-  index: string;
+  index: number;
   timestamp: string;
   text: string;
 };
@@ -29,4 +29,8 @@ export type TextAline = {
 export type VttAline = {
   timestamp: string;
   text: string;
+};
+
+export type OneLiner = {
+  line: string;
 };

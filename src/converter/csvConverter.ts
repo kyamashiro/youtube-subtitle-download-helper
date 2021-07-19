@@ -1,13 +1,11 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline } from "../type/aline";
-import { CsvAline } from "../type/aline";
+import { Aline, CsvAline } from "../type/aline";
 import { Convertable } from "./convertable";
 import json2csv from "json-2-csv";
 
 export class CsvConverter implements Convertable {
   public convert(xmlResponse: string, fileName: string): void {
     const csvAlines = this.format(xmlResponse);
-    const filename = "test";
 
     json2csv
       .json2csvAsync(csvAlines, {
@@ -19,7 +17,7 @@ export class CsvConverter implements Convertable {
           filename: fileName + ".csv",
         });
       })
-      .catch((err: any) => {
+      .catch((err: Error) => {
         if (err) throw err;
       });
   }

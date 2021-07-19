@@ -1,15 +1,24 @@
 import { ClientYoutube } from "./client/clientYoutube";
 import { ConverterFactory } from "./converter/converterFactory";
+import { Track } from "./response/track";
 
 const sendData: { [key: string]: string } = {
   reason: "check",
 };
 
+interface response {
+  transcriptList: Track[];
+  videoTitle: string;
+  videoId: string;
+  error: Error | null;
+}
+
+let videoId: string;
 let videoTitle: string;
 
 window.onload = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id!, sendData, (response) => {
+    chrome.tabs.sendMessage(tabs[0].id!, sendData, (response: response) => {
       if (!response) {
         displayErrorMessage(
           "<p class='uk-text-danger'>This page is not on Youtube.</p>"
@@ -24,13 +33,14 @@ window.onload = () => {
         );
         return;
       }
-      if (response.captions) {
-        videoTitle = response.title;
-        addSelectBox();
-        response.captions.filter((value: any) => addSelectBoxOption(value));
-        addDownloadButton();
-        addSelectBoxFormat();
-      }
+      addSelectBox();
+      response.transcriptList.forEach((track: Track) =>
+        addSelectBoxOption(track)
+      );
+      addDownloadButton();
+      addSelectBoxFormat();
+      videoId = response.videoId;
+      videoTitle = response.videoTitle;
     });
   });
 };
@@ -53,12 +63,12 @@ function addSelectBox() {
     );
 }
 
-function addSelectBoxOption(value: any) {
+function addSelectBoxOption(track: Track) {
   document
     .getElementById("language")!
     .insertAdjacentHTML(
       "beforeend",
-      `<option value=${value.baseUrl}>${value.name.simpleText}</option>`
+      `<option value=${track.lang}>${track.langCode}</option>`
     );
 }
 
@@ -84,21 +94,30 @@ function displayErrorMessage(message: string) {
 }
 
 function download() {
-  const language_url: string = (<HTMLInputElement>(
+  const selectedLanguageElement = <HTMLSelectElement>(
     document.getElementById("language")
-  )).value;
+  );
+
+  const langCode: string = selectedLanguageElement.value;
+  const content: string =
+    selectedLanguageElement.options[selectedLanguageElement.selectedIndex]
+      .label;
+
+  console.log(content);
+
   const fileFormat: string = (<HTMLInputElement>(
     document.getElementById("format")
   )).value;
+
   const client = new ClientYoutube();
   client
-    .getSubtitle(language_url)
+    .getSubtitle(videoId, langCode)
     .then((xmlResponse: string) => {
       if (!xmlResponse) throw new Error("Response empty.");
 
       const converterFactory = new ConverterFactory();
       const converter = converterFactory.create(fileFormat);
-      converter.convert(xmlResponse, videoTitle);
+      converter.convert(xmlResponse, `${videoTitle} - ${content}`);
     })
     .catch((error) => {
       console.log(error);

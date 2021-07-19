@@ -1,12 +1,18 @@
 export class ClientYoutube {
-  getVideoInfo(videoId: string): Promise<any> {
+  /**
+   * Get a list of translations by language
+   * @param videoId
+   */
+  async getTranscriptList(videoId: string): Promise<any> {
     return this.getRequest(
-      `https://youtube.com/get_video_info?video_id=${videoId}`
+      `https://www.youtube.com/api/timedtext?type=list&v=${videoId}`
     );
   }
 
-  getSubtitle(languageUrl: string): Promise<any> {
-    return this.getRequest(languageUrl);
+  getSubtitle(videoId: string, lang: string): Promise<any> {
+    return this.getRequest(
+      `https://www.youtube.com/api/timedtext?type=track&v=${videoId}&lang=${lang}`
+    );
   }
 
   getRequest(url: string): Promise<any> {

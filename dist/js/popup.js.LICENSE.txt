@@ -1,0 +1,7 @@
+/*! https://mths.be/he v1.2.0 by @mathias | MIT license */
+
+/**
+ * @license MIT
+ * doc-path <https://github.com/mrodrig/doc-path>
+ * Copyright (c) 2015-present, Michael Rodrigues.
+ */
