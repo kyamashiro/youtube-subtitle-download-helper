@@ -1,0 +1,466 @@
+[
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ar",
+    "isTranslatable": true,
+    "languageCode": "ar",
+    "name": {
+      "simpleText": "アラビア語"
+    },
+    "rtl": true,
+    "vssId": ".ar"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=sq",
+    "isTranslatable": true,
+    "languageCode": "sq",
+    "name": {
+      "simpleText": "アルバニア語"
+    },
+    "vssId": ".sq"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=it",
+    "isTranslatable": true,
+    "languageCode": "it",
+    "name": {
+      "simpleText": "イタリア語"
+    },
+    "vssId": ".it"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=id",
+    "isTranslatable": true,
+    "languageCode": "id",
+    "name": {
+      "simpleText": "インドネシア語"
+    },
+    "vssId": ".id"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=uk",
+    "isTranslatable": true,
+    "languageCode": "uk",
+    "name": {
+      "simpleText": "ウクライナ語"
+    },
+    "vssId": ".uk"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=uz",
+    "isTranslatable": true,
+    "languageCode": "uz",
+    "name": {
+      "simpleText": "ウズベク語"
+    },
+    "vssId": ".uz"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ur",
+    "isTranslatable": true,
+    "languageCode": "ur",
+    "name": {
+      "simpleText": "ウルドゥー語"
+    },
+    "rtl": true,
+    "vssId": ".ur"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=nl",
+    "isTranslatable": true,
+    "languageCode": "nl",
+    "name": {
+      "simpleText": "オランダ語"
+    },
+    "vssId": ".nl"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=kk",
+    "isTranslatable": true,
+    "languageCode": "kk",
+    "name": {
+      "simpleText": "カザフ語"
+    },
+    "vssId": ".kk"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ca",
+    "isTranslatable": true,
+    "languageCode": "ca",
+    "name": {
+      "simpleText": "カタロニア語"
+    },
+    "vssId": ".ca"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=el",
+    "isTranslatable": true,
+    "languageCode": "el",
+    "name": {
+      "simpleText": "ギリシャ語"
+    },
+    "vssId": ".el"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ku",
+    "isTranslatable": true,
+    "languageCode": "ku",
+    "name": {
+      "simpleText": "クルド語"
+    },
+    "vssId": ".ku"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=hr",
+    "isTranslatable": true,
+    "languageCode": "hr",
+    "name": {
+      "simpleText": "クロアチア語"
+    },
+    "vssId": ".hr"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ka",
+    "isTranslatable": true,
+    "languageCode": "ka",
+    "name": {
+      "simpleText": "ジョージア語"
+    },
+    "vssId": ".ka"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=sv",
+    "isTranslatable": true,
+    "languageCode": "sv",
+    "name": {
+      "simpleText": "スウェーデン語"
+    },
+    "vssId": ".sv"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=es",
+    "isTranslatable": true,
+    "languageCode": "es",
+    "name": {
+      "simpleText": "スペイン語"
+    },
+    "vssId": ".es"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=sk",
+    "isTranslatable": true,
+    "languageCode": "sk",
+    "name": {
+      "simpleText": "スロバキア語"
+    },
+    "vssId": ".sk"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=sl",
+    "isTranslatable": true,
+    "languageCode": "sl",
+    "name": {
+      "simpleText": "スロベニア語"
+    },
+    "vssId": ".sl"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=sw",
+    "isTranslatable": true,
+    "languageCode": "sw",
+    "name": {
+      "simpleText": "スワヒリ語"
+    },
+    "vssId": ".sw"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=sr",
+    "isTranslatable": true,
+    "languageCode": "sr",
+    "name": {
+      "simpleText": "セルビア語"
+    },
+    "vssId": ".sr"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=th",
+    "isTranslatable": true,
+    "languageCode": "th",
+    "name": {
+      "simpleText": "タイ語"
+    },
+    "vssId": ".th"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=cs",
+    "isTranslatable": true,
+    "languageCode": "cs",
+    "name": {
+      "simpleText": "チェコ語"
+    },
+    "vssId": ".cs"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=te",
+    "isTranslatable": true,
+    "languageCode": "te",
+    "name": {
+      "simpleText": "テルグ語"
+    },
+    "vssId": ".te"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=da",
+    "isTranslatable": true,
+    "languageCode": "da",
+    "name": {
+      "simpleText": "デンマーク語"
+    },
+    "vssId": ".da"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=de",
+    "isTranslatable": true,
+    "languageCode": "de",
+    "name": {
+      "simpleText": "ドイツ語"
+    },
+    "vssId": ".de"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=tr",
+    "isTranslatable": true,
+    "languageCode": "tr",
+    "name": {
+      "simpleText": "トルコ語"
+    },
+    "vssId": ".tr"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=no",
+    "isTranslatable": true,
+    "languageCode": "no",
+    "name": {
+      "simpleText": "ノルウェー語"
+    },
+    "vssId": ".no"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=hu",
+    "isTranslatable": true,
+    "languageCode": "hu",
+    "name": {
+      "simpleText": "ハンガリー語"
+    },
+    "vssId": ".hu"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=fi",
+    "isTranslatable": true,
+    "languageCode": "fi",
+    "name": {
+      "simpleText": "フィンランド語"
+    },
+    "vssId": ".fi"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=fr",
+    "isTranslatable": true,
+    "languageCode": "fr",
+    "name": {
+      "simpleText": "フランス語"
+    },
+    "vssId": ".fr"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=bg",
+    "isTranslatable": true,
+    "languageCode": "bg",
+    "name": {
+      "simpleText": "ブルガリア語"
+    },
+    "vssId": ".bg"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=vi",
+    "isTranslatable": true,
+    "languageCode": "vi",
+    "name": {
+      "simpleText": "ベトナム語"
+    },
+    "vssId": ".vi"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=iw",
+    "isTranslatable": true,
+    "languageCode": "iw",
+    "name": {
+      "simpleText": "ヘブライ語"
+    },
+    "rtl": true,
+    "vssId": ".iw"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=be",
+    "isTranslatable": true,
+    "languageCode": "be",
+    "name": {
+      "simpleText": "ベラルーシ語"
+    },
+    "vssId": ".be"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=fa",
+    "isTranslatable": true,
+    "languageCode": "fa",
+    "name": {
+      "simpleText": "ペルシア語"
+    },
+    "rtl": true,
+    "vssId": ".fa"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=pl",
+    "isTranslatable": true,
+    "languageCode": "pl",
+    "name": {
+      "simpleText": "ポーランド語"
+    },
+    "vssId": ".pl"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=pt-BR",
+    "isTranslatable": true,
+    "languageCode": "pt-BR",
+    "name": {
+      "simpleText": "ポルトガル語 (ブラジル)"
+    },
+    "vssId": ".pt-BR"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=pt-PT",
+    "isTranslatable": true,
+    "languageCode": "pt-PT",
+    "name": {
+      "simpleText": "ポルトガル語 (ポルトガル)"
+    },
+    "vssId": ".pt-PT"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=my",
+    "isTranslatable": true,
+    "languageCode": "my",
+    "name": {
+      "simpleText": "ミャンマー語"
+    },
+    "vssId": ".my"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=mn",
+    "isTranslatable": true,
+    "languageCode": "mn",
+    "name": {
+      "simpleText": "モンゴル語"
+    },
+    "vssId": ".mn"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=lv",
+    "isTranslatable": true,
+    "languageCode": "lv",
+    "name": {
+      "simpleText": "ラトビア語"
+    },
+    "vssId": ".lv"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=lt",
+    "isTranslatable": true,
+    "languageCode": "lt",
+    "name": {
+      "simpleText": "リトアニア語"
+    },
+    "vssId": ".lt"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ro",
+    "isTranslatable": true,
+    "languageCode": "ro",
+    "name": {
+      "simpleText": "ルーマニア語"
+    },
+    "vssId": ".ro"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ru",
+    "isTranslatable": true,
+    "languageCode": "ru",
+    "name": {
+      "simpleText": "ロシア語"
+    },
+    "vssId": ".ru"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=en",
+    "isTranslatable": true,
+    "languageCode": "en",
+    "name": {
+      "simpleText": "英語"
+    },
+    "vssId": ".en"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&kind=asr&lang=en",
+    "isTranslatable": true,
+    "kind": "asr",
+    "languageCode": "en",
+    "name": {
+      "simpleText": "英語 (自動生成)"
+    },
+    "vssId": "a.en"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ko",
+    "isTranslatable": true,
+    "languageCode": "ko",
+    "name": {
+      "simpleText": "韓国語"
+    },
+    "vssId": ".ko"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=zh-CN",
+    "isTranslatable": true,
+    "languageCode": "zh-CN",
+    "name": {
+      "simpleText": "中国語 (中国)"
+    },
+    "vssId": ".zh-CN"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=zh-HK",
+    "isTranslatable": true,
+    "languageCode": "zh-HK",
+    "name": {
+      "simpleText": "中国語 (香港)"
+    },
+    "vssId": ".zh-HK"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=zh-TW",
+    "isTranslatable": true,
+    "languageCode": "zh-TW",
+    "name": {
+      "simpleText": "中国語 (台湾)"
+    },
+    "vssId": ".zh-TW"
+  },
+  {
+    "baseUrl": "https://www.youtube.com/api/timedtext?v=H14bBuluwB8&caps=asr&xoaf=5&hl=ja&ip=0.0.0.0&ipbits=0&expire=1652854535&sparams=ip,ipbits,expire,v,caps,xoaf&signature=CB70F425921B92ABE76E0104A760D51710734EB2.ECB747B18AA4731EEDBDA2D9FEFB910D02A18A98&key=yt8&lang=ja",
+    "isTranslatable": true,
+    "languageCode": "ja",
+    "name": {
+      "simpleText": "日本語"
+    },
+    "vssId": ".ja"
+  }
+]

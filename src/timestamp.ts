@@ -51,9 +51,9 @@ export class Timestamp {
     );
 
     if (hh > 0) {
-      return `${hh + mm}${new Date(this.start * 1000)
+      return `[${hh + mm}${new Date(this.start * 1000)
         .toISOString()
-        .slice(16, -2)}`;
+        .slice(16, -2)}]`;
     }
 
     return `[${new Date(this.start * 1000).toISOString().slice(14, -2)}]`;

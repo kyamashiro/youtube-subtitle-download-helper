@@ -1,13 +1,13 @@
 import { ClientYoutube } from "./client/clientYoutube";
 import { ConverterFactory } from "./converter/converterFactory";
-import { Track } from "./response/track";
+import { CaptionTrack } from "./type/captionTrack";
 
 const sendData: { [key: string]: string } = {
   reason: "check",
 };
 
 interface response {
-  transcriptList: Track[];
+  captionTrackList: CaptionTrack[];
   videoTitle: string;
   videoId: string;
   error: Error | null;
@@ -34,7 +34,7 @@ window.onload = () => {
         return;
       }
       addSelectBox();
-      response.transcriptList.forEach((track: Track) =>
+      response.captionTrackList.forEach((track: CaptionTrack) =>
         addSelectBoxOption(track)
       );
       addDownloadButton();
@@ -63,12 +63,12 @@ function addSelectBox() {
     );
 }
 
-function addSelectBoxOption(track: Track) {
+function addSelectBoxOption(captionTrack: CaptionTrack) {
   document
     .getElementById("language")!
     .insertAdjacentHTML(
       "beforeend",
-      `<option value=${track.lang}>${track.langCode}</option>`
+      `<option value=${captionTrack.baseUrl}>${captionTrack.name.simpleText}</option>`
     );
 }
 
@@ -98,12 +98,10 @@ function download() {
     document.getElementById("language")
   );
 
-  const langCode: string = selectedLanguageElement.value;
+  const baseUrl: string = selectedLanguageElement.value;
   const content: string =
     selectedLanguageElement.options[selectedLanguageElement.selectedIndex]
       .label;
-
-  console.log(content);
 
   const fileFormat: string = (<HTMLInputElement>(
     document.getElementById("format")
@@ -111,7 +109,7 @@ function download() {
 
   const client = new ClientYoutube();
   client
-    .getSubtitle(videoId, langCode)
+    .getSubtitle(baseUrl)
     .then((xmlResponse: string) => {
       if (!xmlResponse) throw new Error("Response empty.");
 

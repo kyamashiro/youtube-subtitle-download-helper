@@ -1,18 +1,17 @@
 import { Url } from "./url";
 import { ClientYoutube } from "./client/clientYoutube";
-import { TranscriptListParser } from "./parser/transcriptListParser";
+import { VideoInformationResponseParse } from "./parser/videoInformationParser";
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const videoId = new Url(document.URL).getParam("v");
-  console.log("check");
   const client = new ClientYoutube();
   client
-    .getTranscriptList(videoId)
+    .getVideoInformation(videoId)
     .then((response) => {
-      const parser = new TranscriptListParser(response);
-      const transcriptList = parser.parse();
+      const captionTrackList = VideoInformationResponseParse(response);
+
       sendResponse({
-        transcriptList,
+        captionTrackList,
         videoId,
         videoTitle: getVideoTitle(),
         error: null,

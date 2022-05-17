@@ -25,16 +25,16 @@ describe("Get duration time", () => {
 });
 
 describe("Get .vtt format timestamp", () => {
-  test("Start time 10.159 and duration time 15.001, the total is converted to 00:00:10.159 --> 00:00:25.160\n", () => {
+  test("Start time 10.159 and duration time 15.001, the total is converted to 00:00:10.159 --> 00:00:25.160", () => {
     const timestamp = new Timestamp(10.159, 15.001);
-    expect(timestamp.formatVtt()).toBe("00:00:10.159 --> 00:00:25.160\n");
+    expect(timestamp.formatVtt()).toBe("00:00:10.159 --> 00:00:25.160");
   });
 });
 
 describe("Get .srt format timestamp", () => {
-  test("Start time 10.159 and duration time 15.001, the total is converted to 00:00:10,159 --> 00:00:25,160\n", () => {
+  test("Start time 10.159 and duration time 15.001, the total is converted to 00:00:10,159 --> 00:00:25,160", () => {
     const timestamp = new Timestamp(10.159, 15.001);
-    expect(timestamp.formatSrt()).toBe("00:00:10,159 --> 00:00:25,160\n");
+    expect(timestamp.formatSrt()).toBe("00:00:10,159 --> 00:00:25,160");
   });
 });
 
