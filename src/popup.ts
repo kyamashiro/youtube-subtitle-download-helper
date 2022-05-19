@@ -1,5 +1,5 @@
 import { ClientYoutube } from "./client/clientYoutube";
-import { ConverterFactory } from "./converter/converterFactory";
+import { ConverterFactory, FileFormat } from "./converter/converterFactory";
 import { CaptionTrack } from "./type/captionTrack";
 
 const sendData: { [key: string]: string } = {
@@ -46,11 +46,15 @@ window.onload = () => {
 };
 
 function addSelectBoxFormat() {
+  const options = Object.values(FileFormat)
+    .map((format) => `<option value=${format}>.${format}</option>`)
+    .join();
+
   document
     .getElementById("content")!
     .insertAdjacentHTML(
       "afterbegin",
-      "<select class='uk-select' style='margin-bottom:5px;font-size:larger;' id='format'><option value='csv'>.csv</option><option value='text'>.txt</option><option value='vtt'>.vtt</option><option value='srt'>.srt</option><option value='lrc'>.lrc</option></select>"
+      `<select class='uk-select' style='margin-bottom:5px;font-size:larger;' id='format'>${options}</select>`
     );
 }
 
@@ -103,9 +107,8 @@ function download() {
     selectedLanguageElement.options[selectedLanguageElement.selectedIndex]
       .label;
 
-  const fileFormat: string = (<HTMLInputElement>(
-    document.getElementById("format")
-  )).value;
+  const fileFormat = (<HTMLInputElement>document.getElementById("format"))
+    .value as FileFormat;
 
   const client = new ClientYoutube();
   client

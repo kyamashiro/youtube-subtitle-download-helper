@@ -5,16 +5,26 @@ import { SrtConverter } from "./srtConverter";
 import { TxtConverter } from "./txtConverter";
 import { VttConverter } from "./vttConverter";
 
+export const FileFormat = {
+  CSV: "csv",
+  TXT: "txt",
+  SRT: "srt",
+  VTT: "vtt",
+  LRC: "lrc",
+} as const;
+
+export type FileFormat = typeof FileFormat[keyof typeof FileFormat];
+
 export class ConverterFactory {
-  public create(fileFormat: string): Convertable {
+  public create(fileFormat: FileFormat): Convertable {
     switch (fileFormat) {
-      case "csv":
+      case FileFormat.CSV:
         return new CsvConverter();
-      case "srt":
+      case FileFormat.SRT:
         return new SrtConverter();
-      case "vtt":
+      case FileFormat.VTT:
         return new VttConverter();
-      case "lrc":
+      case FileFormat.LRC:
         return new LrcConverter();
       default:
         return new TxtConverter();
