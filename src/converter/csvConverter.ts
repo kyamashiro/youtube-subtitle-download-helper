@@ -22,7 +22,7 @@ export class CsvConverter implements Convertable {
       });
   }
 
-  private format(xmlResponse: string): CsvAline[] {
+  public format(xmlResponse: string): CsvAline[] {
     const parser = new CaptionsParser();
     const trimTranscript: string[] = parser.explode(
       parser.removeXmlTag(xmlResponse)

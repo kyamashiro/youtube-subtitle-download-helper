@@ -115,7 +115,6 @@ function download() {
     .getSubtitle(baseUrl)
     .then((xmlResponse: string) => {
       if (!xmlResponse) throw new Error("Response empty.");
-
       const converterFactory = new ConverterFactory();
       const converter = converterFactory.create(fileFormat);
       converter.convert(xmlResponse, `${videoTitle} - ${content}`);

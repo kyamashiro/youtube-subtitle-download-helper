@@ -30,3 +30,10 @@ export type VttAline = {
   timestamp: string;
   text: string;
 };
+
+export type Alines =
+  | CsvAline[]
+  | LrcAline[]
+  | SrtAline[]
+  | TextAline[]
+  | VttAline[];

@@ -1,6 +1,6 @@
 import { Url } from "./url";
 import { ClientYoutube } from "./client/clientYoutube";
-import { VideoInformationResponseParse } from "./parser/videoInformationParser";
+import { VideoInformationResponseParser } from "./parser/videoInformationParser";
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const videoId = new Url(document.URL).getParam("v");
@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   client
     .getVideoInformation(videoId)
     .then((response) => {
-      const captionTrackList = VideoInformationResponseParse(response);
+      const captionTrackList = VideoInformationResponseParser.parse(response);
 
       sendResponse({
         captionTrackList,
