@@ -1,6 +1,6 @@
-import { ClientYoutube } from "./client/clientYoutube";
-import { ConverterFactory, FileFormat } from "./converter/converterFactory";
-import { CaptionTrack } from "./type/captionTrack";
+import { ClientYoutube } from "./client/clientYoutube.ts";
+import { ConverterFactory, FileFormat } from "./converter/converterFactory.ts";
+import { CaptionTrack } from "./type/captionTrack.ts";
 
 const sendData: { [key: string]: string } = {
   reason: "check",

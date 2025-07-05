@@ -1,9 +1,9 @@
-import { Convertable } from "./convertable";
-import { CsvConverter } from "./csvConverter";
-import { LrcConverter } from "./lrcConverter";
-import { SrtConverter } from "./srtConverter";
-import { TxtConverter } from "./txtConverter";
-import { VttConverter } from "./vttConverter";
+import { Convertable } from "./convertable.ts";
+import { CsvConverter } from "./csvConverter.ts";
+import { LrcConverter } from "./lrcConverter.ts";
+import { SrtConverter } from "./srtConverter.ts";
+import { TxtConverter } from "./txtConverter.ts";
+import { VttConverter } from "./vttConverter.ts";
 
 export const FileFormat = {
   CSV: "csv",

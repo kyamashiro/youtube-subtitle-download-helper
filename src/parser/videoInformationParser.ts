@@ -1,4 +1,4 @@
-import { CaptionTrack } from "../type/captionTrack";
+import { CaptionTrack } from "../type/captionTrack.ts";
 
 export const VideoInformationResponseParser = {
   parse: (htmlStringData: string): CaptionTrack[] => {

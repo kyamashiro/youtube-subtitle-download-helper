@@ -1,4 +1,4 @@
-import { Timestamp } from "../timestamp";
+import { Timestamp } from "../timestamp.ts";
 
 describe("Get start time.", () => {
   test("Convert 10.159 to 00:00:10.159", () => {

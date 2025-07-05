@@ -1,4 +1,4 @@
-import { Alines } from "../type/aline";
+import { Alines } from "../type/aline.ts";
 
 export interface Convertable {
   convert(xmlResponse: string, fileName: string): void;

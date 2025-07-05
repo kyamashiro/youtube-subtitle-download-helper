@@ -1,4 +1,4 @@
-import { Url } from "../url";
+import { Url } from "../url.ts";
 
 test("Query string retrieves videoid from URL.", () => {
   expect(

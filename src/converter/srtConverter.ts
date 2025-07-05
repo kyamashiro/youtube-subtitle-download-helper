@@ -1,6 +1,6 @@
-import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, SrtAline } from "../type/aline";
-import { Convertable } from "./convertable";
+import { CaptionsParser } from "../parser/captionsParser.ts";
+import { Aline, SrtAline } from "../type/aline.ts";
+import { Convertable } from "./convertable.ts";
 
 export class SrtConverter implements Convertable {
   public convert(xmlResponse: string, fileName: string): void {

@@ -1,6 +1,6 @@
-import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, VttAline } from "../type/aline";
-import { Convertable } from "./convertable";
+import { CaptionsParser } from "../parser/captionsParser.ts";
+import { Aline, VttAline } from "../type/aline.ts";
+import { Convertable } from "./convertable.ts";
 
 export class VttConverter implements Convertable {
   public convert(xmlResponse: string, fileName: string): void {

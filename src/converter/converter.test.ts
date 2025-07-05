@@ -1,12 +1,12 @@
 import fs from "fs-extra";
-import { ConverterFactory, FileFormat } from "./converterFactory";
+import { ConverterFactory, FileFormat } from "./converterFactory.ts";
 import {
   CsvAline,
   LrcAline,
   SrtAline,
   TextAline,
   VttAline,
-} from "../type/aline";
+} from "../type/aline.ts";
 
 let xml: string;
 beforeAll((done) => {

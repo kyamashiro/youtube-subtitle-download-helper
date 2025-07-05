@@ -1,6 +1,6 @@
-import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, LrcAline } from "../type/aline";
-import { Convertable } from "./convertable";
+import { CaptionsParser } from "../parser/captionsParser.ts";
+import { Aline, LrcAline } from "../type/aline.ts";
+import { Convertable } from "./convertable.ts";
 
 export class LrcConverter implements Convertable {
   public convert(xmlResponse: string, fileName: string): void {

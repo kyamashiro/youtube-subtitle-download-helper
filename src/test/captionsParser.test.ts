@@ -1,5 +1,5 @@
-import { CaptionsParser } from "../parser/captionsParser";
-import { Timestamp } from "../timestamp";
+import { CaptionsParser } from "../parser/captionsParser.ts";
+import { Timestamp } from "../timestamp.ts";
 import fs from "fs-extra";
 
 let buffer: string;

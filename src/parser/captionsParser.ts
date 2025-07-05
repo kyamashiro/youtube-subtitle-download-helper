@@ -1,5 +1,5 @@
-import { Timestamp } from "../timestamp";
-import { Aline } from "../type/aline";
+import { Timestamp } from "../timestamp.ts";
+import { Aline } from "../type/aline.ts";
 import striptags from "striptags";
 import he from "he";
 

@@ -1,6 +1,6 @@
-import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, TextAline } from "../type/aline";
-import { Convertable } from "./convertable";
+import { CaptionsParser } from "../parser/captionsParser.ts";
+import { Aline, TextAline } from "../type/aline.ts";
+import { Convertable } from "./convertable.ts";
 import json2csv from "json-2-csv";
 
 const options = {
