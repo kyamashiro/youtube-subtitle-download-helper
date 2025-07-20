@@ -1,23 +1,8 @@
-import { createComponent } from "solid-js";
-import { render } from "solid-js/web";
 import { VideoPageHtmlParser } from "@/parser/videoPageHtmlParser.ts";
 import type { CaptionTrack } from "@/types/captionTrack.ts";
 import { ClientYoutube } from "../client/clientYoutube";
 import { Url } from "../url";
-import App from "./views/App.tsx";
-
-// YouTube subtitle download functionality
-chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
-  console.log("Content script received a message:", request);
-
-  const handleMessage = async () => {
-    const videoId = Url.getParam(document.URL);
-    const response = await getSubtitleList(videoId);
-    sendResponse(response);
-  };
-  handleMessage();
-  return true;
-});
+import initializeApp from "./views/App";
 
 type SubtitleDataResponse = {
   captionTrackList: CaptionTrack[];
@@ -25,6 +10,66 @@ type SubtitleDataResponse = {
   videoTitle: string;
   error: Error | null;
 };
+
+// Cache for subtitle data
+let cachedSubtitleData: SubtitleDataResponse | null = null;
+let currentVideoId: string | null = null;
+
+// Initialize data when page loads
+async function initializeSubtitleData() {
+  try {
+    const videoId = Url.getParam(document.URL);
+    console.log("Initializing subtitle data for video:", videoId);
+    
+    if (currentVideoId === videoId && cachedSubtitleData) {
+      console.log("Using cached data for video:", videoId);
+      notifyDataUpdated();
+      return;
+    }
+
+    currentVideoId = videoId;
+    cachedSubtitleData = await getSubtitleList(videoId);
+    console.log("Subtitle data initialized:", cachedSubtitleData);
+    notifyDataUpdated();
+  } catch (e) {
+    console.error("Failed to initialize subtitle data:", e);
+    cachedSubtitleData = {
+      captionTrackList: [],
+      videoId: currentVideoId || "",
+      videoTitle: getVideoTitle(),
+      error: e instanceof Error ? e : new Error("Unknown error"),
+    };
+    notifyDataUpdated();
+  }
+}
+
+// Notify App component of data updates
+function notifyDataUpdated() {
+  if (cachedSubtitleData) {
+    window.dispatchEvent(new CustomEvent('subtitle-data-updated', {
+      detail: cachedSubtitleData
+    }));
+  }
+}
+
+// Listen for popup requests
+chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
+  console.log("Content script received a message:", request);
+
+  if (request.reason === "check") {
+    // Return cached data immediately if available
+    if (cachedSubtitleData) {
+      console.log("Returning cached subtitle data");
+      sendResponse(cachedSubtitleData);
+    } else {
+      // If no cached data, initialize and return
+      initializeSubtitleData().then(() => {
+        sendResponse(cachedSubtitleData);
+      });
+      return true; // Keep message channel open for async response
+    }
+  }
+});
 
 async function getSubtitleList(videoId: string): Promise<SubtitleDataResponse> {
   try {
@@ -65,14 +110,20 @@ const getVideoTitle = (): string => {
   return document.title.replace(/[+|/?^.<>":]/g, "").replace(/ - YouTube/, "");
 };
 
-/**
- * Mount the Solid app to the DOM.
- */
-function mountApp() {
-  const container = document.createElement("div");
-  container.id = "crxjs-app";
-  document.body.appendChild(container);
-  render(() => createComponent(App, {}), container);
-}
+// Watch for URL changes (YouTube SPA navigation)
+let lastUrl = location.href;
+new MutationObserver(() => {
+  const url = location.href;
+  if (url !== lastUrl) {
+    lastUrl = url;
+    console.log("URL changed, reinitializing subtitle data");
+    // Reset cache when navigating to a new video
+    cachedSubtitleData = null;
+    currentVideoId = null;
+    initializeSubtitleData();
+  }
+}).observe(document, { subtree: true, childList: true });
 
-mountApp();
+// Initialize the app and data when content script loads
+initializeApp();
+initializeSubtitleData();
