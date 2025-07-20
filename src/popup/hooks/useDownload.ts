@@ -55,7 +55,7 @@ export function useDownload(): UseDownloadReturn {
         "Starting conversion with filename:",
         `${videoTitle} - ${content}`,
       );
-      converter.convert(xmlResponse, `${videoTitle} - ${content}`);
+      await converter.convert(xmlResponse, `${videoTitle} - ${content}`);
 
       console.log("Download completed successfully");
     } catch (error) {

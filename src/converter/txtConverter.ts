@@ -1,6 +1,7 @@
 import { CaptionsParser } from "../parser/captionsParser";
 import type { Aline, TextAline } from "../types/aline";
 import type { Convertable } from "./convertable";
+import { DownloadHelper } from "../utils/downloadHelper";
 import json2csv from "json-2-csv";
 
 const options = {
@@ -14,19 +15,15 @@ const options = {
 };
 
 export class TxtConverter implements Convertable {
-  public convert(xmlResponse: string, fileName: string): void {
+  public async convert(xmlResponse: string, fileName: string): Promise<void> {
     const file = this.format(xmlResponse);
-    json2csv
-      .json2csvAsync(file, options)
-      .then((csv: string) => {
-        chrome.downloads.download({
-          url: URL.createObjectURL(new Blob([csv], { type: "text/plane" })),
-          filename: `${fileName}.txt`,
-        });
-      })
-      .catch((err: Error) => {
-        if (err) throw err;
-      });
+    
+    try {
+      const csv = await json2csv.json2csvAsync(file, options);
+      await DownloadHelper.downloadFile(csv, `${fileName}.txt`, "text/plain");
+    } catch (err) {
+      throw new Error(`TXT conversion failed: ${err}`);
+    }
   }
 
   public format(xmlResponse: string): TextAline[] {

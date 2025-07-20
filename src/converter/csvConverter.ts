@@ -1,25 +1,22 @@
 import { CaptionsParser } from "../parser/captionsParser";
 import type { Aline, CsvAline } from "../types/aline";
 import type { Convertable } from "./convertable";
+import { DownloadHelper } from "../utils/downloadHelper";
 import json2csv from "json-2-csv";
 
 export class CsvConverter implements Convertable {
-  public convert(xmlResponse: string, fileName: string): void {
+  public async convert(xmlResponse: string, fileName: string): Promise<void> {
     const csvAlines = this.format(xmlResponse);
 
-    json2csv
-      .json2csvAsync(csvAlines, {
+    try {
+      const csv = await json2csv.json2csvAsync(csvAlines, {
         excelBOM: true,
-      })
-      .then((csv: string) => {
-        chrome.downloads.download({
-          url: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
-          filename: `${fileName}.csv`,
-        });
-      })
-      .catch((err: Error) => {
-        if (err) throw err;
       });
+      
+      await DownloadHelper.downloadFile(csv, `${fileName}.csv`, "text/csv");
+    } catch (err) {
+      throw new Error(`CSV conversion failed: ${err}`);
+    }
   }
 
   public format(xmlResponse: string): CsvAline[] {

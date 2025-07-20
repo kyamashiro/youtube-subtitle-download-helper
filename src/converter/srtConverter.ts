@@ -1,17 +1,15 @@
 import { CaptionsParser } from "../parser/captionsParser";
 import type { Aline, SrtAline } from "../types/aline";
 import type { Convertable } from "./convertable";
+import { DownloadHelper } from "../utils/downloadHelper";
 
 export class SrtConverter implements Convertable {
-  public convert(xmlResponse: string, fileName: string): void {
+  public async convert(xmlResponse: string, fileName: string): Promise<void> {
     const file = this.format(xmlResponse).reduce((acc, cur) => {
       return `${acc}${cur.index}\n${cur.timestamp}\n${cur.text}\n\n`;
     }, "");
 
-    chrome.downloads.download({
-      url: URL.createObjectURL(new Blob([file], { type: "text/srt" })),
-      filename: `${fileName}.srt`,
-    });
+    await DownloadHelper.downloadFile(file, `${fileName}.srt`, "text/srt");
   }
 
   public format(xmlResponse: string): SrtAline[] {

@@ -1,17 +1,15 @@
 import { CaptionsParser } from "../parser/captionsParser";
 import type { Aline, VttAline } from "../types/aline";
 import type { Convertable } from "./convertable";
+import { DownloadHelper } from "../utils/downloadHelper";
 
 export class VttConverter implements Convertable {
-  public convert(xmlResponse: string, fileName: string): void {
+  public async convert(xmlResponse: string, fileName: string): Promise<void> {
     const file = this.format(xmlResponse).reduce((acc, cur) => {
       return `${acc}${cur.timestamp}\n${cur.text}\n\n`;
     }, "WEBVTT\n\n");
 
-    chrome.downloads.download({
-      url: URL.createObjectURL(new Blob([file], { type: "text/vtt" })),
-      filename: `${fileName}.vtt`,
-    });
+    await DownloadHelper.downloadFile(file, `${fileName}.vtt`, "text/vtt");
   }
 
   public format(xmlResponse: string): VttAline[] {
