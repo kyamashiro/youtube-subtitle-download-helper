@@ -1,7 +1,7 @@
 import { createSignal, onMount } from "solid-js";
 import { ClientYoutube } from "../client/clientYoutube";
 import { ConverterFactory, FileFormat } from "../converter/converterFactory";
-import { CaptionTrack } from "../type/captionTrack";
+import type { CaptionTrack } from "../type/captionTrack";
 import "./App.css";
 
 interface Response {
