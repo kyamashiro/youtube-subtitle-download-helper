@@ -1,16 +1,19 @@
-import type { CaptionTrack } from "../../type/captionTrack";
+import type { CaptionTrack } from "@/types/captionTrack";
 
-interface LanguageSelectorProps {
+interface Props {
   tracks: CaptionTrack[];
   value: string;
   onChange: (trackUrl: string) => void;
 }
 
-export function LanguageSelector(props: LanguageSelectorProps) {
+export function LanguageSelector(props: Props) {
   return (
     <div class="form-group">
-      <label class="form-label">Language:</label>
+      <label class="form-label" for="language">
+        Language:
+      </label>
       <select
+        id="language"
         class="form-select"
         value={props.value}
         onChange={(e) => props.onChange(e.target.value)}
