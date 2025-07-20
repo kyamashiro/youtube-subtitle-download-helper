@@ -26,27 +26,62 @@ export function useYouTubeData(): UseYouTubeDataReturn {
   onMount(() => {
     const sendData = { reason: "check" };
 
+    console.log("Attempting to get YouTube data...");
+
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id!, sendData, (response: YouTubeResponse) => {
+      console.log("Found tabs:", tabs);
+
+      if (!tabs[0]?.id) {
+        console.error("No active tab found");
         setIsLoading(false);
+        setErrorMessage("No active tab found.");
+        return;
+      }
 
-        if (!response) {
-          setErrorMessage("This page is not on YouTube.");
-          return;
-        }
+      console.log("Sending message to tab:", tabs[0].id);
 
-        if (response.error) {
-          console.log(response.error);
-          setErrorMessage(
-            "This video has no captions. If you can't download the subtitles, try disabling adblock."
+      chrome.tabs.sendMessage(
+        tabs[0].id,
+        sendData,
+        (response: YouTubeResponse) => {
+          console.log("Received response:", response);
+          console.log("Chrome runtime error:", chrome.runtime.lastError);
+
+          setIsLoading(false);
+
+          if (chrome.runtime.lastError) {
+            console.error("Chrome extension error:", chrome.runtime.lastError);
+            setErrorMessage(
+              "Failed to connect to content script. Please refresh the YouTube page and try again.",
+            );
+            return;
+          }
+
+          if (!response) {
+            console.error("No response received");
+            setErrorMessage(
+              "This page is not on YouTube or the content script is not loaded.",
+            );
+            return;
+          }
+
+          if (response.error) {
+            console.log("Response contains error:", response.error);
+            setErrorMessage(
+              "This video has no captions. If you can't download the subtitles, try disabling adblock.",
+            );
+            return;
+          }
+
+          console.log(
+            "Successfully received caption tracks:",
+            response.captionTrackList,
           );
-          return;
-        }
-
-        setCaptionTracks(response.captionTrackList);
-        setVideoTitle(response.videoTitle);
-        setVideoId(response.videoId);
-      });
+          setCaptionTracks(response.captionTrackList);
+          setVideoTitle(response.videoTitle);
+          setVideoId(response.videoId);
+        },
+      );
     });
   });
 

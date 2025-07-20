@@ -1,8 +1,7 @@
 {
-  "name": "crxjs-project",
+  "name": "youtube-subtitle-download-helper",
   "type": "module",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.1.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -30,7 +29,7 @@
     "@types/glob": "^7.1.4",
     "@types/he": "^1.1.2",
     "@types/lodash": "^4.14.171",
-    "axios": "^0.21.1",
+    "axios": "^1.8.2",
     "core-js": "^3.15.2",
     "fs-extra": "^10.0.0",
     "glob": "^7.1.7",

@@ -1,20 +1,23 @@
-import { createSignal, createEffect } from "solid-js";
+import { createEffect, createMemo, createSignal } from "solid-js";
 import { FileFormat } from "../converter/converterFactory";
-import { useYouTubeData } from "./hooks/useYouTubeData";
-import { useDownload } from "./hooks/useDownload";
-import LoadingSpinner from "./components/LoadingSpinner";
+import DownloadButton from "./components/DownloadButton";
 import ErrorMessage from "./components/ErrorMessage";
 import FormatSelector from "./components/FormatSelector";
 import LanguageSelector from "./components/LanguageSelector";
-import DownloadButton from "./components/DownloadButton";
+import LoadingSpinner from "./components/LoadingSpinner";
+import { useDownload } from "./hooks/useDownload";
+import { useYouTubeData } from "./hooks/useYouTubeData";
 import "./App.css";
 
 function App() {
   const [selectedTrack, setSelectedTrack] = createSignal<string>("");
-  const [selectedFormat, setSelectedFormat] = createSignal<FileFormat>(FileFormat.SRT);
+  const [selectedFormat, setSelectedFormat] = createSignal<FileFormat>(
+    FileFormat.SRT,
+  );
 
-  const { captionTracks, videoTitle, isLoading, errorMessage } = useYouTubeData();
-  const { isDownloading, downloadError, download } = useDownload();
+  const { captionTracks, videoTitle, isLoading, errorMessage } =
+    useYouTubeData();
+  const { downloadError, download } = useDownload();
 
   // Auto-select first track when data loads
   createEffect(() => {
@@ -28,16 +31,38 @@ function App() {
     download(selectedTrack(), captionTracks(), selectedFormat(), videoTitle());
   };
 
-  const hasError = errorMessage() || downloadError();
-  const showContent = !isLoading() && !hasError && captionTracks().length > 0;
+  const hasError = createMemo(() => errorMessage() || downloadError());
+  const showContent = createMemo(() => {
+    const loading = isLoading();
+    const error = hasError();
+    const tracks = captionTracks();
+    const shouldShow = !loading && !error && tracks.length > 0;
+
+    console.log("showContent computation:", {
+      loading,
+      error,
+      tracksLength: tracks.length,
+      shouldShow,
+    });
+
+    return shouldShow;
+  });
 
   return (
     <div class="popup-container">
+      {/* Debug info */}
+      <div
+        style={{ "font-size": "10px", color: "#999", "margin-bottom": "10px" }}
+      >
+        Debug: Loading={isLoading().toString()}, Error=
+        {Boolean(hasError()).toString()}, Tracks={captionTracks().length}
+      </div>
+
       {isLoading() && <LoadingSpinner />}
 
-      {hasError && <ErrorMessage message={hasError} />}
+      {hasError() && <ErrorMessage message={hasError()} />}
 
-      {showContent && (
+      {showContent() && (
         <>
           <FormatSelector
             value={selectedFormat()}
@@ -52,7 +77,6 @@ function App() {
 
           <DownloadButton
             onClick={handleDownload}
-            loading={isDownloading()}
             disabled={!selectedTrack()}
           />
         </>

@@ -3,9 +3,5 @@ interface ErrorMessageProps {
 }
 
 export default function ErrorMessage(props: ErrorMessageProps) {
-  return (
-    <div class="error-message">
-      {props.message}
-    </div>
-  );
+  return <div class="error-message">{props.message}</div>;
 }

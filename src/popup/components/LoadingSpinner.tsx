@@ -3,9 +3,5 @@ interface LoadingSpinnerProps {
 }
 
 export default function LoadingSpinner(props: LoadingSpinnerProps) {
-  return (
-    <div class="loading-text">
-      {props.message || "Loading..."}
-    </div>
-  );
+  return <div class="loading-text">{props.message || "Loading..."}</div>;
 }

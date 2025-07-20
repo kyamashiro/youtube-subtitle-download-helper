@@ -1,7 +1,6 @@
 interface DownloadButtonProps {
   onClick: () => void;
   disabled?: boolean;
-  loading?: boolean;
 }
 
 export default function DownloadButton(props: DownloadButtonProps) {
@@ -11,7 +10,7 @@ export default function DownloadButton(props: DownloadButtonProps) {
       onClick={props.onClick}
       disabled={props.disabled || props.loading}
     >
-      {props.loading ? "Downloading..." : "Download"}
+      "Download"
     </button>
   );
 }
