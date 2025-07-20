@@ -1,4 +1,4 @@
-import { Timestamp } from "../timestamp";
+import type { Timestamp } from "../timestamp";
 
 export type Aline = {
   timestamp: Timestamp;

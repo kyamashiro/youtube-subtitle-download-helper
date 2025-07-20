@@ -1,4 +1,4 @@
-import { Convertable } from "./convertable";
+import type { Convertable } from "./convertable";
 import { CsvConverter } from "./csvConverter";
 import { LrcConverter } from "./lrcConverter";
 import { SrtConverter } from "./srtConverter";

@@ -1,6 +1,6 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, CsvAline } from "../types/aline";
-import { Convertable } from "./convertable";
+import type { Aline, CsvAline } from "../types/aline";
+import type { Convertable } from "./convertable";
 import json2csv from "json-2-csv";
 
 export class CsvConverter implements Convertable {
@@ -14,7 +14,7 @@ export class CsvConverter implements Convertable {
       .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
-          filename: fileName + ".csv",
+          filename: `${fileName}.csv`,
         });
       })
       .catch((err: Error) => {

@@ -1,6 +1,6 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, TextAline } from "../types/aline";
-import { Convertable } from "./convertable";
+import type { Aline, TextAline } from "../types/aline";
+import type { Convertable } from "./convertable";
 import json2csv from "json-2-csv";
 
 const options = {
@@ -21,7 +21,7 @@ export class TxtConverter implements Convertable {
       .then((csv: string) => {
         chrome.downloads.download({
           url: URL.createObjectURL(new Blob([csv], { type: "text/plane" })),
-          filename: fileName + ".txt",
+          filename: `${fileName}.txt`,
         });
       })
       .catch((err: Error) => {

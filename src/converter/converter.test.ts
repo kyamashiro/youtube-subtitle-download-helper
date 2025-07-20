@@ -1,7 +1,7 @@
 import { test, expect, beforeAll } from "vitest";
 import fs from "fs-extra";
 import { ConverterFactory, FileFormat } from "./converterFactory";
-import {
+import type {
   CsvAline,
   LrcAline,
   SrtAline,
@@ -14,7 +14,7 @@ beforeAll((done) => {
   fs.readFile(
     "src/converter/testData/Grit the power of passion and perseverance  Angela Lee Duckworth - 英語.xml",
     "utf-8",
-    (error: any, data: string) => {
+    (_error: any, data: string) => {
       done();
       xml = data;
     },
@@ -26,7 +26,7 @@ beforeAll((done) => {
   fs.readFile(
     "src/converter/testData/csv.json",
     "utf-8",
-    (error: any, data: string) => {
+    (_error: any, data: string) => {
       done();
       csv = JSON.parse(data) as CsvAline[];
     },
@@ -44,7 +44,7 @@ beforeAll((done) => {
   fs.readFile(
     "src/converter/testData/lrc.json",
     "utf-8",
-    (error: any, data: string) => {
+    (_error: any, data: string) => {
       done();
       lrc = JSON.parse(data) as LrcAline[];
     },
@@ -62,7 +62,7 @@ beforeAll((done) => {
   fs.readFile(
     "src/converter/testData/srt.json",
     "utf-8",
-    (error: any, data: string) => {
+    (_error: any, data: string) => {
       done();
       srt = JSON.parse(data) as SrtAline[];
     },
@@ -80,7 +80,7 @@ beforeAll((done) => {
   fs.readFile(
     "src/converter/testData/vtt.json",
     "utf-8",
-    (error: any, data: string) => {
+    (_error: any, data: string) => {
       done();
       vtt = JSON.parse(data) as VttAline[];
     },
@@ -98,7 +98,7 @@ beforeAll((done) => {
   fs.readFile(
     "src/converter/testData/txt.json",
     "utf-8",
-    (error: any, data: string) => {
+    (_error: any, data: string) => {
       done();
       txt = JSON.parse(data) as TextAline[];
     },

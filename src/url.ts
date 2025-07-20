@@ -6,7 +6,7 @@ export const Url = {
    */
   getParam(url: string): string {
     const query = "v".replace(/[[]]/g, "\\$&");
-    const regex = new RegExp("[?&]" + query + "(=([^&#]*)|&|#|$)");
+    const regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`);
     const results = regex.exec(url);
     if (!results) {
       throw new Error("Url query parameter does not contain videoid.");

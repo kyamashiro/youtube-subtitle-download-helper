@@ -3,14 +3,14 @@ interface DownloadButtonProps {
   disabled?: boolean;
 }
 
-export default function DownloadButton(props: DownloadButtonProps) {
+export function DownloadButton(props: DownloadButtonProps) {
   return (
     <button
       class="download-button"
       onClick={props.onClick}
-      disabled={props.disabled || props.loading}
+      disabled={props.disabled}
     >
-      "Download"
+      Download
     </button>
   );
 }

@@ -5,7 +5,7 @@ interface FormatSelectorProps {
   onChange: (format: FileFormat) => void;
 }
 
-export default function FormatSelector(props: FormatSelectorProps) {
+export function FormatSelector(props: FormatSelectorProps) {
   return (
     <div class="form-group">
       <label class="form-label">Format:</label>

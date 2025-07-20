@@ -35,7 +35,7 @@ export class CaptionsParser {
    * @member CaptionsParser
    */
   public explode(lines: string): string[] {
-    return lines.split("</text>").filter((line: string) => line && line.trim());
+    return lines.split("</text>").filter((line: string) => line?.trim());
   }
 
   /**

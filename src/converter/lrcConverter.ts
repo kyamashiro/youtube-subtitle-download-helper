@@ -1,16 +1,16 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, LrcAline } from "../types/aline";
-import { Convertable } from "./convertable";
+import type { Aline, LrcAline } from "../types/aline";
+import type { Convertable } from "./convertable";
 
 export class LrcConverter implements Convertable {
   public convert(xmlResponse: string, fileName: string): void {
     const file: string = this.format(xmlResponse).reduce((acc, cur) => {
-      return acc + `${cur.timestamp}${cur.text}\n`;
+      return `${acc}${cur.timestamp}${cur.text}\n`;
     }, "");
 
     chrome.downloads.download({
       url: URL.createObjectURL(new Blob([file], { type: "text/lrc" })),
-      filename: fileName + ".lrc",
+      filename: `${fileName}.lrc`,
     });
   }
 

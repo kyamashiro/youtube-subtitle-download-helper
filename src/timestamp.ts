@@ -35,7 +35,7 @@ export class Timestamp {
    * @member Timestamp
    */
   public formatVtt(): string {
-    return this.getStartTime() + " --> " + this.getDurationTime();
+    return `${this.getStartTime()} --> ${this.getDurationTime()}`;
   }
 
   /**

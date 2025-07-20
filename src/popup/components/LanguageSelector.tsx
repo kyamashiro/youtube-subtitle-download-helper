@@ -6,7 +6,7 @@ interface LanguageSelectorProps {
   onChange: (trackUrl: string) => void;
 }
 
-export default function LanguageSelector(props: LanguageSelectorProps) {
+export function LanguageSelector(props: LanguageSelectorProps) {
   return (
     <div class="form-group">
       <label class="form-label">Language:</label>

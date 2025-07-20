@@ -1,10 +1,10 @@
 import { createEffect, createMemo, createSignal } from "solid-js";
 import { FileFormat } from "../converter/converterFactory";
-import DownloadButton from "./components/DownloadButton";
-import ErrorMessage from "./components/ErrorMessage";
-import FormatSelector from "./components/FormatSelector";
-import LanguageSelector from "./components/LanguageSelector";
-import LoadingSpinner from "./components/LoadingSpinner";
+import { DownloadButton } from "./components/DownloadButton";
+import { ErrorMessage } from "./components/ErrorMessage";
+import { FormatSelector } from "./components/FormatSelector";
+import { LanguageSelector } from "./components/LanguageSelector";
+import { LoadingSpinner } from "./components/LoadingSpinner";
 import { useDownload } from "./hooks/useDownload";
 import { useYouTubeData } from "./hooks/useYouTubeData";
 import "./App.css";

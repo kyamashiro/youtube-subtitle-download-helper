@@ -8,7 +8,7 @@ beforeAll((done) => {
   fs.readFile(
     "src/test/sample-response.xml",
     "utf-8",
-    (error: any, data: string) => {
+    (_error: any, data: string) => {
       done();
       buffer = data;
     },

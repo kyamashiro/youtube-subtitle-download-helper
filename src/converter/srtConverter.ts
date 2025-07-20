@@ -1,16 +1,16 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, SrtAline } from "../types/aline";
-import { Convertable } from "./convertable";
+import type { Aline, SrtAline } from "../types/aline";
+import type { Convertable } from "./convertable";
 
 export class SrtConverter implements Convertable {
   public convert(xmlResponse: string, fileName: string): void {
     const file = this.format(xmlResponse).reduce((acc, cur) => {
-      return acc + `${cur.index}\n${cur.timestamp}\n${cur.text}\n\n`;
+      return `${acc}${cur.index}\n${cur.timestamp}\n${cur.text}\n\n`;
     }, "");
 
     chrome.downloads.download({
       url: URL.createObjectURL(new Blob([file], { type: "text/srt" })),
-      filename: fileName + ".srt",
+      filename: `${fileName}.srt`,
     });
   }
 
