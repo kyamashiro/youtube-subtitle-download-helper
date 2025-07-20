@@ -17,7 +17,7 @@ export class LrcConverter implements Convertable {
   public format(xmlResponse: string): LrcAline[] {
     const parser = new CaptionsParser();
     const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(xmlResponse)
+      parser.removeXmlTag(xmlResponse),
     );
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);

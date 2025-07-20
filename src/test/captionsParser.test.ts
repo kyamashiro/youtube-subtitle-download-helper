@@ -10,7 +10,7 @@ beforeAll((done) => {
     (error: any, data: string) => {
       done();
       buffer = data;
-    }
+    },
   );
 });
 
@@ -20,12 +20,12 @@ test("Remove <xml> tag.", () => {
     parser.removeXmlTag(
       `<?xml version="1.0" encoding="utf-8" ?><transcript><text start="0" dur="7">Translator: TED Translators admin
     Reviewer: Allam Zedan</text>
-    <text start="1097.963" dur="1.389">Thank you.</text><text start="1099.352" dur="0.78">(Applause)</text></transcript>`
-    )
+    <text start="1097.963" dur="1.389">Thank you.</text><text start="1099.352" dur="0.78">(Applause)</text></transcript>`,
+    ),
   ).toBe(
     `<text start="0" dur="7">Translator: TED Translators admin
     Reviewer: Allam Zedan</text>
-    <text start="1097.963" dur="1.389">Thank you.</text><text start="1099.352" dur="0.78">(Applause)</text>`
+    <text start="1097.963" dur="1.389">Thank you.</text><text start="1099.352" dur="0.78">(Applause)</text>`,
   );
 });
 
@@ -38,8 +38,8 @@ test("Decompose line start time, duration, subtitles.", () => {
   const parser = new CaptionsParser();
   expect(
     parser.decodeAline(
-      '<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan'
-    )
+      '<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan',
+    ),
   ).toStrictEqual({
     text: "Translator: TED Translators admin  Reviewer: Allam Zedan",
     timestamp: new Timestamp(0, 7),

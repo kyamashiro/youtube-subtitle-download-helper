@@ -16,7 +16,7 @@ beforeAll((done) => {
     (error: any, data: string) => {
       done();
       xml = data;
-    }
+    },
   );
 });
 
@@ -28,7 +28,7 @@ beforeAll((done) => {
     (error: any, data: string) => {
       done();
       csv = JSON.parse(data) as CsvAline[];
-    }
+    },
   );
 });
 
@@ -46,7 +46,7 @@ beforeAll((done) => {
     (error: any, data: string) => {
       done();
       lrc = JSON.parse(data) as LrcAline[];
-    }
+    },
   );
 });
 
@@ -64,7 +64,7 @@ beforeAll((done) => {
     (error: any, data: string) => {
       done();
       srt = JSON.parse(data) as SrtAline[];
-    }
+    },
   );
 });
 
@@ -82,7 +82,7 @@ beforeAll((done) => {
     (error: any, data: string) => {
       done();
       vtt = JSON.parse(data) as VttAline[];
-    }
+    },
   );
 });
 
@@ -100,7 +100,7 @@ beforeAll((done) => {
     (error: any, data: string) => {
       done();
       txt = JSON.parse(data) as TextAline[];
-    }
+    },
   );
 });
 

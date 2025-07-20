@@ -21,7 +21,7 @@ window.onload = () => {
     chrome.tabs.sendMessage(tabs[0].id!, sendData, (response: response) => {
       if (!response) {
         displayErrorMessage(
-          "<p class='uk-text-danger'>This page is not on Youtube.</p>"
+          "<p class='uk-text-danger'>This page is not on Youtube.</p>",
         );
         return;
       }
@@ -29,13 +29,13 @@ window.onload = () => {
       if (response.error) {
         console.log(response.error);
         displayErrorMessage(
-          "<p class='uk-text-danger'>This video has no captions.</p><p class='uk-text-danger'>If you can't download the subtitles, try disabling adblock.</p>"
+          "<p class='uk-text-danger'>This video has no captions.</p><p class='uk-text-danger'>If you can't download the subtitles, try disabling adblock.</p>",
         );
         return;
       }
       addSelectBox();
       response.captionTrackList.forEach((track: CaptionTrack) =>
-        addSelectBoxOption(track)
+        addSelectBoxOption(track),
       );
       addDownloadButton();
       addSelectBoxFormat();
@@ -54,7 +54,7 @@ function addSelectBoxFormat() {
     .getElementById("content")!
     .insertAdjacentHTML(
       "afterbegin",
-      `<select class='uk-select' style='margin-bottom:5px;font-size:larger;' id='format'>${options}</select>`
+      `<select class='uk-select' style='margin-bottom:5px;font-size:larger;' id='format'>${options}</select>`,
     );
 }
 
@@ -63,7 +63,7 @@ function addSelectBox() {
     .getElementById("content")!
     .insertAdjacentHTML(
       "afterbegin",
-      "<select class='uk-select' id='language' style='font-size:larger;'></select>"
+      "<select class='uk-select' id='language' style='font-size:larger;'></select>",
     );
 }
 
@@ -72,7 +72,7 @@ function addSelectBoxOption(captionTrack: CaptionTrack) {
     .getElementById("language")!
     .insertAdjacentHTML(
       "beforeend",
-      `<option value=${captionTrack.baseUrl}>${captionTrack.name.simpleText}</option>`
+      `<option value=${captionTrack.baseUrl}>${captionTrack.name.simpleText}</option>`,
     );
 }
 
@@ -81,7 +81,7 @@ function addDownloadButton() {
     .getElementById("content")!
     .insertAdjacentHTML(
       "afterend",
-      "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>"
+      "<div class='uk-margin'><button id='download-button' class='uk-button uk-button-primary' onclick=download()>Download</button></div>",
     );
   (<HTMLInputElement>document.getElementById("download-button")).onclick = () =>
     download();

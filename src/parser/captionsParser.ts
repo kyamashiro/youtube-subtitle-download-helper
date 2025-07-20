@@ -63,7 +63,7 @@ export class CaptionsParser {
     const durRegex = /dur="([\d.]+)"/;
     return new Timestamp(
       this.getTimeFromText(startRegex, aline),
-      this.getTimeFromText(durRegex, aline)
+      this.getTimeFromText(durRegex, aline),
     );
   }
 

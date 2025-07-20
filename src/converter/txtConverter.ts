@@ -32,7 +32,7 @@ export class TxtConverter implements Convertable {
   public format(xmlResponse: string): TextAline[] {
     const parser = new CaptionsParser();
     const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(xmlResponse)
+      parser.removeXmlTag(xmlResponse),
     );
     return trimTranscript.map((line: string) => {
       const aline: Aline = parser.decodeAline(line);

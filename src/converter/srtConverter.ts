@@ -17,7 +17,7 @@ export class SrtConverter implements Convertable {
   public format(xmlResponse: string): SrtAline[] {
     const parser = new CaptionsParser();
     const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(xmlResponse)
+      parser.removeXmlTag(xmlResponse),
     );
     return trimTranscript.map((line: string, index: number) => {
       const numericCounter = index + 1;

@@ -13,7 +13,7 @@ export const FileFormat = {
   LRC: "lrc",
 } as const;
 
-export type FileFormat = typeof FileFormat[keyof typeof FileFormat];
+export type FileFormat = (typeof FileFormat)[keyof typeof FileFormat];
 
 export class ConverterFactory {
   public create(fileFormat: FileFormat): Convertable {

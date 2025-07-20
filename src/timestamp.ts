@@ -1,5 +1,8 @@
 export class Timestamp {
-  constructor(private start: number, private duration: number) {}
+  constructor(
+    private start: number,
+    private duration: number,
+  ) {}
 
   public getStartTime(): string {
     return this.convertTime(this.start);
@@ -47,7 +50,7 @@ export class Timestamp {
     const hh =
       parseInt(new Date(this.start * 1000).toISOString().slice(12, -11)) * 60;
     const mm = parseInt(
-      new Date(this.start * 1000).toISOString().slice(14, -8)
+      new Date(this.start * 1000).toISOString().slice(14, -8),
     );
 
     if (hh > 0) {
