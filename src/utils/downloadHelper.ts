@@ -35,7 +35,7 @@ export class DownloadHelper {
     } catch (error) {
       // Fallback: create download link and click it
       console.warn('Chrome downloads failed, using fallback method:', error);
-      this.fallbackDownload(url, filename);
+      DownloadHelper.fallbackDownload(url, filename);
     } finally {
       // Clean up the object URL
       setTimeout(() => URL.revokeObjectURL(url), 100);

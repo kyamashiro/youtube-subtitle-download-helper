@@ -1,4 +1,4 @@
-import { Component, createSignal, createMemo, Show } from "solid-js";
+import { type Component, createSignal, createMemo, Show } from "solid-js";
 import { useSubtitleData } from "../hooks/useSubtitleData";
 import { SubtitleDownloadModal } from "./SubtitleDownloadModal";
 import { DownloadIcon } from "./DownloadIcon";

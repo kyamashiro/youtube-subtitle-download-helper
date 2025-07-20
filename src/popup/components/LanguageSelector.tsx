@@ -1,9 +1,9 @@
-import type { CaptionTrack } from "@/types/captionTrack";
+import type { CaptionTrack } from '@/types/captionTrack'
 
 interface Props {
-  tracks: CaptionTrack[];
-  value: string;
-  onChange: (trackUrl: string) => void;
+  tracks: CaptionTrack[]
+  value: string
+  onChange: (trackUrl: string) => void
 }
 
 export function LanguageSelector(props: Props) {
@@ -23,5 +23,5 @@ export function LanguageSelector(props: Props) {
         ))}
       </select>
     </div>
-  );
+  )
 }

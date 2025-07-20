@@ -1,4 +1,4 @@
-import { createSignal, createEffect, onCleanup, Accessor } from "solid-js";
+import { createSignal, createEffect, onCleanup, type Accessor } from "solid-js";
 
 export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
   const [isInjected, setIsInjected] = createSignal(false);
@@ -60,12 +60,12 @@ export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
     const originalPushState = history.pushState;
     const originalReplaceState = history.replaceState;
     
-    history.pushState = function(...args) {
+    history.pushState = (...args) => {
       originalPushState.apply(history, args);
       checkUrlChange();
     };
     
-    history.replaceState = function(...args) {
+    history.replaceState = (...args) => {
       originalReplaceState.apply(history, args);
       checkUrlChange();
     };

@@ -1,10 +1,10 @@
-import { Component, createSignal, createEffect, createMemo, JSX } from "solid-js";
+import { type Component, createSignal, createEffect, createMemo, type JSX } from "solid-js";
 import { ClientYoutube } from "@/client/clientYoutube";
 import { ConverterFactory, type FileFormat } from "@/converter/converterFactory";
 import { useDownloadState } from "../hooks/useDownloadState";
 import { FormatSelector } from "./FormatSelector";
 import { LanguageSelector } from "./LanguageSelector";
-import type { SubtitleData, ModalProps } from "../types";
+import type { ModalProps } from "../types";
 
 export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
   const [selectedTrack, setSelectedTrack] = createSignal("");

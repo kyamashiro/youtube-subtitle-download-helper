@@ -1,4 +1,4 @@
-import { createSignal, Accessor } from "solid-js";
+import { createSignal, type Accessor } from "solid-js";
 import type { DownloadState } from "../types";
 
 export function useDownloadState(): [Accessor<DownloadState>, {

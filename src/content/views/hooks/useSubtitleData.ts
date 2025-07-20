@@ -1,4 +1,4 @@
-import { createSignal, onMount, onCleanup, Accessor, Setter } from "solid-js";
+import { createSignal, onMount, onCleanup, type Accessor, type Setter } from "solid-js";
 import type { SubtitleData } from "../types";
 
 export function useSubtitleData(): [Accessor<SubtitleData | null>, Setter<SubtitleData | null>] {

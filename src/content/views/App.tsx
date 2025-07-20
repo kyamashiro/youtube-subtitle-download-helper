@@ -1,4 +1,4 @@
-import { Component } from "solid-js";
+import type { Component } from "solid-js";
 import { render } from "solid-js/web";
 import { SubtitleDownloadButton } from "./components/SubtitleDownloadButton";
 import { useDOMInjection } from "./hooks/useDOMInjection";
