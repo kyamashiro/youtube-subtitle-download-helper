@@ -1,193 +1,39 @@
+import { createSignal, createEffect, onMount, onCleanup, Show, For } from "solid-js";
+import { render } from "solid-js/web";
 import type { CaptionTrack } from "@/types/captionTrack";
 import { ClientYoutube } from "@/client/clientYoutube";
 import { ConverterFactory, type FileFormat } from "@/converter/converterFactory";
 import "./App.css";
 
-class SubtitleDownloadButton {
-  private container: HTMLElement;
-  private isInjected = false;
-  private cachedSubtitleData: any = null;
+interface SubtitleData {
+  captionTrackList: CaptionTrack[];
+  videoId: string;
+  videoTitle: string;
+  error: Error | null;
+}
 
-  constructor() {
-    this.container = this.createContainer();
-    this.injectButton();
-    this.setupDataListener();
-  }
+function SubtitleDownloadModal(props: {
+  subtitleData: SubtitleData;
+  onClose: () => void;
+}) {
+  const [selectedTrack, setSelectedTrack] = createSignal("");
+  const [selectedFormat, setSelectedFormat] = createSignal<FileFormat>("srt");
+  const [isDownloading, setIsDownloading] = createSignal(false);
 
-  private createContainer(): HTMLElement {
-    const container = document.createElement('div');
-    container.id = 'subtitle-download-container';
-    container.style.cssText = `
-      display: inline-block;
-      margin-left: 8px;
-    `;
-    return container;
-  }
-
-  private createDownloadButton(): HTMLElement {
-    const button = document.createElement('button');
-    button.className = 'yt-spec-button-shape-next yt-spec-button-shape-next--tonal yt-spec-button-shape-next--mono yt-spec-button-shape-next--size-m yt-spec-button-shape-next--icon-leading yt-spec-button-shape-next--enable-backdrop-filter-experiment';
-    button.title = '字幕をダウンロード';
-    button.setAttribute('aria-label', '字幕をダウンロード');
-    button.style.cssText = `
-      cursor: pointer;
-    `;
-
-    button.innerHTML = `
-      <div aria-hidden="true" class="yt-spec-button-shape-next__icon">
-        <span class="ytIconWrapperHost" style="width: 24px; height: 24px;">
-          <span class="yt-icon-shape yt-spec-icon-shape">
-            <div style="width: 100%; height: 100%; display: block; fill: currentcolor;">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-              </svg>
-            </div>
-          </span>
-        </span>
-      </div>
-      <div class="yt-spec-button-shape-next__button-text-content">字幕</div>
-      <yt-touch-feedback-shape style="border-radius: inherit;">
-        <div aria-hidden="true" class="yt-spec-touch-feedback-shape yt-spec-touch-feedback-shape--touch-response">
-          <div class="yt-spec-touch-feedback-shape__stroke"></div>
-          <div class="yt-spec-touch-feedback-shape__fill"></div>
-        </div>
-      </yt-touch-feedback-shape>
-    `;
-
-    button.addEventListener('click', () => this.showDownloadMenu());
-    return button;
-  }
-
-  private injectButton(): void {
-    const checkAndInject = () => {
-      const actionsContainer = document.querySelector('#actions-inner .top-level-buttons');
-      
-      if (actionsContainer && !this.isInjected) {
-        this.container.appendChild(this.createDownloadButton());
-        actionsContainer.appendChild(this.container);
-        this.isInjected = true;
-        console.log('Subtitle download button injected');
-      }
-    };
-
-    // Try immediately
-    checkAndInject();
-
-    // Also watch for DOM changes
-    const observer = new MutationObserver(() => {
-      if (!this.isInjected) {
-        checkAndInject();
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  }
-
-  private setupDataListener(): void {
-    // Listen for cached data updates from main.ts
-    window.addEventListener('subtitle-data-updated', (event: any) => {
-      this.cachedSubtitleData = event.detail;
-    });
-  }
-
-  private showDownloadMenu(): void {
-    if (!this.cachedSubtitleData || !this.cachedSubtitleData.captionTrackList.length) {
-      alert('字幕データが見つかりません。ページを再読み込みしてください。');
-      return;
+  onMount(() => {
+    if (props.subtitleData.captionTrackList.length > 0) {
+      setSelectedTrack(props.subtitleData.captionTrackList[0].baseUrl);
     }
+  });
 
-    this.createDownloadModal();
-  }
+  const handleDownload = async () => {
+    if (isDownloading()) return;
 
-  private createDownloadModal(): void {
-    // Remove existing modal if any
-    const existingModal = document.getElementById('subtitle-download-modal');
-    if (existingModal) {
-      existingModal.remove();
-    }
-
-    const modal = document.createElement('div');
-    modal.id = 'subtitle-download-modal';
-    modal.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    `;
-
-    const modalContent = document.createElement('div');
-    modalContent.style.cssText = `
-      background: white;
-      padding: 24px;
-      border-radius: 8px;
-      max-width: 500px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-    `;
-
-    modalContent.innerHTML = `
-      <h2 style="margin: 0 0 16px 0; color: #000;">字幕をダウンロード</h2>
-      <div style="margin-bottom: 16px;">
-        <label style="display: block; margin-bottom: 8px; color: #000;">言語を選択:</label>
-        <select id="language-select" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-          ${this.cachedSubtitleData.captionTrackList.map((track: CaptionTrack) => 
-            `<option value="${track.baseUrl}">${track.name.simpleText}</option>`
-          ).join('')}
-        </select>
-      </div>
-      <div style="margin-bottom: 16px;">
-        <label style="display: block; margin-bottom: 8px; color: #000;">フォーマットを選択:</label>
-        <select id="format-select" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-          <option value="srt">SRT</option>
-          <option value="vtt">VTT</option>
-          <option value="txt">TXT</option>
-          <option value="csv">CSV</option>
-          <option value="lrc">LRC</option>
-        </select>
-      </div>
-      <div style="display: flex; gap: 8px; justify-content: flex-end;">
-        <button id="cancel-btn" style="padding: 8px 16px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer;">キャンセル</button>
-        <button id="download-btn" style="padding: 8px 16px; border: none; background: #1976d2; color: white; border-radius: 4px; cursor: pointer;">ダウンロード</button>
-      </div>
-    `;
-
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-
-    // Add event listeners
-    const cancelBtn = modal.querySelector('#cancel-btn') as HTMLButtonElement;
-    const downloadBtn = modal.querySelector('#download-btn') as HTMLButtonElement;
-    const languageSelect = modal.querySelector('#language-select') as HTMLSelectElement;
-    const formatSelect = modal.querySelector('#format-select') as HTMLSelectElement;
-
-    cancelBtn.addEventListener('click', () => modal.remove());
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.remove();
-    });
-
-    downloadBtn.addEventListener('click', async () => {
-      const selectedTrack = languageSelect.value;
-      const selectedFormat = formatSelect.value as FileFormat;
-      
-      await this.downloadSubtitle(selectedTrack, selectedFormat);
-      modal.remove();
-    });
-  }
-
-  private async downloadSubtitle(selectedTrack: string, selectedFormat: FileFormat): Promise<void> {
     try {
-      const selectedTrackData = this.cachedSubtitleData.captionTrackList.find(
-        (track: CaptionTrack) => track.baseUrl === selectedTrack
+      setIsDownloading(true);
+      
+      const selectedTrackData = props.subtitleData.captionTrackList.find(
+        (track) => track.baseUrl === selectedTrack()
       );
 
       if (!selectedTrackData) {
@@ -195,30 +41,237 @@ class SubtitleDownloadButton {
       }
 
       // Get subtitle XML
-      const xmlResponse = await ClientYoutube.getSubtitle(selectedTrack);
+      const xmlResponse = await ClientYoutube.getSubtitle(selectedTrack());
 
       // Convert to selected format
       const converterFactory = new ConverterFactory();
-      const converter = converterFactory.create(selectedFormat);
+      const converter = converterFactory.create(selectedFormat());
       const content = selectedTrackData.name.simpleText;
-      const filename = `${this.cachedSubtitleData.videoTitle} - ${content}`;
+      const filename = `${props.subtitleData.videoTitle} - ${content}`;
 
       converter.convert(xmlResponse, filename);
       
       console.log('Download completed successfully');
-    } catch (error) {
+      props.onClose();
+    } catch (error: any) {
       console.error('Download error:', error);
       alert(`ダウンロードに失敗しました: ${error.message || error}`);
+    } finally {
+      setIsDownloading(false);
     }
-  }
+  };
+
+  const handleBackdropClick = (e: MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      props.onClose();
+    }
+  };
+
+  return (
+    <div class="subtitle-modal-overlay" onClick={handleBackdropClick}>
+      <div class="subtitle-modal-content">
+        <h2 class="subtitle-modal-header">字幕をダウンロード</h2>
+        
+        <div class="subtitle-form-group">
+          <label class="subtitle-form-label">言語を選択:</label>
+          <select 
+            value={selectedTrack()}
+            onChange={(e) => setSelectedTrack(e.target.value)}
+            class="subtitle-form-select"
+          >
+            <For each={props.subtitleData.captionTrackList}>
+              {(track) => (
+                <option value={track.baseUrl}>{track.name.simpleText}</option>
+              )}
+            </For>
+          </select>
+        </div>
+        
+        <div class="subtitle-form-group">
+          <label class="subtitle-form-label">フォーマットを選択:</label>
+          <select 
+            value={selectedFormat()}
+            onChange={(e) => setSelectedFormat(e.target.value as FileFormat)}
+            class="subtitle-form-select"
+          >
+            <option value="srt">SRT</option>
+            <option value="vtt">VTT</option>
+            <option value="txt">TXT</option>
+            <option value="csv">CSV</option>
+            <option value="lrc">LRC</option>
+          </select>
+        </div>
+        
+        <div class="subtitle-button-container">
+          <button 
+            onClick={props.onClose}
+            class="subtitle-button subtitle-button-cancel"
+          >
+            キャンセル
+          </button>
+          <button 
+            onClick={handleDownload}
+            disabled={isDownloading()}
+            class={`subtitle-button subtitle-button-download ${isDownloading() ? 'subtitle-button-download--loading' : ''}`}
+          >
+            {isDownloading() ? "ダウンロード中..." : "ダウンロード"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-// Initialize the download button when DOM is ready
+function SubtitleDownloadButton() {
+  const [subtitleData, setSubtitleData] = createSignal<SubtitleData | null>(null);
+  const [showModal, setShowModal] = createSignal(false);
+
+  onMount(() => {
+    // Listen for cached data updates from main.ts
+    const handleDataUpdate = (event: CustomEvent) => {
+      setSubtitleData(event.detail);
+    };
+
+    window.addEventListener('subtitle-data-updated', handleDataUpdate as EventListener);
+    
+    onCleanup(() => {
+      window.removeEventListener('subtitle-data-updated', handleDataUpdate as EventListener);
+    });
+  });
+
+  const handleDownloadClick = () => {
+    const data = subtitleData();
+    if (!data || !data.captionTrackList.length) {
+      alert('字幕データが見つかりません。ページを再読み込みしてください。');
+      return;
+    }
+    setShowModal(true);
+  };
+
+  return (
+    <>
+      <button 
+        class="yt-spec-button-shape-next yt-spec-button-shape-next--tonal yt-spec-button-shape-next--mono yt-spec-button-shape-next--size-m yt-spec-button-shape-next--icon-leading yt-spec-button-shape-next--enable-backdrop-filter-experiment subtitle-download-button"
+        title="字幕をダウンロード"
+        aria-label="字幕をダウンロード"
+        onClick={handleDownloadClick}
+      >
+        <div aria-hidden="true" class="yt-spec-button-shape-next__icon">
+          <span class="ytIconWrapperHost">
+            <span class="yt-icon-shape yt-spec-icon-shape">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true">
+                  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+              </div>
+            </span>
+          </span>
+        </div>
+        <div class="yt-spec-button-shape-next__button-text-content">字幕</div>
+        <yt-touch-feedback-shape>
+          <div aria-hidden="true" class="yt-spec-touch-feedback-shape yt-spec-touch-feedback-shape--touch-response">
+            <div class="yt-spec-touch-feedback-shape__stroke"></div>
+            <div class="yt-spec-touch-feedback-shape__fill"></div>
+          </div>
+        </yt-touch-feedback-shape>
+      </button>
+      
+      <Show when={showModal() && subtitleData()}>
+        <SubtitleDownloadModal 
+          subtitleData={subtitleData()!}
+          onClose={() => setShowModal(false)}
+        />
+      </Show>
+    </>
+  );
+}
+
+function App() {
+  let buttonContainer: HTMLDivElement | undefined;
+
+  createEffect(() => {
+    console.log('App createEffect triggered, container:', buttonContainer);
+    
+    if (buttonContainer) {
+      const injectButton = () => {
+        const actionsContainer = document.querySelector('#actions-inner .top-level-buttons');
+        console.log('Actions container found:', actionsContainer);
+        console.log('Button container:', buttonContainer);
+        console.log('Container parent:', buttonContainer?.parentNode);
+        
+        if (actionsContainer && buttonContainer && !buttonContainer.parentNode) {
+          buttonContainer.className = "subtitle-download-container";
+          actionsContainer.appendChild(buttonContainer);
+          console.log('Subtitle download button injected successfully');
+        } else if (actionsContainer && buttonContainer && buttonContainer.parentNode !== actionsContainer) {
+          // If container is in wrong place, move it
+          buttonContainer.className = "subtitle-download-container";
+          actionsContainer.appendChild(buttonContainer);
+          console.log('Subtitle download button moved to correct location');
+        }
+      };
+
+      // Try immediately
+      injectButton();
+
+      // Wait a bit for the DOM to be ready
+      setTimeout(injectButton, 100);
+      setTimeout(injectButton, 500);
+      setTimeout(injectButton, 1000);
+
+      // Also watch for DOM changes
+      const observer = new MutationObserver(() => {
+        injectButton();
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
+      onCleanup(() => {
+        observer.disconnect();
+      });
+    }
+  });
+
+  return (
+    <div ref={buttonContainer} class="subtitle-download-container">
+      <SubtitleDownloadButton />
+    </div>
+  );
+}
+
+// Initialize the app
 function initializeApp() {
+  console.log('Initializing subtitle download app');
+  
+  const init = () => {
+    // Check if already initialized
+    if (document.getElementById('subtitle-download-app')) {
+      console.log('App already initialized');
+      return;
+    }
+    
+    const container = document.createElement("div");
+    container.id = "subtitle-download-app";
+    container.style.cssText = "position: absolute; pointer-events: none;";
+    document.body.appendChild(container);
+    
+    console.log('App container created and added to body');
+    
+    render(() => <App />, container);
+    console.log('SolidJS app rendered');
+  };
+
+  // Wait for page to be ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => new SubtitleDownloadButton());
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    new SubtitleDownloadButton();
+    // Try immediately and with delays
+    init();
+    setTimeout(init, 100);
+    setTimeout(init, 500);
   }
 }
 

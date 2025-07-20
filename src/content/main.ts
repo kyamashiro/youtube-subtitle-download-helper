@@ -2,7 +2,7 @@ import { VideoPageHtmlParser } from "@/parser/videoPageHtmlParser.ts";
 import type { CaptionTrack } from "@/types/captionTrack.ts";
 import { ClientYoutube } from "../client/clientYoutube";
 import { Url } from "../url";
-import initializeApp from "./views/App";
+import initializeApp from "./views/App.tsx";
 
 type SubtitleDataResponse = {
   captionTrackList: CaptionTrack[];
