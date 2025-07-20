@@ -3,7 +3,7 @@ import type {
   PlayerData,
 } from "../parser/videoPageHtmlParser.ts";
 
-export class ClientYoutube {
+export const ClientYoutube = {
   /**
    * Get HTML content of YouTube video page
    * @param videoId
@@ -14,7 +14,7 @@ export class ClientYoutube {
       throw new Error(response.statusText);
     }
     return response.text();
-  }
+  },
 
   async getSubtitle(baseUrl: string): Promise<string> {
     const response = await fetch(baseUrl);
@@ -22,7 +22,7 @@ export class ClientYoutube {
       throw new Error(response.statusText);
     }
     return response.text();
-  }
+  },
 
   async getPlayerData(
     videoId: string,
@@ -51,5 +51,5 @@ export class ClientYoutube {
     }
 
     return response.json();
-  }
-}
+  },
+};

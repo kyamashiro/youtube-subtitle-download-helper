@@ -1,5 +1,5 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, LrcAline } from "../type/aline";
+import { Aline, LrcAline } from "../types/aline";
 import { Convertable } from "./convertable";
 
 export class LrcConverter implements Convertable {

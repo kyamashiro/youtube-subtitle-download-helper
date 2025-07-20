@@ -1,5 +1,5 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, TextAline } from "../type/aline";
+import { Aline, TextAline } from "../types/aline";
 import { Convertable } from "./convertable";
 import json2csv from "json-2-csv";
 

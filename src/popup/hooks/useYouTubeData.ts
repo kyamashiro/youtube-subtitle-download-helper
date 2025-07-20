@@ -1,5 +1,5 @@
 import { createSignal, onMount } from "solid-js";
-import type { CaptionTrack } from "../../type/captionTrack";
+import type { CaptionTrack } from "@/types/captionTrack";
 
 interface YouTubeResponse {
   captionTrackList: CaptionTrack[];

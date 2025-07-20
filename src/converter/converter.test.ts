@@ -1,3 +1,4 @@
+import { test, expect, beforeAll } from "vitest";
 import fs from "fs-extra";
 import { ConverterFactory, FileFormat } from "./converterFactory";
 import {
@@ -6,7 +7,7 @@ import {
   SrtAline,
   TextAline,
   VttAline,
-} from "../type/aline";
+} from "../types/aline";
 
 let xml: string;
 beforeAll((done) => {

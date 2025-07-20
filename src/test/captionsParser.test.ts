@@ -1,3 +1,4 @@
+import { test, expect, beforeAll } from "vitest";
 import { CaptionsParser } from "../parser/captionsParser";
 import { Timestamp } from "../timestamp";
 import fs from "fs-extra";

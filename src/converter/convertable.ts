@@ -1,4 +1,4 @@
-import type { Alines } from "../type/aline";
+import type { Alines } from "../types/aline";
 
 export interface Convertable {
   convert(xmlResponse: string, fileName: string): void;

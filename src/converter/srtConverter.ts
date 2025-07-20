@@ -1,5 +1,5 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, SrtAline } from "../type/aline";
+import { Aline, SrtAline } from "../types/aline";
 import { Convertable } from "./convertable";
 
 export class SrtConverter implements Convertable {

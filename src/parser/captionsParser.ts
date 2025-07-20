@@ -1,7 +1,7 @@
-import { Timestamp } from "../timestamp";
-import { Aline } from "../type/aline";
-import striptags from "striptags";
 import he from "he";
+import striptags from "striptags";
+import { Timestamp } from "@/timestamp.ts";
+import type { Aline } from "@/types/aline.ts";
 
 export class CaptionsParser {
   /**

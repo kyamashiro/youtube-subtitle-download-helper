@@ -1,3 +1,4 @@
+import { test, expect } from "vitest";
 import { Url } from "../url";
 
 test("Query string retrieves videoid from URL.", () => {

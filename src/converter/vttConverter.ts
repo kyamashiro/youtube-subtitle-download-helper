@@ -1,5 +1,5 @@
 import { CaptionsParser } from "../parser/captionsParser";
-import { Aline, VttAline } from "../type/aline";
+import { Aline, VttAline } from "../types/aline";
 import { Convertable } from "./convertable";
 
 export class VttConverter implements Convertable {
