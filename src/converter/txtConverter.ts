@@ -17,7 +17,7 @@ const options = {
 export class TxtConverter implements Convertable {
   public async convert(xmlResponse: string, fileName: string): Promise<void> {
     const file = this.format(xmlResponse);
-    
+
     try {
       const csv = await json2csv.json2csvAsync(file, options);
       await DownloadHelper.downloadFile(csv, `${fileName}.txt`, "text/plain");

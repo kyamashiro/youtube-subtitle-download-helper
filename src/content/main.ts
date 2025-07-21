@@ -20,7 +20,7 @@ async function initializeSubtitleData() {
   try {
     const videoId = Url.getParam(document.URL);
     console.log("Initializing subtitle data for video:", videoId);
-    
+
     if (currentVideoId === videoId && cachedSubtitleData) {
       console.log("Using cached data for video:", videoId);
       notifyDataUpdated();
@@ -46,9 +46,11 @@ async function initializeSubtitleData() {
 // Notify App component of data updates
 function notifyDataUpdated() {
   if (cachedSubtitleData) {
-    window.dispatchEvent(new CustomEvent('subtitle-data-updated', {
-      detail: cachedSubtitleData
-    }));
+    window.dispatchEvent(
+      new CustomEvent("subtitle-data-updated", {
+        detail: cachedSubtitleData,
+      }),
+    );
   }
 }
 

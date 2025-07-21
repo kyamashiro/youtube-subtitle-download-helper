@@ -1,22 +1,23 @@
-import { type Component, For } from 'solid-js'
-import type { CaptionTrack } from '@/types/captionTrack'
+import { type Component, For } from "solid-js";
+import styles from "./LanguageSelector.module.css";
+import type { CaptionTrack } from "@/types/captionTrack";
 
 interface LanguageSelectorProps {
-  tracks: CaptionTrack[]
-  value: string
-  onChange: (trackUrl: string) => void
+  tracks: CaptionTrack[];
+  value: string;
+  onChange: (trackUrl: string) => void;
 }
 
 export const LanguageSelector: Component<LanguageSelectorProps> = (props) => (
-  <div class="subtitle-form-group">
-    <label for={'language'} class="subtitle-form-label">
-      言語を選択:
+  <div class={styles.formGroup}>
+    <label for="language" class={styles.formLabel}>
+      Language:
     </label>
     <select
-      id={'language'}
+      id="language"
       value={props.value}
       onChange={(e) => props.onChange(e.target.value)}
-      class="subtitle-form-select"
+      class={styles.formSelect}
     >
       <For each={props.tracks}>
         {(track) => (
@@ -25,4 +26,4 @@ export const LanguageSelector: Component<LanguageSelectorProps> = (props) => (
       </For>
     </select>
   </div>
-)
+);

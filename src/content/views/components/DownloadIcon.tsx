@@ -1,4 +1,4 @@
-import type { Component } from 'solid-js'
+import type { Component } from "solid-js";
 
 export const DownloadIcon: Component = () => (
   <div aria-hidden="true" class="yt-spec-button-shape-next__icon">
@@ -18,4 +18,4 @@ export const DownloadIcon: Component = () => (
       </span>
     </span>
   </div>
-)
+);

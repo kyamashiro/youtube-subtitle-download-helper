@@ -37,35 +37,6 @@
   font-weight: 600;
 }
 
-/* Form Group */
-.subtitle-form-group {
-  margin-bottom: 16px;
-}
-
-/* Form Label */
-.subtitle-form-label {
-  display: block;
-  margin-bottom: 8px;
-  color: #000;
-  font-weight: 500;
-}
-
-/* Form Select */
-.subtitle-form-select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  background: white;
-}
-
-.subtitle-form-select:focus {
-  outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
-}
-
 /* Button Container */
 .subtitle-button-container {
   display: flex;

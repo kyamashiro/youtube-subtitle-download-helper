@@ -5,16 +5,22 @@ export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
 
   const inject = () => {
     if (isInjected()) return true;
-    
+
     const element = elementRef();
-    const actionsContainer = document.querySelector('#actions-inner .top-level-buttons');
-    
+    const actionsContainer = document.querySelector(
+      "#actions-inner .top-level-buttons",
+    );
+
     if (actionsContainer && element && !element.parentNode) {
       element.className = "subtitle-download-container";
       actionsContainer.appendChild(element);
       setIsInjected(true);
       return true;
-    } else if (actionsContainer && element && element.parentNode !== actionsContainer) {
+    } else if (
+      actionsContainer &&
+      element &&
+      element.parentNode !== actionsContainer
+    ) {
       element.className = "subtitle-download-container";
       actionsContainer.appendChild(element);
       setIsInjected(true);
@@ -34,9 +40,9 @@ export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
       }
     });
 
-    observer.observe(document.body, { 
-      childList: true, 
-      subtree: true 
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
     });
 
     // Initial injection attempt
@@ -54,24 +60,24 @@ export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
       setIsInjected(false);
     };
 
-    window.addEventListener('popstate', checkUrlChange);
-    
+    window.addEventListener("popstate", checkUrlChange);
+
     // Also watch for pushState/replaceState
     const originalPushState = history.pushState;
     const originalReplaceState = history.replaceState;
-    
+
     history.pushState = (...args) => {
       originalPushState.apply(history, args);
       checkUrlChange();
     };
-    
+
     history.replaceState = (...args) => {
       originalReplaceState.apply(history, args);
       checkUrlChange();
     };
 
     onCleanup(() => {
-      window.removeEventListener('popstate', checkUrlChange);
+      window.removeEventListener("popstate", checkUrlChange);
       history.pushState = originalPushState;
       history.replaceState = originalReplaceState;
     });

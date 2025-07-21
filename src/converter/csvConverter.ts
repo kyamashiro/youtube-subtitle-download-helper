@@ -12,7 +12,7 @@ export class CsvConverter implements Convertable {
       const csv = await json2csv.json2csvAsync(csvAlines, {
         excelBOM: true,
       });
-      
+
       await DownloadHelper.downloadFile(csv, `${fileName}.csv`, "text/csv");
     } catch (err) {
       throw new Error(`CSV conversion failed: ${err}`);

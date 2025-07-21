@@ -7,12 +7,12 @@ import { TouchFeedback } from "./TouchFeedback";
 // Constants
 const YOUTUBE_BUTTON_CLASSES = [
   "yt-spec-button-shape-next",
-  "yt-spec-button-shape-next--tonal", 
+  "yt-spec-button-shape-next--tonal",
   "yt-spec-button-shape-next--mono",
   "yt-spec-button-shape-next--size-m",
   "yt-spec-button-shape-next--icon-leading",
   "yt-spec-button-shape-next--enable-backdrop-filter-experiment",
-  "subtitle-download-button"
+  "subtitle-download-button",
 ].join(" ");
 
 export const SubtitleDownloadButton: Component = () => {
@@ -26,7 +26,7 @@ export const SubtitleDownloadButton: Component = () => {
 
   const handleDownloadClick = () => {
     if (!hasValidData()) {
-      alert('字幕データが見つかりません。ページを再読み込みしてください。');
+      alert("字幕データが見つかりません。ページを再読み込みしてください。");
       return;
     }
     setShowModal(true);
@@ -34,7 +34,7 @@ export const SubtitleDownloadButton: Component = () => {
 
   return (
     <>
-      <button 
+      <button
         class={YOUTUBE_BUTTON_CLASSES}
         title="字幕をダウンロード"
         aria-label="字幕をダウンロード"
@@ -45,9 +45,9 @@ export const SubtitleDownloadButton: Component = () => {
         <div class="yt-spec-button-shape-next__button-text-content">字幕</div>
         <TouchFeedback />
       </button>
-      
+
       <Show when={showModal() && subtitleData()}>
-        <SubtitleDownloadModal 
+        <SubtitleDownloadModal
           subtitleData={subtitleData()!}
           onClose={() => setShowModal(false)}
         />

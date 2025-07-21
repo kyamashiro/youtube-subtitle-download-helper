@@ -21,41 +21,6 @@
   font-size: 14px;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group:last-of-type {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
-}
-
-.form-select {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 14px;
-  background-color: white;
-  color: #374151;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
-}
-
-.form-select:focus {
-  outline: none;
-  border-color: #1e87f0;
-  box-shadow: 0 0 0 3px rgba(30, 135, 240, 0.1);
-}
-
 .download-button {
   width: 100%;
   padding: 12px;
