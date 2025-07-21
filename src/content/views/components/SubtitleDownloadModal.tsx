@@ -1,30 +1,16 @@
-import {
-  type Component,
-  createEffect,
-  createMemo,
-  createSignal,
-  type JSX,
-} from "solid-js";
+import { type Component, createMemo, type JSX } from "solid-js";
 import { ClientYoutube } from "@/client/clientYoutube";
 import { FormatSelector } from "@/components/FormatSelector";
 import { LanguageSelector } from "@/components/LanguageSelector";
-import {
-  ConverterFactory,
-  type FileFormat,
-} from "@/converter/converterFactory";
+import { ConverterFactory } from "@/converter/converterFactory";
+import { useSubtitleSelection } from "@/hooks/useSubtitleSelection";
 import type { ModalProps } from "../types";
 
 export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
-  const [selectedTrack, setSelectedTrack] = createSignal("");
-  const [selectedFormat, setSelectedFormat] = createSignal<FileFormat>("csv");
-
-  // Initialize selected track
-  createEffect(() => {
-    const tracks = props.subtitleData.captionTrackList;
-    if (tracks.length > 0 && !selectedTrack()) {
-      setSelectedTrack(tracks[0].baseUrl);
-    }
-  });
+  const { selectedTrack, setSelectedTrack, selectedFormat, setSelectedFormat } =
+    useSubtitleSelection({
+      captionTracks: () => props.subtitleData.captionTrackList,
+    });
 
   // Memoized selected track data
   const selectedTrackData = createMemo(() =>

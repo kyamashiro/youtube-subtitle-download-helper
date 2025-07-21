@@ -8,44 +8,44 @@ export const DownloadHelper = {
     filename: string,
     mimeType: string,
   ): Promise<void> {
-    const blob = new Blob([content], { type: mimeType })
-    const url = URL.createObjectURL(blob)
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
 
     try {
       // Check if we're in popup context (chrome.downloads available)
-      if (typeof chrome !== 'undefined' && chrome.downloads) {
+      if (typeof chrome !== "undefined" && chrome.downloads) {
         await chrome.downloads.download({
           url: url,
           filename: filename,
-        })
+        });
       } else {
         // Content script: try to use chrome.downloads via background script
         await new Promise<void>((resolve, reject) => {
           chrome.runtime.sendMessage(
             {
-              action: 'download',
+              action: "download",
               url: url,
               filename: filename,
             },
             (response) => {
               if (chrome.runtime.lastError) {
-                reject(new Error(chrome.runtime.lastError.message))
+                reject(new Error(chrome.runtime.lastError.message));
               } else if (response?.error) {
-                reject(new Error(response.error))
+                reject(new Error(response.error));
               } else {
-                resolve()
+                resolve();
               }
             },
-          )
-        })
+          );
+        });
       }
     } catch (error) {
       // Fallback: create download link and click it
-      console.warn('Chrome downloads failed, using fallback method:', error)
-      DownloadHelper.fallbackDownload(url, filename)
+      console.warn("Chrome downloads failed, using fallback method:", error);
+      DownloadHelper.fallbackDownload(url, filename);
     } finally {
       // Clean up the object URL
-      setTimeout(() => URL.revokeObjectURL(url), 100)
+      setTimeout(() => URL.revokeObjectURL(url), 100);
     }
   },
 
@@ -53,13 +53,13 @@ export const DownloadHelper = {
    * Fallback download method using anchor element
    */
   fallbackDownload(url: string, filename: string): void {
-    const link = document.createElement('a')
-    link.href = url
-    link.download = filename
-    link.style.display = 'none'
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.style.display = "none";
 
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   },
-}
+};

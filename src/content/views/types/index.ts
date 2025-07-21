@@ -8,11 +8,6 @@ export interface SubtitleData {
   error: Error | null;
 }
 
-export interface DownloadState {
-  isLoading: boolean;
-  error: string | null;
-}
-
 export interface ModalProps {
   subtitleData: SubtitleData;
   onClose: () => void;

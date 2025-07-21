@@ -1,23 +1,23 @@
-import { type Component, createSignal, onMount, Show, For } from 'solid-js';
-import { FormatSelector } from '@/components/FormatSelector';
-import type { ExtensionSettings } from './types';
-import { SettingsStorage } from './storage';
-import { LANGUAGE_OPTIONS } from './types';
-import './App.css';
+import { type Component, createSignal, onMount, Show, For } from "solid-js";
+import { FormatSelector } from "@/components/FormatSelector";
+import type { ExtensionSettings } from "./types";
+import { SettingsStorage } from "./storage";
+import { LANGUAGE_OPTIONS } from "./types";
+import "./App.css";
 
 export const OptionsApp: Component = () => {
   const [settings, setSettings] = createSignal<ExtensionSettings | null>(null);
   const [loading, setLoading] = createSignal(true);
   const [saving, setSaving] = createSignal(false);
-  const [message, setMessage] = createSignal<string>('');
+  const [message, setMessage] = createSignal<string>("");
 
   onMount(async () => {
     try {
       const loadedSettings = await SettingsStorage.getSettings();
       setSettings(loadedSettings);
     } catch (error) {
-      console.error('Failed to load settings:', error);
-      setMessage('Failed to load settings');
+      console.error("Failed to load settings:", error);
+      setMessage("Failed to load settings");
     } finally {
       setLoading(false);
     }
@@ -30,18 +30,18 @@ export const OptionsApp: Component = () => {
     setSaving(true);
     try {
       await SettingsStorage.saveSettings(currentSettings);
-      setMessage('Settings saved successfully!');
-      setTimeout(() => setMessage(''), 3000);
+      setMessage("Settings saved successfully!");
+      setTimeout(() => setMessage(""), 3000);
     } catch (error) {
-      console.error('Failed to save settings:', error);
-      setMessage('Failed to save settings');
+      console.error("Failed to save settings:", error);
+      setMessage("Failed to save settings");
     } finally {
       setSaving(false);
     }
   };
 
   const handleReset = async () => {
-    if (!confirm('Are you sure you want to reset all settings to default?')) {
+    if (!confirm("Are you sure you want to reset all settings to default?")) {
       return;
     }
 
@@ -50,11 +50,11 @@ export const OptionsApp: Component = () => {
       await SettingsStorage.resetSettings();
       const resetSettings = await SettingsStorage.getSettings();
       setSettings(resetSettings);
-      setMessage('Settings reset to default');
-      setTimeout(() => setMessage(''), 3000);
+      setMessage("Settings reset to default");
+      setTimeout(() => setMessage(""), 3000);
     } catch (error) {
-      console.error('Failed to reset settings:', error);
-      setMessage('Failed to reset settings');
+      console.error("Failed to reset settings:", error);
+      setMessage("Failed to reset settings");
     } finally {
       setSaving(false);
     }
@@ -62,9 +62,9 @@ export const OptionsApp: Component = () => {
 
   const updateSetting = <K extends keyof ExtensionSettings>(
     key: K,
-    value: ExtensionSettings[K]
+    value: ExtensionSettings[K],
   ) => {
-    setSettings(prev => prev ? { ...prev, [key]: value } : null);
+    setSettings((prev) => (prev ? { ...prev, [key]: value } : null));
   };
 
   return (
@@ -82,15 +82,16 @@ export const OptionsApp: Component = () => {
         <main class="options-content">
           <section class="settings-section">
             <h2>Download Settings</h2>
-            
+
             <div class="setting-group">
               <label class="setting-label">Default Format:</label>
               <FormatSelector
-                value={settings()!.defaultFormat as any}
-                onChange={(format) => updateSetting('defaultFormat', format)}
+                value={settings()?.defaultFormat as any}
+                onChange={(format) => updateSetting("defaultFormat", format)}
               />
               <small class="setting-description">
-                The default format that will be selected when downloading subtitles
+                The default format that will be selected when downloading
+                subtitles
               </small>
             </div>
 
@@ -98,8 +99,10 @@ export const OptionsApp: Component = () => {
               <label class="setting-label">Default Language:</label>
               <select
                 class="setting-select"
-                value={settings()!.defaultLanguage}
-                onChange={(e) => updateSetting('defaultLanguage', e.target.value)}
+                value={settings()?.defaultLanguage}
+                onChange={(e) =>
+                  updateSetting("defaultLanguage", e.target.value)
+                }
               >
                 <For each={LANGUAGE_OPTIONS}>
                   {(option) => (
@@ -111,13 +114,12 @@ export const OptionsApp: Component = () => {
                 The preferred language that will be auto-selected when available
               </small>
             </div>
-
-
           </section>
 
-
           <Show when={message()}>
-            <div class={`message ${message().includes('Failed') ? 'error' : 'success'}`}>
+            <div
+              class={`message ${message().includes("Failed") ? "error" : "success"}`}
+            >
               {message()}
             </div>
           </Show>
@@ -128,7 +130,7 @@ export const OptionsApp: Component = () => {
               onClick={handleSave}
               disabled={saving()}
             >
-              {saving() ? 'Saving...' : 'Save Settings'}
+              {saving() ? "Saving..." : "Save Settings"}
             </button>
             <button
               class="btn btn-secondary"
