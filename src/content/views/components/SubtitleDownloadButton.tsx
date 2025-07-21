@@ -1,7 +1,7 @@
-import { type Component, createSignal, createMemo, Show } from "solid-js";
+import { type Component, createMemo, createSignal, Show } from "solid-js";
 import { useSubtitleData } from "../hooks/useSubtitleData";
+import { Icon } from "./Icon.tsx";
 import { SubtitleDownloadModal } from "./SubtitleDownloadModal";
-import { DownloadIcon } from "./DownloadIcon";
 import { TouchFeedback } from "./TouchFeedback";
 
 // Constants
@@ -26,7 +26,7 @@ export const SubtitleDownloadButton: Component = () => {
 
   const handleDownloadClick = () => {
     if (!hasValidData()) {
-      alert("字幕データが見つかりません。ページを再読み込みしてください。");
+      alert("Subtitle data not found. Please reload the page.");
       return;
     }
     setShowModal(true);
@@ -35,14 +35,16 @@ export const SubtitleDownloadButton: Component = () => {
   return (
     <>
       <button
+        type="button"
         class={YOUTUBE_BUTTON_CLASSES}
-        title="字幕をダウンロード"
-        aria-label="字幕をダウンロード"
+        title="Subtitle Download"
         onClick={handleDownloadClick}
         disabled={!hasValidData()}
       >
-        <DownloadIcon />
-        <div class="yt-spec-button-shape-next__button-text-content">字幕</div>
+        <Icon />
+        <div class="yt-spec-button-shape-next__button-text-content">
+          Subtitle
+        </div>
         <TouchFeedback />
       </button>
 

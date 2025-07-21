@@ -61,7 +61,7 @@ export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
   return (
     <div class="subtitle-modal-overlay" onClick={handleBackdropClick}>
       <div class="subtitle-modal-content">
-        <h2 class="subtitle-modal-header">字幕をダウンロード</h2>
+        <h2 class="subtitle-modal-header">Download Subtitles</h2>
 
         <LanguageSelector
           tracks={props.subtitleData.captionTrackList}
@@ -77,7 +77,7 @@ export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
             onClick={props.onClose}
             class="subtitle-button subtitle-button-cancel"
           >
-            キャンセル
+            Cancel
           </button>
           <button
             type="button"
@@ -85,7 +85,7 @@ export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
             disabled={!selectedTrackData()}
             class={`subtitle-button subtitle-button-download`}
           >
-            ダウンロード
+            Download
           </button>
         </div>
       </div>

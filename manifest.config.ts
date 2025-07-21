@@ -9,11 +9,11 @@ export default defineManifest({
     "This extension allows you to download  captions data from Youtube. You can download captions data in multiple file formats.",
   permissions: ["downloads", "activeTab"],
   icons: {
-    48: "public/logo.png",
+    48: "public/icon.png",
   },
   action: {
     default_icon: {
-      48: "public/logo.png",
+      48: "public/icon.png",
     },
     default_popup: "src/popup/index.html",
   },
