@@ -1,8 +1,7 @@
 import type { Component, JSX } from "solid-js";
-import { getSubtitle } from "@/client/clientYoutube";
 import { FormatSelector } from "@/components/FormatSelector";
 import { LanguageSelector } from "@/components/LanguageSelector";
-import { createConverter } from "@/converter/converterFactory";
+import { useDownload } from "@/hooks/useDownload";
 import { useSubtitleSelection } from "@/hooks/useSubtitleSelection";
 import type { ModalProps } from "../types";
 
@@ -15,6 +14,7 @@ export const SubtitleDownloadPopup: Component<PopupProps> = (props) => {
     useSubtitleSelection({
       captionTracks: () => props.subtitleData.captionTrackList,
     });
+  const { download } = useDownload();
 
   // Memoized selected track data
   const selectedTrackData = () =>
@@ -26,21 +26,13 @@ export const SubtitleDownloadPopup: Component<PopupProps> = (props) => {
     const trackData = selectedTrackData();
     if (!trackData) return;
 
-    try {
-      const result = await getSubtitle(selectedTrack());
-      if (!result.success) {
-        throw result.error;
-      }
-
-      const xmlResponse = result.value;
-      const converter = createConverter(selectedFormat());
-      const filename = `${props.subtitleData.videoTitle} - ${trackData.name.simpleText}`;
-
-      await converter.convert(xmlResponse, filename);
-      props.onClose();
-    } catch (error: unknown) {
-      console.error("Download error:", error);
-    }
+    await download(
+      selectedTrack(),
+      props.subtitleData.captionTrackList,
+      selectedFormat(),
+      props.subtitleData.videoTitle,
+    );
+    props.onClose();
   };
 
   return (

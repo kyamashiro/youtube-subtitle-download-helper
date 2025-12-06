@@ -44,11 +44,11 @@ export function useDownload(): UseDownloadReturn {
 
     try {
       console.log(
-        "Requesting subtitle download from content script:",
+        "Requesting subtitle download:",
         selectedTrack,
       );
 
-      // Request subtitle download from content script
+      // Request subtitle download
       const result = await getSubtitle(selectedTrack);
       if (!result.success) {
         throw result.error;
