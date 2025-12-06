@@ -1,29 +1,32 @@
-import { CaptionsParser } from "../parser/captionsParser";
-import type { Aline, VttAline } from "../types/aline";
-import type { Convertable } from "./convertable";
-import { DownloadHelper } from "../utils/downloadHelper";
+import {
+  decodeAline,
+  explode,
+  removeXmlTag,
+} from '../parser/captionsParser'
+import { formatVtt } from '../timestamp'
+import type { Aline, VttAline } from '../types/aline'
+import { DownloadHelper } from '../utils/downloadHelper'
+import type { Convertable } from './convertable'
 
-export class VttConverter implements Convertable {
-  public async convert(xmlResponse: string, fileName: string): Promise<void> {
-    const file = this.format(xmlResponse).reduce((acc, cur) => {
-      return `${acc}${cur.timestamp}\n${cur.text}\n\n`;
-    }, "WEBVTT\n\n");
+export const VttConverter: Convertable = {
+  async convert(xmlResponse: string, fileName: string): Promise<void> {
+    const lines = this.format(xmlResponse) as VttAline[]
+    const file = lines.reduce((acc: string, cur: VttAline) => {
+      return `${acc}${cur.timestamp}\n${cur.text}\n\n`
+    }, 'WEBVTT\n\n')
 
-    await DownloadHelper.downloadFile(file, `${fileName}.vtt`, "text/vtt");
-  }
+    await DownloadHelper.downloadFile(file, `${fileName}.vtt`, 'text/vtt')
+  },
 
-  public format(xmlResponse: string): VttAline[] {
-    const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(xmlResponse),
-    );
+  format(xmlResponse: string): VttAline[] {
+    const trimTranscript: string[] = explode(removeXmlTag(xmlResponse))
     return trimTranscript.map((line: string) => {
-      const aline: Aline = parser.decodeAline(line);
-      const text: string = aline.text.replace(/\n/, " ");
+      const aline: Aline = decodeAline(line)
+      const text: string = aline.text.replace(/\n/, ' ')
       return {
-        timestamp: aline.timestamp.formatVtt(),
+        timestamp: formatVtt(aline.timestamp),
         text: text,
-      };
-    });
-  }
+      }
+    })
+  },
 }

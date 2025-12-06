@@ -2,7 +2,6 @@ import { type Component, createMemo, createSignal, Show } from 'solid-js'
 import { useSubtitleData } from '../hooks/useSubtitleData'
 import { Icon } from './Icon.tsx'
 import { SubtitleDownloadModal } from './SubtitleDownloadModal'
-import { TouchFeedback } from './TouchFeedback'
 
 // Constants
 const YOUTUBE_BUTTON_CLASSES = [

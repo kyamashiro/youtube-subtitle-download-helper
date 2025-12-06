@@ -1,24 +1,15 @@
-import { test, expect, beforeAll } from "vitest";
-import { CaptionsParser } from "../parser/captionsParser";
-import { Timestamp } from "../timestamp";
-import fs from "fs-extra";
+import { test, expect, beforeAll } from 'vitest'
+import * as CaptionsParser from '../parser/captionsParser'
+import fs from 'fs-extra'
 
-let buffer: string;
-beforeAll((done) => {
-  fs.readFile(
-    "src/test/sample-response.xml",
-    "utf-8",
-    (_error: any, data: string) => {
-      done();
-      buffer = data;
-    },
-  );
-});
+let buffer: string
+beforeAll(async () => {
+  buffer = await fs.readFile('src/test/sample-response.xml', 'utf-8')
+})
 
-test("Remove <xml> tag.", () => {
-  const parser = new CaptionsParser();
+test('Remove <xml> tag.', () => {
   expect(
-    parser.removeXmlTag(
+    CaptionsParser.removeXmlTag(
       `<?xml version="1.0" encoding="utf-8" ?><transcript><text start="0" dur="7">Translator: TED Translators admin
     Reviewer: Allam Zedan</text>
     <text start="1097.963" dur="1.389">Thank you.</text><text start="1099.352" dur="0.78">(Applause)</text></transcript>`,
@@ -27,30 +18,29 @@ test("Remove <xml> tag.", () => {
     `<text start="0" dur="7">Translator: TED Translators admin
     Reviewer: Allam Zedan</text>
     <text start="1097.963" dur="1.389">Thank you.</text><text start="1099.352" dur="0.78">(Applause)</text>`,
-  );
-});
+  )
+})
 
-test("Split text into lines.", () => {
-  const parser = new CaptionsParser();
-  expect(parser.explode(parser.removeXmlTag(buffer)).length).toBe(13);
-});
-
-test("Decompose line start time, duration, subtitles.", () => {
-  const parser = new CaptionsParser();
+test('Split text into lines.', () => {
   expect(
-    parser.decodeAline(
+    CaptionsParser.explode(CaptionsParser.removeXmlTag(buffer)).length,
+  ).toBe(13)
+})
+
+test('Decompose line start time, duration, subtitles.', () => {
+  expect(
+    CaptionsParser.decodeAline(
       '<text start="0" dur="7">Translator: TED Translators admin\n Reviewer: Allam Zedan',
     ),
   ).toStrictEqual({
-    text: "Translator: TED Translators admin  Reviewer: Allam Zedan",
-    timestamp: new Timestamp(0, 7),
-  });
-});
+    text: 'Translator: TED Translators admin  Reviewer: Allam Zedan',
+    timestamp: { start: 0, duration: 7 },
+  })
+})
 
-test("If start time or duration time is null, return 0", () => {
-  const parser = new CaptionsParser();
-  expect(parser.decodeAline('<text start="0">')).toStrictEqual({
-    text: "",
-    timestamp: new Timestamp(0, 0),
-  });
-});
+test('If start time or duration time is null, return 0', () => {
+  expect(CaptionsParser.decodeAline('<text start="0">')).toStrictEqual({
+    text: '',
+    timestamp: { start: 0, duration: 0 },
+  })
+})

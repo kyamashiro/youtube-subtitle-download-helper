@@ -1,45 +1,51 @@
-import { VideoPageHtmlParser } from "@/parser/videoPageHtmlParser.ts";
-import type { CaptionTrack } from "@/types/captionTrack.ts";
-import { ClientYoutube } from "../client/clientYoutube";
-import { Url } from "../url";
-import initializeApp from "./views/App.tsx";
+import {
+  parseCaptionsFromPlayerData,
+  parseInnerTubeConfig,
+} from '@/parser/videoPageHtmlParser.ts'
+import type { CaptionTrack } from '@/types/captionTrack.ts'
+import {
+  getPlayerData,
+  getVideoPageHtml,
+} from '../client/clientYoutube'
+import { getParam } from '../url'
+import initializeApp from './views/App.tsx'
 
 type SubtitleDataResponse = {
-  captionTrackList: CaptionTrack[];
-  videoId: string;
-  videoTitle: string;
-  error: Error | null;
-};
+  captionTrackList: CaptionTrack[]
+  videoId: string
+  videoTitle: string
+  error: Error | null
+}
 
 // Cache for subtitle data
-let cachedSubtitleData: SubtitleDataResponse | null = null;
-let currentVideoId: string | null = null;
+let cachedSubtitleData: SubtitleDataResponse | null = null
+let currentVideoId: string | null = null
 
 // Initialize data when page loads
 async function initializeSubtitleData() {
   try {
-    const videoId = Url.getParam(document.URL);
-    console.log("Initializing subtitle data for video:", videoId);
+    const videoId = getParam(document.URL)
+    console.log('Initializing subtitle data for video:', videoId)
 
     if (currentVideoId === videoId && cachedSubtitleData) {
-      console.log("Using cached data for video:", videoId);
-      notifyDataUpdated();
-      return;
+      console.log('Using cached data for video:', videoId)
+      notifyDataUpdated()
+      return
     }
 
-    currentVideoId = videoId;
-    cachedSubtitleData = await getSubtitleList(videoId);
-    console.log("Subtitle data initialized:", cachedSubtitleData);
-    notifyDataUpdated();
+    currentVideoId = videoId
+    cachedSubtitleData = await getSubtitleList(videoId)
+    console.log('Subtitle data initialized:', cachedSubtitleData)
+    notifyDataUpdated()
   } catch (e) {
-    console.error("Failed to initialize subtitle data:", e);
+    console.error('Failed to initialize subtitle data:', e)
     cachedSubtitleData = {
       captionTrackList: [],
-      videoId: currentVideoId || "",
+      videoId: currentVideoId || '',
       videoTitle: getVideoTitle(),
-      error: e instanceof Error ? e : new Error("Unknown error"),
-    };
-    notifyDataUpdated();
+      error: e instanceof Error ? e : new Error('Unknown error'),
+    }
+    notifyDataUpdated()
   }
 }
 
@@ -47,49 +53,44 @@ async function initializeSubtitleData() {
 function notifyDataUpdated() {
   if (cachedSubtitleData) {
     window.dispatchEvent(
-      new CustomEvent("subtitle-data-updated", {
+      new CustomEvent('subtitle-data-updated', {
         detail: cachedSubtitleData,
       }),
-    );
+    )
   }
 }
 
 // Listen for popup requests
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
-  console.log("Content script received a message:", request);
+  console.log('Content script received a message:', request)
 
-  if (request.reason === "check") {
+  if (request.reason === 'check') {
     // Return cached data immediately if available
     if (cachedSubtitleData) {
-      console.log("Returning cached subtitle data");
-      sendResponse(cachedSubtitleData);
+      console.log('Returning cached subtitle data')
+      sendResponse(cachedSubtitleData)
     } else {
       // If no cached data, initialize and return
       initializeSubtitleData().then(() => {
-        sendResponse(cachedSubtitleData);
-      });
-      return true; // Keep message channel open for async response
+        sendResponse(cachedSubtitleData)
+      })
+      return true // Keep message channel open for async response
     }
   }
-});
+})
 
 async function getSubtitleList(videoId: string): Promise<SubtitleDataResponse> {
   try {
-    const videoPageData = await ClientYoutube.getVideoPageHtml(videoId);
-    const innerTubeConfig =
-      VideoPageHtmlParser.parseInnerTubeConfig(videoPageData);
+    const videoPageData = await getVideoPageHtml(videoId)
+    const innerTubeConfig = parseInnerTubeConfig(videoPageData)
 
-    console.log("INNERTUBE Config:", innerTubeConfig);
+    console.log('INNERTUBE Config:', innerTubeConfig)
 
-    const playerData = await ClientYoutube.getPlayerData(
-      videoId,
-      innerTubeConfig,
-    );
-    console.log("Player Data:", playerData);
+    const playerData = await getPlayerData(videoId, innerTubeConfig)
+    console.log('Player Data:', playerData)
 
     // Extract captions from player data
-    const captionTrackList =
-      VideoPageHtmlParser.parseCaptionsFromPlayerData(playerData);
+    const captionTrackList = parseCaptionsFromPlayerData(playerData)
 
     return {
       captionTrackList,

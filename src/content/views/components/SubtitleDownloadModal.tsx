@@ -1,8 +1,8 @@
 import { type Component, createMemo, type JSX } from 'solid-js'
-import { ClientYoutube } from '@/client/clientYoutube'
+import { getSubtitle } from '@/client/clientYoutube'
 import { FormatSelector } from '@/components/FormatSelector'
 import { LanguageSelector } from '@/components/LanguageSelector'
-import { ConverterFactory } from '@/converter/converterFactory'
+import { createConverter } from '@/converter/converterFactory'
 import { useSubtitleSelection } from '@/hooks/useSubtitleSelection'
 import type { ModalProps } from '../types'
 
@@ -24,9 +24,8 @@ export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
     if (!trackData) return
 
     try {
-      const xmlResponse = await ClientYoutube.getSubtitle(selectedTrack())
-      const converterFactory = new ConverterFactory()
-      const converter = converterFactory.create(selectedFormat())
+      const xmlResponse = await getSubtitle(selectedTrack())
+      const converter = createConverter(selectedFormat())
       const filename = `${props.subtitleData.videoTitle} - ${trackData.name.simpleText}`
 
       await converter.convert(xmlResponse, filename)

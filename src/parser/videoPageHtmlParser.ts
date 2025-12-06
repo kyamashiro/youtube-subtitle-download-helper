@@ -13,33 +13,35 @@ export interface PlayerData {
   };
 }
 
-export const VideoPageHtmlParser = {
-  parseInnerTubeConfig: (htmlStringData: string): InnerTubeConfig => {
-    const clientNameMatch = /"INNERTUBE_CLIENT_NAME":\s*"([^"]+)"/g.exec(
-      htmlStringData,
-    );
-    const clientVersionMatch = /"INNERTUBE_CLIENT_VERSION":\s*"([^"]+)"/g.exec(
-      htmlStringData,
-    );
+export const parseInnerTubeConfig = (
+  htmlStringData: string,
+): InnerTubeConfig => {
+  const clientNameMatch = /"INNERTUBE_CLIENT_NAME":\s*"([^"]+)"/g.exec(
+    htmlStringData,
+  )
+  const clientVersionMatch = /"INNERTUBE_CLIENT_VERSION":\s*"([^"]+)"/g.exec(
+    htmlStringData,
+  )
 
-    if (!clientNameMatch || !clientVersionMatch) {
-      throw new Error("Not found INNERTUBE client configuration");
-    }
+  if (!clientNameMatch || !clientVersionMatch) {
+    throw new Error('Not found INNERTUBE client configuration')
+  }
 
-    return {
-      clientName: clientNameMatch[1],
-      clientVersion: clientVersionMatch[1],
-    };
-  },
+  return {
+    clientName: clientNameMatch[1],
+    clientVersion: clientVersionMatch[1],
+  }
+}
 
-  parseCaptionsFromPlayerData: (playerData: PlayerData): CaptionTrack[] => {
-    const captionTracks =
-      playerData.captions?.playerCaptionsTracklistRenderer?.captionTracks;
+export const parseCaptionsFromPlayerData = (
+  playerData: PlayerData,
+): CaptionTrack[] => {
+  const captionTracks =
+    playerData.captions?.playerCaptionsTracklistRenderer?.captionTracks
 
-    if (!captionTracks || captionTracks.length === 0) {
-      throw new Error("Not found caption tracks in player data");
-    }
+  if (!captionTracks || captionTracks.length === 0) {
+    throw new Error('Not found caption tracks in player data')
+  }
 
-    return captionTracks;
-  },
-};
+  return captionTracks
+}

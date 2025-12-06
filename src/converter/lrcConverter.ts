@@ -1,29 +1,32 @@
-import { CaptionsParser } from "../parser/captionsParser";
-import type { Aline, LrcAline } from "../types/aline";
-import type { Convertable } from "./convertable";
-import { DownloadHelper } from "../utils/downloadHelper";
+import {
+  decodeAline,
+  explode,
+  removeXmlTag,
+} from '../parser/captionsParser'
+import { formatLrc } from '../timestamp'
+import type { Aline, LrcAline } from '../types/aline'
+import { DownloadHelper } from '../utils/downloadHelper'
+import type { Convertable } from './convertable'
 
-export class LrcConverter implements Convertable {
-  public async convert(xmlResponse: string, fileName: string): Promise<void> {
-    const file: string = this.format(xmlResponse).reduce((acc, cur) => {
-      return `${acc}${cur.timestamp}${cur.text}\n`;
-    }, "");
+export const LrcConverter: Convertable = {
+  async convert(xmlResponse: string, fileName: string): Promise<void> {
+    const lines = this.format(xmlResponse) as LrcAline[]
+    const file: string = lines.reduce((acc: string, cur: LrcAline) => {
+      return `${acc}${cur.timestamp}${cur.text}\n`
+    }, '')
 
-    await DownloadHelper.downloadFile(file, `${fileName}.lrc`, "text/lrc");
-  }
+    await DownloadHelper.downloadFile(file, `${fileName}.lrc`, 'text/lrc')
+  },
 
-  public format(xmlResponse: string): LrcAline[] {
-    const parser = new CaptionsParser();
-    const trimTranscript: string[] = parser.explode(
-      parser.removeXmlTag(xmlResponse),
-    );
+  format(xmlResponse: string): LrcAline[] {
+    const trimTranscript: string[] = explode(removeXmlTag(xmlResponse))
     return trimTranscript.map((line: string) => {
-      const aline: Aline = parser.decodeAline(line);
-      const text: string = aline.text.replace(/\n/, " ");
+      const aline: Aline = decodeAline(line)
+      const text: string = aline.text.replace(/\n/, ' ')
       return {
-        timestamp: aline.timestamp.formatLrc(),
+        timestamp: formatLrc(aline.timestamp),
         text: text,
-      };
-    });
-  }
+      }
+    })
+  },
 }

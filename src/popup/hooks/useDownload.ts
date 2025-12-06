@@ -1,23 +1,23 @@
-import { createSignal } from "solid-js";
-import { ClientYoutube } from "@/client/clientYoutube";
+import { createSignal } from 'solid-js'
+import { getSubtitle } from '@/client/clientYoutube'
 import {
-  ConverterFactory,
+  createConverter,
   type FileFormat,
-} from "@/converter/converterFactory.ts";
-import type { CaptionTrack } from "@/types/captionTrack.ts";
+} from '@/converter/converterFactory.ts'
+import type { CaptionTrack } from '@/types/captionTrack.ts'
 
 interface UseDownloadReturn {
-  downloadError: () => string;
+  downloadError: () => string
   download: (
     selectedTrack: string,
     captionTracks: CaptionTrack[],
     selectedFormat: FileFormat,
     videoTitle: string,
-  ) => Promise<void>;
+  ) => Promise<void>
 }
 
 export function useDownload(): UseDownloadReturn {
-  const [downloadError, setDownloadError] = createSignal<string>("");
+  const [downloadError, setDownloadError] = createSignal<string>('')
 
   const download = async (
     selectedTrack: string,
@@ -25,30 +25,34 @@ export function useDownload(): UseDownloadReturn {
     selectedFormat: FileFormat,
     videoTitle: string,
   ): Promise<void> => {
-    console.log("Starting download with:", {
+    console.log('Starting download with:', {
       selectedTrack,
       selectedFormat,
       videoTitle,
-    });
+    })
 
     const selectedTrackData = captionTracks.find(
       (track) => track.baseUrl === selectedTrack,
-    );
+    )
 
-    console.log("Selected track data:", selectedTrackData);
+    if (!selectedTrackData) {
+      console.error('Selected track data not found')
+      return
+    }
+
+    console.log('Selected track data:', selectedTrackData)
 
     try {
       console.log(
-        "Requesting subtitle download from content script:",
+        'Requesting subtitle download from content script:',
         selectedTrack,
-      );
+      )
 
       // Request subtitle download from content script
-      const xmlResponse = await ClientYoutube.getSubtitle(selectedTrack);
+      const xmlResponse = await getSubtitle(selectedTrack)
 
       console.log("Converting to format:", selectedFormat);
-      const converterFactory = new ConverterFactory();
-      const converter = converterFactory.create(selectedFormat);
+      const converter = createConverter(selectedFormat);
       const content = selectedTrackData.name.simpleText;
 
       console.log(
@@ -58,7 +62,7 @@ export function useDownload(): UseDownloadReturn {
       await converter.convert(xmlResponse, `${videoTitle} - ${content}`);
 
       console.log("Download completed successfully");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Download error:", error);
       console.error("Error details:", {
         message: error.message,
