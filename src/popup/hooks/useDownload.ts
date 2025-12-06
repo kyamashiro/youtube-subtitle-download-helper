@@ -49,7 +49,11 @@ export function useDownload(): UseDownloadReturn {
       )
 
       // Request subtitle download from content script
-      const xmlResponse = await getSubtitle(selectedTrack)
+      const result = await getSubtitle(selectedTrack)
+      if (!result.success) {
+        throw result.error
+      }
+      const xmlResponse = result.value
 
       console.log("Converting to format:", selectedFormat);
       const converter = createConverter(selectedFormat);

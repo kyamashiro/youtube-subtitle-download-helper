@@ -24,7 +24,12 @@ export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
     if (!trackData) return
 
     try {
-      const xmlResponse = await getSubtitle(selectedTrack())
+      const result = await getSubtitle(selectedTrack())
+      if (!result.success) {
+        throw result.error
+      }
+
+      const xmlResponse = result.value
       const converter = createConverter(selectedFormat())
       const filename = `${props.subtitleData.videoTitle} - ${trackData.name.simpleText}`
 

@@ -81,12 +81,21 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
 
 async function getSubtitleList(videoId: string): Promise<SubtitleDataResponse> {
   try {
-    const videoPageData = await getVideoPageHtml(videoId)
-    const innerTubeConfig = parseInnerTubeConfig(videoPageData)
+    const pageResult = await getVideoPageHtml(videoId)
+    if (!pageResult.success) {
+      throw pageResult.error
+    }
+    const videoPageData = pageResult.value
 
+    const innerTubeConfig = parseInnerTubeConfig(videoPageData)
     console.log('INNERTUBE Config:', innerTubeConfig)
 
-    const playerData = await getPlayerData(videoId, innerTubeConfig)
+    const playerResult = await getPlayerData(videoId, innerTubeConfig)
+    if (!playerResult.success) {
+      throw playerResult.error
+    }
+    const playerData = playerResult.value
+
     console.log('Player Data:', playerData)
 
     // Extract captions from player data
@@ -97,7 +106,7 @@ async function getSubtitleList(videoId: string): Promise<SubtitleDataResponse> {
       videoId,
       videoTitle: getVideoTitle(),
       error: null,
-    };
+    }
   } catch (e) {
     console.error("Error fetching subtitle list:", e);
     return {

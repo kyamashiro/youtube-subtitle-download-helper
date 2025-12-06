@@ -1,17 +1,5 @@
-import type { CaptionTrack } from "@/types/captionTrack.ts";
-
-export interface InnerTubeConfig {
-  clientName: string;
-  clientVersion: string;
-}
-
-export interface PlayerData {
-  captions?: {
-    playerCaptionsTracklistRenderer?: {
-      captionTracks?: CaptionTrack[];
-    };
-  };
-}
+import type { InnerTubeConfig, PlayerData } from '@/types/youtube'
+import type { CaptionTrack } from '@/types/captionTrack.ts'
 
 export const parseInnerTubeConfig = (
   htmlStringData: string,
