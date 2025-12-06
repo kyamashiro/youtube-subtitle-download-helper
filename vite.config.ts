@@ -3,7 +3,7 @@ import { crx } from "@crxjs/vite-plugin";
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import zip from "vite-plugin-zip-pack";
-import { name, version } from "../crxjs-project/package.json";
+import { name, version } from "./package.json";
 import manifest from "./manifest.config.ts";
 
 export default defineConfig({
