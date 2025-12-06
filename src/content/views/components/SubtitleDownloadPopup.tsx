@@ -1,12 +1,17 @@
-import { type Component, createMemo, type JSX } from 'solid-js'
+import { type Component, createMemo } from 'solid-js'
 import { getSubtitle } from '@/client/clientYoutube'
 import { FormatSelector } from '@/components/FormatSelector'
 import { LanguageSelector } from '@/components/LanguageSelector'
 import { createConverter } from '@/converter/converterFactory'
 import { useSubtitleSelection } from '@/hooks/useSubtitleSelection'
+import type { JSX } from 'solid-js'
 import type { ModalProps } from '../types'
 
-export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
+interface PopupProps extends ModalProps {
+  style?: JSX.CSSProperties
+}
+
+export const SubtitleDownloadPopup: Component<PopupProps> = (props) => {
   const { selectedTrack, setSelectedTrack, selectedFormat, setSelectedFormat } =
     useSubtitleSelection({
       captionTracks: () => props.subtitleData.captionTrackList,
@@ -40,19 +45,11 @@ export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
     }
   }
 
-  const handleOutsideClick: JSX.EventHandler<HTMLDivElement, MouseEvent> = (
-    e,
-  ) => {
-    if (e.target === e.currentTarget) {
-      props.onClose()
-    }
-  }
-
   return (
-    <div class="subtitle-modal-overlay" onClick={handleOutsideClick}>
-      <div class="subtitle-modal-content">
-        <h2 class="subtitle-modal-header">Download Subtitles</h2>
+    <div class="subtitle-popup" style={props.style}>
+      <h2 class="subtitle-popup-header">Download Subtitles</h2>
 
+      <div class="subtitle-popup-content">
         <LanguageSelector
           tracks={props.subtitleData.captionTrackList}
           value={selectedTrack()}
@@ -60,24 +57,24 @@ export const SubtitleDownloadModal: Component<ModalProps> = (props) => {
         />
 
         <FormatSelector value={selectedFormat()} onChange={setSelectedFormat} />
+      </div>
 
-        <div class="subtitle-button-container">
-          <button
-            type="button"
-            onClick={props.onClose}
-            class="subtitle-button subtitle-button-cancel"
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            onClick={handleDownload}
-            disabled={!selectedTrackData()}
-            class={`subtitle-button subtitle-button-download`}
-          >
-            Download
-          </button>
-        </div>
+      <div class="subtitle-button-container">
+        <button
+          type="button"
+          onClick={props.onClose}
+          class="subtitle-button subtitle-button-cancel"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          onClick={handleDownload}
+          disabled={!selectedTrackData()}
+          class="subtitle-button subtitle-button-download"
+        >
+          Download
+        </button>
       </div>
     </div>
   )

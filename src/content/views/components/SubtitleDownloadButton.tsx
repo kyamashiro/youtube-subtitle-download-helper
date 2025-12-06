@@ -1,7 +1,8 @@
 import { type Component, createMemo, createSignal, Show } from 'solid-js'
+import { Portal } from 'solid-js/web'
 import { useSubtitleData } from '../hooks/useSubtitleData'
 import { Icon } from './Icon.tsx'
-import { SubtitleDownloadModal } from './SubtitleDownloadModal'
+import { SubtitleDownloadPopup } from './SubtitleDownloadPopup'
 
 // Constants
 const YOUTUBE_BUTTON_CLASSES = [
@@ -16,7 +17,9 @@ const YOUTUBE_BUTTON_CLASSES = [
 
 export const SubtitleDownloadButton: Component = () => {
   const [subtitleData] = useSubtitleData()
-  const [showModal, setShowModal] = createSignal(false)
+  const [showPopup, setShowPopup] = createSignal(false)
+  const [position, setPosition] = createSignal({ top: 0, left: 0 })
+  let buttonRef: HTMLButtonElement | undefined
 
   const hasValidData = createMemo(() => {
     const data = subtitleData()
@@ -28,12 +31,24 @@ export const SubtitleDownloadButton: Component = () => {
       alert('Subtitle data not found. Please reload the page.')
       return
     }
-    setShowModal(true)
+    
+    if (buttonRef) {
+      const rect = buttonRef.getBoundingClientRect()
+      const scrollY = window.scrollY
+      const scrollX = window.scrollX
+      setPosition({
+        top: rect.bottom + scrollY + 8, // 8px margin
+        left: rect.left + scrollX,
+      })
+    }
+
+    setShowPopup(!showPopup())
   }
 
   return (
     <>
       <button
+        ref={buttonRef}
         type="button"
         class={YOUTUBE_BUTTON_CLASSES}
         title="Subtitle Download"
@@ -46,11 +61,30 @@ export const SubtitleDownloadButton: Component = () => {
         </div>
       </button>
 
-      <Show when={showModal() && subtitleData()}>
-        <SubtitleDownloadModal
-          subtitleData={subtitleData()!}
-          onClose={() => setShowModal(false)}
-        />
+      <Show when={showPopup() && subtitleData()}>
+        <Portal>
+          <div 
+            style={{ 
+              position: 'fixed', 
+              top: 0, 
+              left: 0, 
+              width: '100%', 
+              height: '100%', 
+              'z-index': 9998 
+            }}
+            onClick={() => setShowPopup(false)}
+          />
+          <SubtitleDownloadPopup
+            subtitleData={subtitleData()!}
+            onClose={() => setShowPopup(false)}
+            style={{
+              top: `${position().top}px`,
+              left: `${position().left}px`,
+              position: 'absolute',
+              'z-index': 9999
+            }}
+          />
+        </Portal>
       </Show>
     </>
   )
