@@ -18,6 +18,8 @@ export function useSubtitleSelection(props: UseSubtitleSelectionProps) {
   // Set default format from settings when settings are loaded
   createEffect(() => {
     const userSettings = settings();
+    if (!userSettings) return;
+
     if (userSettings?.defaultFormat && !initialized()) {
       console.log(
         "Setting default format from settings:",
@@ -32,6 +34,9 @@ export function useSubtitleSelection(props: UseSubtitleSelectionProps) {
   createEffect(() => {
     const tracks = props.captionTracks();
     const userSettings = settings();
+    
+    // Wait for settings to be loaded
+    if (!userSettings) return;
 
     if (tracks.length > 0 && !selectedTrack()) {
       console.log("Initializing track selection with settings:", userSettings);
