@@ -1,0 +1,587 @@
+[
+  {
+    "index": 1,
+    "text": "Translator: Joseph Geni Reviewer: Morton Bast",
+    "timestamp": "00:00:00,000 --> 00:00:07,000"
+  },
+  {
+    "index": 2,
+    "text": "When I was 27 years old,",
+    "timestamp": "00:00:12,880 --> 00:00:14,930"
+  },
+  {
+    "index": 3,
+    "text": "I left a very demanding job in management consulting",
+    "timestamp": "00:00:14,954 --> 00:00:18,277"
+  },
+  {
+    "index": 4,
+    "text": "for a job that was even more demanding: teaching.",
+    "timestamp": "00:00:18,301 --> 00:00:22,058"
+  },
+  {
+    "index": 5,
+    "text": "I went to teach seventh graders math",
+    "timestamp": "00:00:23,298 --> 00:00:25,778"
+  },
+  {
+    "index": 6,
+    "text": "in the New York City public schools.",
+    "timestamp": "00:00:25,802 --> 00:00:27,702"
+  },
+  {
+    "index": 7,
+    "text": "And like any teacher, I made quizzes and tests.",
+    "timestamp": "00:00:28,202 --> 00:00:31,083"
+  },
+  {
+    "index": 8,
+    "text": "I gave out homework assignments.",
+    "timestamp": "00:00:31,107 --> 00:00:33,083"
+  },
+  {
+    "index": 9,
+    "text": "When the work came back, I calculated grades.",
+    "timestamp": "00:00:33,107 --> 00:00:35,829"
+  },
+  {
+    "index": 10,
+    "text": "What struck me was that IQ was not the only difference",
+    "timestamp": "00:00:36,758 --> 00:00:41,310"
+  },
+  {
+    "index": 11,
+    "text": "between my best and my worst students.",
+    "timestamp": "00:00:41,334 --> 00:00:44,470"
+  },
+  {
+    "index": 12,
+    "text": "Some of my strongest performers did not have stratospheric IQ scores.",
+    "timestamp": "00:00:45,017 --> 00:00:49,784"
+  },
+  {
+    "index": 13,
+    "text": "Some of my smartest kids weren't doing so well.",
+    "timestamp": "00:00:50,345 --> 00:00:53,583"
+  },
+  {
+    "index": 14,
+    "text": "And that got me thinking.",
+    "timestamp": "00:00:54,297 --> 00:00:55,694"
+  },
+  {
+    "index": 15,
+    "text": "The kinds of things you need to learn in seventh grade math,",
+    "timestamp": "00:00:56,432 --> 00:00:59,392"
+  },
+  {
+    "index": 16,
+    "text": "sure, they're hard: ratios, decimals, the area of a parallelogram.",
+    "timestamp": "00:00:59,416 --> 00:01:04,318"
+  },
+  {
+    "index": 17,
+    "text": "But these concepts are not impossible,",
+    "timestamp": "00:01:04,668 --> 00:01:07,344"
+  },
+  {
+    "index": 18,
+    "text": "and I was firmly convinced that every one of my students",
+    "timestamp": "00:01:07,368 --> 00:01:11,478"
+  },
+  {
+    "index": 19,
+    "text": "could learn the material",
+    "timestamp": "00:01:11,502 --> 00:01:14,082"
+  },
+  {
+    "index": 20,
+    "text": "if they worked hard and long enough.",
+    "timestamp": "00:01:14,106 --> 00:01:16,169"
+  },
+  {
+    "index": 21,
+    "text": "After several more years of teaching,",
+    "timestamp": "00:01:16,842 --> 00:01:19,304"
+  },
+  {
+    "index": 22,
+    "text": "I came to the conclusion that what we need in education",
+    "timestamp": "00:01:19,328 --> 00:01:23,062"
+  },
+  {
+    "index": 23,
+    "text": "is a much better understanding of students and learning",
+    "timestamp": "00:01:23,086 --> 00:01:26,546"
+  },
+  {
+    "index": 24,
+    "text": "from a motivational perspective,",
+    "timestamp": "00:01:26,570 --> 00:01:28,887"
+  },
+  {
+    "index": 25,
+    "text": "from a psychological perspective.",
+    "timestamp": "00:01:28,911 --> 00:01:31,117"
+  },
+  {
+    "index": 26,
+    "text": "In education, the one thing we know how to measure best is IQ.",
+    "timestamp": "00:01:31,815 --> 00:01:37,308"
+  },
+  {
+    "index": 27,
+    "text": "But what if doing well in school and in life",
+    "timestamp": "00:01:38,172 --> 00:01:42,024"
+  },
+  {
+    "index": 28,
+    "text": "depends on much more",
+    "timestamp": "00:01:42,048 --> 00:01:44,142"
+  },
+  {
+    "index": 29,
+    "text": "than your ability to learn quickly and easily?",
+    "timestamp": "00:01:44,166 --> 00:01:47,546"
+  },
+  {
+    "index": 30,
+    "text": "So I left the classroom,",
+    "timestamp": "00:01:48,371 --> 00:01:50,297"
+  },
+  {
+    "index": 31,
+    "text": "and I went to graduate school to become a psychologist.",
+    "timestamp": "00:01:50,321 --> 00:01:53,312"
+  },
+  {
+    "index": 32,
+    "text": "I started studying kids and adults",
+    "timestamp": "00:01:53,877 --> 00:01:56,027"
+  },
+  {
+    "index": 33,
+    "text": "in all kinds of super challenging settings,",
+    "timestamp": "00:01:56,051 --> 00:01:58,884"
+  },
+  {
+    "index": 34,
+    "text": "and in every study my question was,",
+    "timestamp": "00:01:58,908 --> 00:02:01,336"
+  },
+  {
+    "index": 35,
+    "text": "who is successful here and why?",
+    "timestamp": "00:02:01,360 --> 00:02:03,606"
+  },
+  {
+    "index": 36,
+    "text": "My research team and I went to West Point Military Academy.",
+    "timestamp": "00:02:04,384 --> 00:02:07,977"
+  },
+  {
+    "index": 37,
+    "text": "We tried to predict which cadets",
+    "timestamp": "00:02:08,476 --> 00:02:10,136"
+  },
+  {
+    "index": 38,
+    "text": "would stay in military training and which would drop out.",
+    "timestamp": "00:02:10,160 --> 00:02:13,668"
+  },
+  {
+    "index": 39,
+    "text": "We went to the National Spelling Bee",
+    "timestamp": "00:02:14,414 --> 00:02:16,645"
+  },
+  {
+    "index": 40,
+    "text": "and tried to predict which children would advance farthest in competition.",
+    "timestamp": "00:02:16,669 --> 00:02:21,208"
+  },
+  {
+    "index": 41,
+    "text": "We studied rookie teachers working in really tough neighborhoods,",
+    "timestamp": "00:02:21,867 --> 00:02:25,923"
+  },
+  {
+    "index": 42,
+    "text": "asking which teachers are still going to be here in teaching",
+    "timestamp": "00:02:25,947 --> 00:02:29,364"
+  },
+  {
+    "index": 43,
+    "text": "by the end of the school year,",
+    "timestamp": "00:02:29,388 --> 00:02:31,382"
+  },
+  {
+    "index": 44,
+    "text": "and of those, who will be the most effective",
+    "timestamp": "00:02:31,406 --> 00:02:34,417"
+  },
+  {
+    "index": 45,
+    "text": "at improving learning outcomes for their students?",
+    "timestamp": "00:02:34,441 --> 00:02:37,125"
+  },
+  {
+    "index": 46,
+    "text": "We partnered with private companies, asking,",
+    "timestamp": "00:02:37,592 --> 00:02:39,822"
+  },
+  {
+    "index": 47,
+    "text": "which of these salespeople is going to keep their jobs?",
+    "timestamp": "00:02:39,846 --> 00:02:42,541"
+  },
+  {
+    "index": 48,
+    "text": "And who's going to earn the most money?",
+    "timestamp": "00:02:42,565 --> 00:02:44,431"
+  },
+  {
+    "index": 49,
+    "text": "In all those very different contexts,",
+    "timestamp": "00:02:44,797 --> 00:02:47,455"
+  },
+  {
+    "index": 50,
+    "text": "one characteristic emerged as a significant predictor of success.",
+    "timestamp": "00:02:47,479 --> 00:02:51,980"
+  },
+  {
+    "index": 51,
+    "text": "And it wasn't social intelligence.",
+    "timestamp": "00:02:52,464 --> 00:02:54,242"
+  },
+  {
+    "index": 52,
+    "text": "It wasn't good looks, physical health,",
+    "timestamp": "00:02:54,662 --> 00:02:57,647"
+  },
+  {
+    "index": 53,
+    "text": "and it wasn't IQ.",
+    "timestamp": "00:02:57,671 --> 00:02:58,989"
+  },
+  {
+    "index": 54,
+    "text": "It was grit.",
+    "timestamp": "00:02:59,758 --> 00:03:00,874"
+  },
+  {
+    "index": 55,
+    "text": "Grit is passion and perseverance for very long-term goals.",
+    "timestamp": "00:03:01,899 --> 00:03:06,529"
+  },
+  {
+    "index": 56,
+    "text": "Grit is having stamina.",
+    "timestamp": "00:03:06,989 --> 00:03:08,660"
+  },
+  {
+    "index": 57,
+    "text": "Grit is sticking with your future, day in, day out,",
+    "timestamp": "00:03:09,232 --> 00:03:13,438"
+  },
+  {
+    "index": 58,
+    "text": "not just for the week, not just for the month,",
+    "timestamp": "00:03:13,462 --> 00:03:16,827"
+  },
+  {
+    "index": 59,
+    "text": "but for years,",
+    "timestamp": "00:03:16,851 --> 00:03:18,383"
+  },
+  {
+    "index": 60,
+    "text": "and working really hard to make that future a reality.",
+    "timestamp": "00:03:18,407 --> 00:03:22,128"
+  },
+  {
+    "index": 61,
+    "text": "Grit is living life like it's a marathon, not a sprint.",
+    "timestamp": "00:03:22,969 --> 00:03:27,238"
+  },
+  {
+    "index": 62,
+    "text": "A few years ago,",
+    "timestamp": "00:03:28,156 --> 00:03:29,587"
+  },
+  {
+    "index": 63,
+    "text": "I started studying grit in the Chicago public schools.",
+    "timestamp": "00:03:29,611 --> 00:03:32,625"
+  },
+  {
+    "index": 64,
+    "text": "I asked thousands of high school juniors",
+    "timestamp": "00:03:33,141 --> 00:03:35,429"
+  },
+  {
+    "index": 65,
+    "text": "to take grit questionnaires,",
+    "timestamp": "00:03:35,453 --> 00:03:37,281"
+  },
+  {
+    "index": 66,
+    "text": "and then waited around more than a year",
+    "timestamp": "00:03:37,305 --> 00:03:39,257"
+  },
+  {
+    "index": 67,
+    "text": "to see who would graduate.",
+    "timestamp": "00:03:39,281 --> 00:03:40,637"
+  },
+  {
+    "index": 68,
+    "text": "Turns out that grittier kids",
+    "timestamp": "00:03:41,518 --> 00:03:43,740"
+  },
+  {
+    "index": 69,
+    "text": "were significantly more likely to graduate,",
+    "timestamp": "00:03:43,764 --> 00:03:46,944"
+  },
+  {
+    "index": 70,
+    "text": "even when I matched them on every characteristic I could measure,",
+    "timestamp": "00:03:46,968 --> 00:03:50,730"
+  },
+  {
+    "index": 71,
+    "text": "things like family income,",
+    "timestamp": "00:03:50,754 --> 00:03:53,004"
+  },
+  {
+    "index": 72,
+    "text": "standardized achievement test scores,",
+    "timestamp": "00:03:53,028 --> 00:03:55,750"
+  },
+  {
+    "index": 73,
+    "text": "even how safe kids felt when they were at school.",
+    "timestamp": "00:03:55,774 --> 00:03:58,798"
+  },
+  {
+    "index": 74,
+    "text": "So it's not just at West Point or the National Spelling Bee",
+    "timestamp": "00:03:59,377 --> 00:04:02,314"
+  },
+  {
+    "index": 75,
+    "text": "that grit matters.",
+    "timestamp": "00:04:02,338 --> 00:04:03,452"
+  },
+  {
+    "index": 76,
+    "text": "It's also in school,",
+    "timestamp": "00:04:03,476 --> 00:04:05,417"
+  },
+  {
+    "index": 77,
+    "text": "especially for kids at risk for dropping out.",
+    "timestamp": "00:04:05,441 --> 00:04:07,822"
+  },
+  {
+    "index": 78,
+    "text": "To me, the most shocking thing about grit",
+    "timestamp": "00:04:09,116 --> 00:04:12,074"
+  },
+  {
+    "index": 79,
+    "text": "is how little we know,",
+    "timestamp": "00:04:12,098 --> 00:04:14,057"
+  },
+  {
+    "index": 80,
+    "text": "how little science knows, about building it.",
+    "timestamp": "00:04:14,081 --> 00:04:16,583"
+  },
+  {
+    "index": 81,
+    "text": "Every day, parents and teachers ask me,",
+    "timestamp": "00:04:17,003 --> 00:04:19,254"
+  },
+  {
+    "index": 82,
+    "text": "\"How do I build grit in kids?",
+    "timestamp": "00:04:19,278 --> 00:04:21,478"
+  },
+  {
+    "index": 83,
+    "text": "What do I do to teach kids a solid work ethic?",
+    "timestamp": "00:04:21,502 --> 00:04:24,419"
+  },
+  {
+    "index": 84,
+    "text": "How do I keep them motivated for the long run?\"",
+    "timestamp": "00:04:24,753 --> 00:04:27,241"
+  },
+  {
+    "index": 85,
+    "text": "The honest answer is,",
+    "timestamp": "00:04:27,860 --> 00:04:29,835"
+  },
+  {
+    "index": 86,
+    "text": "I don't know.",
+    "timestamp": "00:04:29,859 --> 00:04:30,936"
+  },
+  {
+    "index": 87,
+    "text": "(Laughter)",
+    "timestamp": "00:04:30,960 --> 00:04:32,435"
+  },
+  {
+    "index": 88,
+    "text": "What I do know is that talent doesn't make you gritty.",
+    "timestamp": "00:04:32,459 --> 00:04:35,498"
+  },
+  {
+    "index": 89,
+    "text": "Our data show very clearly",
+    "timestamp": "00:04:35,522 --> 00:04:37,853"
+  },
+  {
+    "index": 90,
+    "text": "that there are many talented individuals",
+    "timestamp": "00:04:37,877 --> 00:04:40,290"
+  },
+  {
+    "index": 91,
+    "text": "who simply do not follow through on their commitments.",
+    "timestamp": "00:04:40,314 --> 00:04:43,433"
+  },
+  {
+    "index": 92,
+    "text": "In fact, in our data, grit is usually unrelated",
+    "timestamp": "00:04:43,814 --> 00:04:48,028"
+  },
+  {
+    "index": 93,
+    "text": "or even inversely related to measures of talent.",
+    "timestamp": "00:04:48,052 --> 00:04:51,173"
+  },
+  {
+    "index": 94,
+    "text": "So far, the best idea I've heard about building grit in kids",
+    "timestamp": "00:04:52,465 --> 00:04:56,560"
+  },
+  {
+    "index": 95,
+    "text": "is something called \"growth mindset.\"",
+    "timestamp": "00:04:56,584 --> 00:04:58,806"
+  },
+  {
+    "index": 96,
+    "text": "This is an idea developed at Stanford University by Carol Dweck,",
+    "timestamp": "00:04:59,449 --> 00:05:03,119"
+  },
+  {
+    "index": 97,
+    "text": "and it is the belief that the ability to learn is not fixed,",
+    "timestamp": "00:05:03,143 --> 00:05:08,241"
+  },
+  {
+    "index": 98,
+    "text": "that it can change with your effort.",
+    "timestamp": "00:05:08,265 --> 00:05:10,732"
+  },
+  {
+    "index": 99,
+    "text": "Dr. Dweck has shown",
+    "timestamp": "00:05:11,440 --> 00:05:12,759"
+  },
+  {
+    "index": 100,
+    "text": "that when kids read and learn about the brain",
+    "timestamp": "00:05:12,783 --> 00:05:15,918"
+  },
+  {
+    "index": 101,
+    "text": "and how it changes and grows in response to challenge,",
+    "timestamp": "00:05:15,942 --> 00:05:19,416"
+  },
+  {
+    "index": 102,
+    "text": "they're much more likely to persevere when they fail,",
+    "timestamp": "00:05:19,440 --> 00:05:23,437"
+  },
+  {
+    "index": 103,
+    "text": "because they don't believe that failure is a permanent condition.",
+    "timestamp": "00:05:23,461 --> 00:05:28,070"
+  },
+  {
+    "index": 104,
+    "text": "So growth mindset is a great idea for building grit.",
+    "timestamp": "00:05:29,052 --> 00:05:32,182"
+  },
+  {
+    "index": 105,
+    "text": "But we need more.",
+    "timestamp": "00:05:32,724 --> 00:05:34,261"
+  },
+  {
+    "index": 106,
+    "text": "And that's where I'm going to end my remarks,",
+    "timestamp": "00:05:34,825 --> 00:05:36,921"
+  },
+  {
+    "index": 107,
+    "text": "because that's where we are.",
+    "timestamp": "00:05:36,945 --> 00:05:38,291"
+  },
+  {
+    "index": 108,
+    "text": "That's the work that stands before us.",
+    "timestamp": "00:05:38,315 --> 00:05:40,480"
+  },
+  {
+    "index": 109,
+    "text": "We need to take our best ideas, our strongest intuitions,",
+    "timestamp": "00:05:40,504 --> 00:05:44,384"
+  },
+  {
+    "index": 110,
+    "text": "and we need to test them.",
+    "timestamp": "00:05:44,408 --> 00:05:46,043"
+  },
+  {
+    "index": 111,
+    "text": "We need to measure whether we've been successful,",
+    "timestamp": "00:05:46,512 --> 00:05:49,223"
+  },
+  {
+    "index": 112,
+    "text": "and we have to be willing to fail, to be wrong,",
+    "timestamp": "00:05:49,247 --> 00:05:52,953"
+  },
+  {
+    "index": 113,
+    "text": "to start over again with lessons learned.",
+    "timestamp": "00:05:52,977 --> 00:05:55,615"
+  },
+  {
+    "index": 114,
+    "text": "In other words, we need to be gritty",
+    "timestamp": "00:05:56,336 --> 00:05:59,280"
+  },
+  {
+    "index": 115,
+    "text": "about getting our kids grittier.",
+    "timestamp": "00:05:59,304 --> 00:06:01,773"
+  },
+  {
+    "index": 116,
+    "text": "Thank you.",
+    "timestamp": "00:06:02,177 --> 00:06:03,209"
+  },
+  {
+    "index": 117,
+    "text": "(Applause)",
+    "timestamp": "00:06:03,233 --> 00:06:06,068"
+  }
+]

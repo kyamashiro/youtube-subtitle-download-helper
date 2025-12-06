@@ -1,11 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "es2019",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "jsx": "react",
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
-  }
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "files": []
 }

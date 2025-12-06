@@ -1,0 +1,171 @@
+/* Subtitle Download Button Container */
+.subtitle-download-container {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+/* Modal Overlay */
+.subtitle-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* Modal Content */
+.subtitle-modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Modal Header */
+.subtitle-modal-header {
+  margin: 0 0 16px 0;
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Button Container */
+.subtitle-button-container {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Base Button */
+.subtitle-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Cancel Button */
+.subtitle-button-cancel {
+  border: 1px solid #ccc;
+  background: white;
+  color: #333;
+}
+
+.subtitle-button-cancel:hover {
+  border-color: #999;
+  background: #f5f5f5;
+}
+
+/* Download Button */
+.subtitle-button-download {
+  border: none;
+  background: var(--yt-spec-text-primary, #0f0f0f);
+  color: var(--yt-spec-text-primary-inverse, #fff);
+  border-radius: 18px;
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle-button-download:hover:not(:disabled) {
+  background: var(--yt-spec-text-secondary, #3f3f3f);
+}
+
+.subtitle-button-download:disabled {
+  background: var(--yt-spec-10-percent-layer, rgba(0, 0, 0, 0.05));
+  color: var(--yt-spec-text-disabled, #909090);
+  cursor: not-allowed;
+}
+
+/* Download Button Loading State */
+.subtitle-button-download--loading {
+  position: relative;
+}
+
+/* YouTube Button Override */
+.subtitle-download-button {
+  cursor: pointer !important;
+}
+
+/* YouTube Icon Styles */
+.subtitle-download-button .ytIconWrapperHost {
+  width: 24px;
+  height: 24px;
+}
+
+.subtitle-download-button .yt-icon-shape div {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: currentcolor;
+}
+
+.subtitle-download-button svg {
+  pointer-events: none;
+  display: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+/* Popup Container */
+/* Popup Container */
+.subtitle-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2202;
+  /* High enough to be above video */
+  background: var(--yt-spec-brand-background-solid, white);
+  border-radius: 12px;
+  box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  min-width: 200px;
+  margin-top: 8px;
+  border: 1px solid var(--yt-spec-10-percent-layer, #e5e5e5);
+}
+
+.subtitle-popup-header {
+  margin: 0 0 8px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.subtitle-settings-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  color: var(--yt-spec-text-secondary, #606060);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.subtitle-settings-button:hover {
+  background-color: var(--yt-spec-10-percent-layer, rgba(0, 0, 0, 0.1));
+  color: var(--yt-spec-text-primary, #0f0f0f);
+}
+
+.subtitle-popup-content {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
