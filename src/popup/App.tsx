@@ -48,6 +48,7 @@ function App() {
           type="button"
           class="settings-button"
           title="Settings"
+          aria-label="Settings"
           onClick={() => {
             chrome.runtime.sendMessage({ action: 'openOptionsPage' })
           }}
@@ -58,13 +59,7 @@ function App() {
         </button>
       </div>
 
-      {/* Debug info */}
-      <div
-        style={{ "font-size": "10px", color: "#999", "margin-bottom": "10px" }}
-      >
-        Debug: Loading={isLoading().toString()}, Error=
-        {Boolean(hasError()).toString()}, Tracks={captionTracks().length}
-      </div>
+
 
       {isLoading() && <LoadingSpinner />}
 

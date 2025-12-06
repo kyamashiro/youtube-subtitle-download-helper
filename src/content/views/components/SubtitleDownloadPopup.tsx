@@ -52,6 +52,7 @@ export const SubtitleDownloadPopup: Component<PopupProps> = (props) => {
           type="button"
           class="subtitle-settings-button"
           title="Settings"
+          aria-label="Settings"
           onClick={() => {
             chrome.runtime.sendMessage({ action: 'openOptionsPage' })
           }}
