@@ -3,12 +3,12 @@
  * @returns {string}
  * @param url
  */
-export const getParam = (url: string): string => {
+export const getParam = (url: string): string | null => {
   const query = 'v'.replace(/[[]]/g, '\\$&')
   const regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`)
   const results = regex.exec(url)
   if (!results) {
-    throw new Error('Url query parameter does not contain videoid.')
+    return null
   }
   if (!results[2]) return ''
   return decodeURIComponent(results[2].replace(/\+/g, ' '))

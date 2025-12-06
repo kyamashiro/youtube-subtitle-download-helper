@@ -24,7 +24,19 @@ let currentVideoId: string | null = null
 // Initialize data when page loads
 async function initializeSubtitleData() {
   try {
+    // Optimization: Skip if not a video page
+    if (!location.pathname.startsWith('/watch')) {
+      console.log('Not a watch page, skipping subtitle initialization.')
+      return
+    }
+
     const videoId = getParam(document.URL)
+    
+    if (!videoId) {
+      console.log('No video ID found, skipping subtitle initialization.')
+      return
+    }
+
     console.log('Initializing subtitle data for video:', videoId)
 
     if (currentVideoId === videoId && cachedSubtitleData) {
