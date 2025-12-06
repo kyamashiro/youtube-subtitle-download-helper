@@ -7,7 +7,7 @@ export default defineManifest({
   version: pkg.version,
   description:
     "This extension allows you to download  captions data from Youtube. You can download captions data in multiple file formats.",
-  permissions: ["downloads", "activeTab", "storage"],
+  permissions: ["downloads", "storage"],
   icons: {
     48: "public/icon.png",
   },
