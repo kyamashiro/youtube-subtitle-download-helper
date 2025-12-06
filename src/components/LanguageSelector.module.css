@@ -11,17 +11,17 @@
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #374151;
+  color: var(--yt-spec-text-primary, #374151);
 }
 
 .formSelect {
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--yt-spec-10-percent-layer, #d1d5db);
   border-radius: 4px;
   font-size: 14px;
-  background-color: white;
-  color: #374151;
+  background-color: var(--yt-spec-brand-background-solid, white);
+  color: var(--yt-spec-text-primary, #374151);
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
