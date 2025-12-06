@@ -47,8 +47,6 @@ export const SubtitleDownloadPopup: Component<PopupProps> = (props) => {
 
   return (
     <div class="subtitle-popup" style={props.style}>
-      <h2 class="subtitle-popup-header">Download Subtitles</h2>
-
       <div class="subtitle-popup-content">
         <LanguageSelector
           tracks={props.subtitleData.captionTrackList}
@@ -60,13 +58,6 @@ export const SubtitleDownloadPopup: Component<PopupProps> = (props) => {
       </div>
 
       <div class="subtitle-button-container">
-        <button
-          type="button"
-          onClick={props.onClose}
-          class="subtitle-button subtitle-button-cancel"
-        >
-          Close
-        </button>
         <button
           type="button"
           onClick={handleDownload}

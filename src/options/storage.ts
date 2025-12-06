@@ -4,6 +4,9 @@ import { DEFAULT_SETTINGS } from "./types";
 export class SettingsStorage {
   static async getSettings(): Promise<ExtensionSettings> {
     try {
+      if (typeof chrome === "undefined" || !chrome.storage || !chrome.storage.sync) {
+        return DEFAULT_SETTINGS;
+      }
       const result = await chrome.storage.sync.get("settings");
       return { ...DEFAULT_SETTINGS, ...result.settings };
     } catch (error) {
@@ -16,6 +19,10 @@ export class SettingsStorage {
     settings: Partial<ExtensionSettings>,
   ): Promise<void> {
     try {
+      if (typeof chrome === "undefined" || !chrome.storage || !chrome.storage.sync) {
+        console.warn('Cannot save settings: chrome.storage.sync is not available');
+        return;
+      }
       const currentSettings = await SettingsStorage.getSettings();
       const updatedSettings = { ...currentSettings, ...settings };
       await chrome.storage.sync.set({ settings: updatedSettings });

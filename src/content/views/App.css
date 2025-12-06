@@ -114,30 +114,32 @@
 
 
 /* Popup Container */
+/* Popup Container */
 .subtitle-popup {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 2202; /* High enough to be above video */
+  z-index: 2202;
+  /* High enough to be above video */
   background: var(--yt-spec-brand-background-solid, white);
   border-radius: 12px;
   box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  min-width: 300px;
+  padding: 12px;
+  min-width: 200px;
   margin-top: 8px;
   border: 1px solid var(--yt-spec-10-percent-layer, #e5e5e5);
 }
 
 .subtitle-popup-header {
-  margin: 0 0 16px 0;
+  margin: 0 0 12px 0;
   color: var(--yt-spec-text-primary, #000);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .subtitle-popup-content {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }

@@ -39,8 +39,23 @@ export const DownloadHelper = {
           );
         });
       }
-    } catch (error) {
-      // Fallback: create download link and click it
+    } catch (error: any) {
+      const errorMessage = error?.message || '';
+      
+      // Ignore user cancellation
+      if (errorMessage.includes('User cancelled') || errorMessage.includes('canceled')) {
+        console.log('Download cancelled by user');
+        return;
+      }
+
+      // Handle extension context invalidation (requires reload)
+      if (errorMessage.includes('Extension context invalidated')) {
+        console.error('Extension context invalidated. Please reload the page.');
+        alert('Extension updated or context invalidated. Please reload the page to continue.');
+        return;
+      }
+
+      // Fallback for other errors
       console.warn("Chrome downloads failed, using fallback method:", error);
       DownloadHelper.fallbackDownload(url, filename);
     } finally {

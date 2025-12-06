@@ -24,4 +24,8 @@ export default defineManifest({
       matches: ["https://*.youtube.com/*"],
     },
   ],
+  background: {
+    service_worker: "src/background/index.ts",
+    type: "module",
+  },
 });
