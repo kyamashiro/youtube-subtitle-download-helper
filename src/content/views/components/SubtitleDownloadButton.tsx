@@ -1,4 +1,4 @@
-import { type Component, createMemo, createSignal, Show, createEffect, onCleanup } from 'solid-js'
+import { type Component, createSignal, Show } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import { useSubtitleData } from '../hooks/useSubtitleData'
 import { Icon } from './Icon.tsx'
@@ -21,10 +21,10 @@ export const SubtitleDownloadButton: Component = () => {
   const [position, setPosition] = createSignal({ top: 0, left: 0 })
   let buttonRef: HTMLButtonElement | undefined
 
-  const hasValidData = createMemo(() => {
+  const hasValidData = () => {
     const data = subtitleData()
     return data && data.captionTrackList.length > 0
-  })
+  }
 
   const handleDownloadClick = () => {
     if (!hasValidData()) {
@@ -45,18 +45,6 @@ export const SubtitleDownloadButton: Component = () => {
     setShowPopup(!showPopup())
   }
 
-  // Close popup on Escape key
-  createEffect(() => {
-    if (showPopup()) {
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          setShowPopup(false)
-        }
-      }
-      window.addEventListener('keydown', handleEscape)
-      onCleanup(() => window.removeEventListener('keydown', handleEscape))
-    }
-  })
 
   return (
     <>

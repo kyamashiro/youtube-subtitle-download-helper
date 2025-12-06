@@ -1,4 +1,4 @@
-import { createSignal, createEffect, onCleanup, type Accessor } from "solid-js";
+import { createSignal, createEffect, onMount, onCleanup, type Accessor } from "solid-js";
 
 export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
   const [isInjected, setIsInjected] = createSignal(false);
@@ -55,7 +55,7 @@ export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
   });
 
   // Reset injection status when URL changes (YouTube SPA navigation)
-  createEffect(() => {
+  onMount(() => {
     const checkUrlChange = () => {
       setIsInjected(false);
     };

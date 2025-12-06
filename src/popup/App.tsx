@@ -1,4 +1,3 @@
-import { createMemo } from "solid-js";
 import { DownloadButton } from "./components/DownloadButton";
 import { ErrorMessage } from "./components/ErrorMessage";
 import { FormatSelector } from "@/components/FormatSelector";
@@ -23,8 +22,8 @@ function App() {
     download(selectedTrack(), captionTracks(), selectedFormat(), videoTitle());
   };
 
-  const hasError = createMemo(() => errorMessage() || downloadError());
-  const showContent = createMemo(() => {
+  const hasError = () => errorMessage() || downloadError();
+  const showContent = () => {
     const loading = isLoading();
     const error = hasError();
     const tracks = captionTracks();
@@ -38,7 +37,7 @@ function App() {
     });
 
     return shouldShow;
-  });
+  };
 
   return (
     <div class="popup-container">

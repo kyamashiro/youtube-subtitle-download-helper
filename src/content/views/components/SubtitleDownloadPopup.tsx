@@ -1,4 +1,4 @@
-import { type Component, createMemo } from 'solid-js'
+import { type Component } from 'solid-js'
 import { getSubtitle } from '@/client/clientYoutube'
 import { FormatSelector } from '@/components/FormatSelector'
 import { LanguageSelector } from '@/components/LanguageSelector'
@@ -18,11 +18,10 @@ export const SubtitleDownloadPopup: Component<PopupProps> = (props) => {
     })
 
   // Memoized selected track data
-  const selectedTrackData = createMemo(() =>
+  const selectedTrackData = () =>
     props.subtitleData.captionTrackList.find(
       (track) => track.baseUrl === selectedTrack(),
-    ),
-  )
+    );
 
   const handleDownload = async () => {
     const trackData = selectedTrackData()
