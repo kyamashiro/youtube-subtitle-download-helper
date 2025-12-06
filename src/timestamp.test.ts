@@ -1,12 +1,12 @@
 import { describe, expect, test } from "vitest";
-import type { Timestamp } from "../timestamp";
+import type { Timestamp } from "./timestamp";
 import {
   formatLrc,
   formatSrt,
   formatVtt,
   getDurationTime,
   getStartTime,
-} from "../timestamp";
+} from "./timestamp";
 
 describe("Get start time.", () => {
   test("Convert 10.159 to 00:00:10.159", () => {

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getParam } from "../url";
+import { getParam } from "./url";
 
 test("Query string retrieves videoid from URL.", () => {
   expect(getParam("https://www.youtube.com/watch?v=d0yGdNEWdn0")).toBe(

@@ -1,10 +1,10 @@
 import fs from "fs-extra";
 import { beforeAll, expect, test } from "vitest";
-import * as CaptionsParser from "../parser/captionsParser";
+import * as CaptionsParser from "./captionsParser";
 
 let buffer: string;
 beforeAll(async () => {
-  buffer = await fs.readFile("src/test/sample-response.xml", "utf-8");
+  buffer = await fs.readFile("src/parser/sample-response.xml", "utf-8");
 });
 
 test("Remove <xml> tag.", () => {
