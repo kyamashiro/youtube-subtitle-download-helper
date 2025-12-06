@@ -1,6 +1,6 @@
 import { type Component, For } from "solid-js";
-import styles from "./LanguageSelector.module.css";
 import type { CaptionTrack } from "@/types/captionTrack";
+import styles from "./LanguageSelector.module.css";
 
 interface LanguageSelectorProps {
   tracks: CaptionTrack[];

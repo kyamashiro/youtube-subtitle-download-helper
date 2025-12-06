@@ -1,4 +1,4 @@
-import { afterAll, afterEach, beforeAll, vi } from 'vitest'
+import { afterAll, afterEach, beforeAll, vi } from "vitest";
 
 // Mock Chrome APIs
 const mockChrome = {

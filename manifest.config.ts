@@ -3,7 +3,7 @@ import pkg from "./package.json";
 
 export default defineManifest({
   manifest_version: 3,
-  name: 'Youtube Subtitle Download Helper',
+  name: "Youtube Subtitle Download Helper",
   version: pkg.version,
   description:
     "This extension allows you to download  captions data from Youtube. You can download captions data in multiple file formats.",

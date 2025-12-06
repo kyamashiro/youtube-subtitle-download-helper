@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
-  if (request.action === 'download') {
+  if (request.action === "download") {
     chrome.downloads.download(
       {
         url: request.url,
@@ -7,17 +7,17 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
       },
       (downloadId) => {
         if (chrome.runtime.lastError) {
-          sendResponse({ error: chrome.runtime.lastError.message })
+          sendResponse({ error: chrome.runtime.lastError.message });
         } else {
-          sendResponse({ downloadId })
+          sendResponse({ downloadId });
         }
       },
-    )
-    return true // Keep the message channel open for async response
+    );
+    return true; // Keep the message channel open for async response
   }
 
-  if (request.action === 'openOptionsPage') {
-    chrome.runtime.openOptionsPage()
-    return true
+  if (request.action === "openOptionsPage") {
+    chrome.runtime.openOptionsPage();
+    return true;
   }
-})
+});

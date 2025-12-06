@@ -1,7 +1,8 @@
-import { type Component, createSignal, onMount, Show, For } from "solid-js";
+import { type Component, createSignal, For, onMount, Show } from "solid-js";
 import { FormatSelector } from "@/components/FormatSelector";
-import type { ExtensionSettings } from "./types";
+import { FileFormat } from "@/converter/converterFactory";
 import { SettingsStorage } from "./storage";
+import type { ExtensionSettings } from "./types";
 import { LANGUAGE_OPTIONS } from "./types";
 import "./App.css";
 
@@ -84,9 +85,12 @@ export const OptionsApp: Component = () => {
             <h2>Download Settings</h2>
 
             <div class="setting-group">
-              <label class="setting-label">Default Format:</label>
+              <label class="setting-label" for="default-format">
+                Default Format:
+              </label>
               <FormatSelector
-                value={settings()?.defaultFormat as any}
+                id="default-format"
+                value={settings()?.defaultFormat ?? FileFormat.SRT}
                 onChange={(format) => updateSetting("defaultFormat", format)}
               />
               <small class="setting-description">
@@ -96,8 +100,11 @@ export const OptionsApp: Component = () => {
             </div>
 
             <div class="setting-group">
-              <label class="setting-label">Default Language:</label>
+              <label class="setting-label" for="default-language">
+                Default Language:
+              </label>
               <select
+                id="default-language"
                 class="setting-select"
                 value={settings()?.defaultLanguage}
                 onChange={(e) =>
@@ -126,6 +133,7 @@ export const OptionsApp: Component = () => {
 
           <div class="options-actions">
             <button
+              type="button"
               class="btn btn-primary"
               onClick={handleSave}
               disabled={saving()}
@@ -133,6 +141,7 @@ export const OptionsApp: Component = () => {
               {saving() ? "Saving..." : "Save Settings"}
             </button>
             <button
+              type="button"
               class="btn btn-secondary"
               onClick={handleReset}
               disabled={saving()}

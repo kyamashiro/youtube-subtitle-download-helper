@@ -1,5 +1,5 @@
-import { err, ok, type Result } from '@/types/result'
-import type { InnerTubeConfig, PlayerData } from '@/types/youtube'
+import { err, ok, type Result } from "@/types/result";
+import type { InnerTubeConfig, PlayerData } from "@/types/youtube";
 
 /**
  * Get HTML content of YouTube video page
@@ -9,29 +9,29 @@ export const getVideoPageHtml = async (
   videoId: string,
 ): Promise<Result<string>> => {
   try {
-    const response = await fetch(`https://www.youtube.com/watch?v=${videoId}`)
+    const response = await fetch(`https://www.youtube.com/watch?v=${videoId}`);
     if (!response.ok) {
-      return err(new Error(response.statusText))
+      return err(new Error(response.statusText));
     }
-    const text = await response.text()
-    return ok(text)
+    const text = await response.text();
+    return ok(text);
   } catch (e) {
-    return err(e instanceof Error ? e : new Error('Unknown error'))
+    return err(e instanceof Error ? e : new Error("Unknown error"));
   }
-}
+};
 
 export const getSubtitle = async (baseUrl: string): Promise<Result<string>> => {
   try {
-    const response = await fetch(baseUrl)
+    const response = await fetch(baseUrl);
     if (!response.ok) {
-      return err(new Error(response.statusText))
+      return err(new Error(response.statusText));
     }
-    const text = await response.text()
-    return ok(text)
+    const text = await response.text();
+    return ok(text);
   } catch (e) {
-    return err(e instanceof Error ? e : new Error('Unknown error'))
+    return err(e instanceof Error ? e : new Error("Unknown error"));
   }
-}
+};
 
 export const getPlayerData = async (
   videoId: string,
@@ -45,26 +45,26 @@ export const getPlayerData = async (
       },
     },
     videoId: videoId,
-  }
+  };
 
   try {
-    const response = await fetch('https://www.youtube.com/youtubei/v1/player', {
-      method: 'POST',
+    const response = await fetch("https://www.youtube.com/youtubei/v1/player", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
-    })
+    });
 
     if (!response.ok) {
       return err(
         new Error(`INNERTUBE API request failed: ${response.statusText}`),
-      )
+      );
     }
 
-    const data = await response.json()
-    return ok(data)
+    const data = await response.json();
+    return ok(data);
   } catch (e) {
-    return err(e instanceof Error ? e : new Error('Unknown error'))
+    return err(e instanceof Error ? e : new Error("Unknown error"));
   }
-}
+};

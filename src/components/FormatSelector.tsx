@@ -1,5 +1,6 @@
 import { type Component, For } from "solid-js";
 import type { FileFormat } from "@/converter/converterFactory";
+import { isFileFormat } from "@/utils/typeGuards";
 import styles from "./FormatSelector.module.css";
 
 const FORMAT_OPTIONS: Array<{ value: FileFormat; label: string }> = [
@@ -13,17 +14,23 @@ const FORMAT_OPTIONS: Array<{ value: FileFormat; label: string }> = [
 interface FormatSelectorProps {
   value: FileFormat;
   onChange: (format: FileFormat) => void;
+  id?: string;
 }
 
 export const FormatSelector: Component<FormatSelectorProps> = (props) => (
   <div class={styles.formGroup}>
-    <label for="format" class={styles.formLabel}>
+    <label for={props.id || "format"} class={styles.formLabel}>
       Format:
     </label>
     <select
-      id="format"
+      id={props.id || "format"}
       value={props.value}
-      onChange={(e) => props.onChange(e.target.value as FileFormat)}
+      onChange={(e) => {
+        const val = e.target.value;
+        if (isFileFormat(val)) {
+          props.onChange(val);
+        }
+      }}
       class={styles.formSelect}
     >
       <For each={FORMAT_OPTIONS}>

@@ -1,10 +1,12 @@
+import { FileFormat } from "@/converter/converterFactory";
+
 export interface ExtensionSettings {
-  defaultFormat: string;
+  defaultFormat: FileFormat;
   defaultLanguage: string;
 }
 
 export const DEFAULT_SETTINGS: ExtensionSettings = {
-  defaultFormat: "srt",
+  defaultFormat: FileFormat.SRT,
   defaultLanguage: "auto",
 };
 

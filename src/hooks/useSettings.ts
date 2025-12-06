@@ -1,6 +1,6 @@
-import { createSignal, onMount, type Accessor } from "solid-js";
-import type { ExtensionSettings } from "@/options/types";
+import { type Accessor, createSignal, onMount } from "solid-js";
 import { SettingsStorage } from "@/options/storage";
+import type { ExtensionSettings } from "@/options/types";
 
 export function useSettings(): [
   Accessor<ExtensionSettings | null>,

@@ -1,4 +1,10 @@
-import { createSignal, createEffect, onMount, onCleanup, type Accessor } from "solid-js";
+import {
+  type Accessor,
+  createEffect,
+  createSignal,
+  onCleanup,
+  onMount,
+} from "solid-js";
 
 export function useDOMInjection(elementRef: Accessor<HTMLElement | undefined>) {
   const [isInjected, setIsInjected] = createSignal(false);

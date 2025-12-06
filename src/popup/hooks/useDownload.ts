@@ -1,23 +1,23 @@
-import { createSignal } from 'solid-js'
-import { getSubtitle } from '@/client/clientYoutube'
+import { createSignal } from "solid-js";
+import { getSubtitle } from "@/client/clientYoutube";
 import {
   createConverter,
   type FileFormat,
-} from '@/converter/converterFactory.ts'
-import type { CaptionTrack } from '@/types/captionTrack.ts'
+} from "@/converter/converterFactory.ts";
+import type { CaptionTrack } from "@/types/captionTrack.ts";
 
 interface UseDownloadReturn {
-  downloadError: () => string
+  downloadError: () => string;
   download: (
     selectedTrack: string,
     captionTracks: CaptionTrack[],
     selectedFormat: FileFormat,
     videoTitle: string,
-  ) => Promise<void>
+  ) => Promise<void>;
 }
 
 export function useDownload(): UseDownloadReturn {
-  const [downloadError, setDownloadError] = createSignal<string>('')
+  const [downloadError, setDownloadError] = createSignal<string>("");
 
   const download = async (
     selectedTrack: string,
@@ -25,35 +25,35 @@ export function useDownload(): UseDownloadReturn {
     selectedFormat: FileFormat,
     videoTitle: string,
   ): Promise<void> => {
-    console.log('Starting download with:', {
+    console.log("Starting download with:", {
       selectedTrack,
       selectedFormat,
       videoTitle,
-    })
+    });
 
     const selectedTrackData = captionTracks.find(
       (track) => track.baseUrl === selectedTrack,
-    )
+    );
 
     if (!selectedTrackData) {
-      console.error('Selected track data not found')
-      return
+      console.error("Selected track data not found");
+      return;
     }
 
-    console.log('Selected track data:', selectedTrackData)
+    console.log("Selected track data:", selectedTrackData);
 
     try {
       console.log(
-        'Requesting subtitle download from content script:',
+        "Requesting subtitle download from content script:",
         selectedTrack,
-      )
+      );
 
       // Request subtitle download from content script
-      const result = await getSubtitle(selectedTrack)
+      const result = await getSubtitle(selectedTrack);
       if (!result.success) {
-        throw result.error
+        throw result.error;
       }
-      const xmlResponse = result.value
+      const xmlResponse = result.value;
 
       console.log("Converting to format:", selectedFormat);
       const converter = createConverter(selectedFormat);
@@ -66,14 +66,18 @@ export function useDownload(): UseDownloadReturn {
       await converter.convert(xmlResponse, `${videoTitle} - ${content}`);
 
       console.log("Download completed successfully");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Download error:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      const errorStack = error instanceof Error ? error.stack : undefined;
+
       console.error("Error details:", {
-        message: error.message,
-        stack: error.stack,
+        message: errorMessage,
+        stack: errorStack,
         selectedTrack,
       });
-      setDownloadError(`Download failed: ${error.message || error}`);
+      setDownloadError(`Download failed: ${errorMessage}`);
     }
   };
 

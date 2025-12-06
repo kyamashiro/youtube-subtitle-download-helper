@@ -1,50 +1,54 @@
-import { type Component, createSignal, Show } from 'solid-js'
-import { Portal } from 'solid-js/web'
-import { useSubtitleData } from '../hooks/useSubtitleData'
-import { Icon } from './Icon.tsx'
-import { SubtitleDownloadPopup } from './SubtitleDownloadPopup'
+import { type Component, createSignal, Show } from "solid-js";
+import { Portal } from "solid-js/web";
+import { useSubtitleData } from "../hooks/useSubtitleData";
+import { Icon } from "./Icon.tsx";
+import { SubtitleDownloadPopup } from "./SubtitleDownloadPopup";
 
 // Constants
 const YOUTUBE_BUTTON_CLASSES = [
-  'yt-spec-button-shape-next',
-  'yt-spec-button-shape-next--tonal',
-  'yt-spec-button-shape-next--mono',
-  'yt-spec-button-shape-next--size-m',
-  'yt-spec-button-shape-next--icon-leading',
-  'yt-spec-button-shape-next--enable-backdrop-filter-experiment',
-  'subtitle-download-button',
-].join(' ')
+  "yt-spec-button-shape-next",
+  "yt-spec-button-shape-next--tonal",
+  "yt-spec-button-shape-next--mono",
+  "yt-spec-button-shape-next--size-m",
+  "yt-spec-button-shape-next--icon-leading",
+  "yt-spec-button-shape-next--enable-backdrop-filter-experiment",
+  "subtitle-download-button",
+].join(" ");
 
 export const SubtitleDownloadButton: Component = () => {
-  const [subtitleData] = useSubtitleData()
-  const [showPopup, setShowPopup] = createSignal(false)
-  const [position, setPosition] = createSignal({ top: 0, left: 0 })
-  let buttonRef: HTMLButtonElement | undefined
+  const [subtitleData] = useSubtitleData();
+  const [showPopup, setShowPopup] = createSignal(false);
+  const [position, setPosition] = createSignal({ top: 0, left: 0 });
+  let buttonRef: HTMLButtonElement | undefined;
 
   const hasValidData = () => {
-    const data = subtitleData()
-    return data && data.captionTrackList.length > 0
-  }
+    const data = subtitleData();
+    return data && data.captionTrackList.length > 0;
+  };
+
+  const validData = () => {
+    const data = subtitleData();
+    return showPopup() && data ? data : null;
+  };
 
   const handleDownloadClick = () => {
     if (!hasValidData()) {
-      alert('Subtitle data not found. Please reload the page.')
-      return
+      alert("Subtitle data not found. Please reload the page.");
+      return;
     }
-    
+
     if (buttonRef) {
-      const rect = buttonRef.getBoundingClientRect()
-      const scrollY = window.scrollY
-      const scrollX = window.scrollX
+      const rect = buttonRef.getBoundingClientRect();
+      const scrollY = window.scrollY;
+      const scrollX = window.scrollX;
       setPosition({
         top: rect.bottom + scrollY + 8, // 8px margin
         left: rect.left + scrollX,
-      })
+      });
     }
 
-    setShowPopup(!showPopup())
-  }
-
+    setShowPopup(!showPopup());
+  };
 
   return (
     <>
@@ -62,31 +66,40 @@ export const SubtitleDownloadButton: Component = () => {
         </div>
       </button>
 
-      <Show when={showPopup() && subtitleData()}>
-        <Portal>
-          <div 
-            style={{ 
-              position: 'fixed', 
-              top: 0, 
-              left: 0, 
-              width: '100%', 
-              height: '100%', 
-              'z-index': 9998 
-            }}
-            onClick={() => setShowPopup(false)}
-          />
-          <SubtitleDownloadPopup
-            subtitleData={subtitleData()!}
-            onClose={() => setShowPopup(false)}
-            style={{
-              top: `${position().top}px`,
-              left: `${position().left}px`,
-              position: 'absolute',
-              'z-index': 9999
-            }}
-          />
-        </Portal>
+      <Show when={validData()}>
+        {(data) => (
+          <Portal>
+            <div
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setShowPopup(false);
+                }
+              }}
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                "z-index": 9998,
+              }}
+              onClick={() => setShowPopup(false)}
+            />
+            <SubtitleDownloadPopup
+              subtitleData={data()}
+              onClose={() => setShowPopup(false)}
+              style={{
+                top: `${position().top}px`,
+                left: `${position().left}px`,
+                position: "absolute",
+                "z-index": 9999,
+              }}
+            />
+          </Portal>
+        )}
       </Show>
     </>
-  )
-}
+  );
+};

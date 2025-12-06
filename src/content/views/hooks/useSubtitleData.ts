@@ -1,10 +1,11 @@
 import {
-  createSignal,
-  onMount,
-  onCleanup,
   type Accessor,
+  createSignal,
+  onCleanup,
+  onMount,
   type Setter,
 } from "solid-js";
+import { isSubtitleData } from "@/utils/typeGuards";
 import type { SubtitleData } from "../types";
 
 export function useSubtitleData(): [
@@ -16,20 +17,16 @@ export function useSubtitleData(): [
   );
 
   onMount(() => {
-    const handleDataUpdate = (event: CustomEvent<SubtitleData>) => {
-      setSubtitleData(event.detail);
+    const handleDataUpdate = (event: Event) => {
+      if (event instanceof CustomEvent && isSubtitleData(event.detail)) {
+        setSubtitleData(event.detail);
+      }
     };
 
-    window.addEventListener(
-      "subtitle-data-updated",
-      handleDataUpdate as EventListener,
-    );
+    window.addEventListener("subtitle-data-updated", handleDataUpdate);
 
     onCleanup(() => {
-      window.removeEventListener(
-        "subtitle-data-updated",
-        handleDataUpdate as EventListener,
-      );
+      window.removeEventListener("subtitle-data-updated", handleDataUpdate);
     });
   });
 
