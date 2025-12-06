@@ -15,17 +15,17 @@ export default defineManifest({
     default_icon: {
       48: "public/icon.png",
     },
-    default_popup: "src/popup/index.html",
+    default_popup: "src/features/popup/index.html",
   },
-  options_page: "src/options/index.html",
+  options_page: "src/features/options/index.html",
   content_scripts: [
     {
-      js: ["src/content/main.ts"],
+      js: ["src/features/content/main.ts"],
       matches: ["https://*.youtube.com/*"],
     },
   ],
   background: {
-    service_worker: "src/background/index.ts",
+    service_worker: "src/features/background/index.ts",
     type: "module",
   },
 });

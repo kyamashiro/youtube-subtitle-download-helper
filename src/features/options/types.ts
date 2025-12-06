@@ -1,0 +1,66 @@
+import { FileFormat } from "@/lib/converter/converterFactory";
+
+export interface ExtensionSettings {
+  defaultFormat: FileFormat;
+  defaultLanguage: string;
+}
+
+export const DEFAULT_SETTINGS: ExtensionSettings = {
+  defaultFormat: FileFormat.SRT,
+  defaultLanguage: "auto",
+};
+
+export const LANGUAGE_OPTIONS = [
+  { value: "auto", label: "Auto (First Available)" },
+  { value: "sq", label: "Albanian" },
+  { value: "ar", label: "Arabic" },
+  { value: "be", label: "Belarusian" },
+  { value: "bg", label: "Bulgarian" },
+  { value: "my", label: "Burmese" },
+  { value: "ca", label: "Catalan" },
+  { value: "zh-HK", label: "Chinese (Hong Kong)" },
+  { value: "zh-CN", label: "Chinese (China)" },
+  { value: "zh-TW", label: "Chinese (Taiwan)" },
+  { value: "hr", label: "Croatian" },
+  { value: "cs", label: "Czech" },
+  { value: "da", label: "Danish" },
+  { value: "nl", label: "Dutch" },
+  { value: "en", label: "English" },
+  { value: "en-auto", label: "English (auto-generated)" },
+  { value: "fi", label: "Finnish" },
+  { value: "fr", label: "French" },
+  { value: "ka", label: "Georgian" },
+  { value: "de", label: "German" },
+  { value: "el", label: "Greek" },
+  { value: "iw", label: "Hebrew" },
+  { value: "hu", label: "Hungarian" },
+  { value: "id", label: "Indonesian" },
+  { value: "it", label: "Italian" },
+  { value: "ja", label: "Japanese" },
+  { value: "kk", label: "Kazakh" },
+  { value: "ko", label: "Korean" },
+  { value: "ku", label: "Kurdish" },
+  { value: "lv", label: "Latvian" },
+  { value: "lt", label: "Lithuanian" },
+  { value: "mn", label: "Mongolian" },
+  { value: "no", label: "Norwegian" },
+  { value: "fa", label: "Persian" },
+  { value: "pl", label: "Polish" },
+  { value: "pt-BR", label: "Portuguese (Brazil)" },
+  { value: "pt-PT", label: "Portuguese (Portugal)" },
+  { value: "ro", label: "Romanian" },
+  { value: "ru", label: "Russian" },
+  { value: "sr", label: "Serbian" },
+  { value: "sk", label: "Slovak" },
+  { value: "sl", label: "Slovenian" },
+  { value: "es", label: "Spanish" },
+  { value: "sw", label: "Swahili" },
+  { value: "sv", label: "Swedish" },
+  { value: "te", label: "Telugu" },
+  { value: "th", label: "Thai" },
+  { value: "tr", label: "Turkish" },
+  { value: "uk", label: "Ukrainian" },
+  { value: "ur", label: "Urdu" },
+  { value: "uz", label: "Uzbek" },
+  { value: "vi", label: "Vietnamese" },
+];
