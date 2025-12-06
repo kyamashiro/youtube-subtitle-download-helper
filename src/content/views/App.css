@@ -131,10 +131,27 @@
 }
 
 .subtitle-popup-header {
-  margin: 0 0 12px 0;
-  color: var(--yt-spec-text-primary, #000);
-  font-size: 14px;
-  font-weight: 500;
+  margin: 0 0 8px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.subtitle-settings-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  color: var(--yt-spec-text-secondary, #606060);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.subtitle-settings-button:hover {
+  background-color: var(--yt-spec-10-percent-layer, rgba(0, 0, 0, 0.1));
+  color: var(--yt-spec-text-primary, #0f0f0f);
 }
 
 .subtitle-popup-content {

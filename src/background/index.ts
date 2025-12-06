@@ -15,4 +15,9 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
     )
     return true // Keep the message channel open for async response
   }
+
+  if (request.action === 'openOptionsPage') {
+    chrome.runtime.openOptionsPage()
+    return true
+  }
 })
