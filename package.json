@@ -1,7 +1,7 @@
 {
   "name": "youtube-subtitle-download-helper",
   "type": "module",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
