@@ -4,9 +4,9 @@ import type { Aline, LrcAline } from "../types/aline";
 import { DownloadHelper } from "../utils/downloadHelper";
 import type { Convertable } from "./convertable";
 
-export const LrcConverter: Convertable = {
+export const LrcConverter: Convertable<LrcAline[]> = {
   async convert(xmlResponse: string, fileName: string): Promise<void> {
-    const lines = this.format(xmlResponse) as LrcAline[];
+    const lines = this.format(xmlResponse);
     const file: string = lines.reduce((acc: string, cur: LrcAline) => {
       return `${acc}${cur.timestamp}${cur.text}\n`;
     }, "");
