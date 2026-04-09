@@ -32,7 +32,7 @@
     "@types/node": "^22.13.14",
     "@vitest/coverage-v8": "^4.0.15",
     "@vitest/ui": "^4.0.15",
-    "axios": "^1.8.2",
+    "axios": "^1.15.0",
     "core-js": "^3.15.2",
     "fs-extra": "^10.0.0",
     "glob": "^7.1.7",
