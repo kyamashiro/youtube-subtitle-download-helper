@@ -1,6 +1,7 @@
 import {
   parseCaptionsFromPlayerData,
   parseInnerTubeConfig,
+  parsePlayerDataFromScripts,
 } from "@/lib/parser/videoPageHtmlParser.ts";
 import type { CaptionTrack } from "@/shared/types/captionTrack.ts";
 import { getPlayerData, getVideoPageHtml } from "@/lib/client/clientYoutube";
@@ -90,25 +91,27 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
 
 async function getSubtitleList(videoId: string): Promise<SubtitleDataResponse> {
   try {
-    const pageResult = await getVideoPageHtml(videoId);
-    if (!pageResult.success) {
-      throw pageResult.error;
+    let captionTrackList: CaptionTrack[];
+    try {
+      // The active YouTube page already embeds this response. Read it from the
+      // DOM first so we do not depend on a separate, undocumented player API.
+      const playerData = parsePlayerDataFromScripts(
+        Array.from(document.scripts, (script) => script.textContent ?? ""),
+      );
+      captionTrackList = parseCaptionsFromPlayerData(playerData);
+    } catch (pageError) {
+      console.warn(
+        "Caption tracks were not available in the loaded page; using the legacy fallback.",
+        pageError,
+      );
+      const pageResult = await getVideoPageHtml(videoId);
+      if (!pageResult.success) throw pageResult.error;
+
+      const innerTubeConfig = parseInnerTubeConfig(pageResult.value);
+      const playerResult = await getPlayerData(videoId, innerTubeConfig);
+      if (!playerResult.success) throw playerResult.error;
+      captionTrackList = parseCaptionsFromPlayerData(playerResult.value);
     }
-    const videoPageData = pageResult.value;
-
-    const innerTubeConfig = parseInnerTubeConfig(videoPageData);
-    console.log("INNERTUBE Config:", innerTubeConfig);
-
-    const playerResult = await getPlayerData(videoId, innerTubeConfig);
-    if (!playerResult.success) {
-      throw playerResult.error;
-    }
-    const playerData = playerResult.value;
-
-    console.log("Player Data:", playerData);
-
-    // Extract captions from player data
-    const captionTrackList = parseCaptionsFromPlayerData(playerData);
 
     return {
       captionTrackList,

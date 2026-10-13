@@ -1,6 +1,9 @@
 import fs from "fs-extra";
 import { beforeAll, expect, test } from "vitest";
-import { parseInnerTubeConfig } from "./videoPageHtmlParser.ts";
+import {
+  parseInnerTubeConfig,
+  parsePlayerDataFromScripts,
+} from "./videoPageHtmlParser.ts";
 
 let testData: string;
 beforeAll(async () => {
@@ -41,4 +44,24 @@ test("parseInnerTubeConfig should handle different client names and versions", (
 
   expect(result.clientName).toBe("ANDROID");
   expect(result.clientVersion).toBe("19.09.37");
+});
+
+test("parsePlayerDataFromScripts extracts the embedded caption tracks", () => {
+  const playerResponse = {
+    captions: {
+      playerCaptionsTracklistRenderer: {
+        captionTracks: [{ languageCode: "ja", name: { simpleText: "日本語" } }],
+      },
+    },
+    title: 'A title with braces { } and quotes: "ok"',
+  };
+  const script = `var ytInitialPlayerResponse = ${JSON.stringify(playerResponse)};`;
+
+  expect(parsePlayerDataFromScripts([script])).toEqual(playerResponse);
+});
+
+test("parsePlayerDataFromScripts skips scripts without the player response", () => {
+  expect(() => parsePlayerDataFromScripts(["window.other = {};", ""])).toThrow(
+    "Not found ytInitialPlayerResponse in page scripts",
+  );
 });

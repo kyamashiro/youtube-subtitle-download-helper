@@ -100,6 +100,42 @@
 /* YouTube Button Override */
 .subtitle-download-button {
   cursor: pointer !important;
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  width: auto !important;
+  min-width: max-content !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: 20px !important;
+  background: var(--yt-spec-badge-chip-background, rgba(0, 0, 0, 0.05)) !important;
+  color: var(--yt-spec-text-primary, #0f0f0f) !important;
+  font: 500 14px/40px Roboto, Arial, sans-serif !important;
+  white-space: nowrap !important;
+}
+
+.subtitle-download-button:focus-visible {
+  outline: 2px solid var(--yt-spec-text-primary, #0f0f0f) !important;
+  outline-offset: 2px;
+}
+
+.subtitle-download-button .yt-spec-button-shape-next__icon {
+  display: inline-flex !important;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle-download-button .yt-spec-button-shape-next__button-text-content {
+  display: inline-block !important;
+  flex: 0 0 auto;
+  white-space: nowrap !important;
 }
 
 /* YouTube Icon Styles */
